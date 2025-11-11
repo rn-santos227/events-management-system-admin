@@ -1,11 +1,11 @@
 
 import type { ReactNode, ComponentType } from 'react';
 
-export interface AppRoute {
+export interface Route {
   name: string;
   path: string;
   element?: ReactNode | ComponentType<unknown>;
-  children?: AppRoute[];
+  children?: Route[];
   protected?: boolean;
   layout?: ComponentType<unknown>;
   allowedRoles?: string[];
