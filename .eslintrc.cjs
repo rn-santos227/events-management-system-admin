@@ -1,7 +1,16 @@
+/* eslint-env node */
 module.exports = {
   root: true,
   parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint', 'react', 'react-hooks', 'import', 'jsx-a11y'],
+  parserOptions: {
+    ecmaVersion: 2020,
+    sourceType: 'module',
+    ecmaFeatures: {
+      jsx: true,
+    },
+    project: ['./tsconfig.json'],
+  },
+  plugins: ['@typescript-eslint', 'react', 'react-hooks'],
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
@@ -13,29 +22,12 @@ module.exports = {
     'prettier',
   ],
   settings: {
-    react: { version: 'detect' },
-    'import/resolver': {
-      typescript: true,
-      node: true,
+    react: {
+      version: 'detect',
     },
   },
   rules: {
     'react/react-in-jsx-scope': 'off',
-    '@typescript-eslint/consistent-type-imports': ['warn', { prefer: 'type-imports' }],
-    'import/order': [
-      'warn',
-      {
-        groups: [
-          'builtin', 'external', 'internal',
-          ['parent', 'sibling', 'index'], 'object', 'type'
-        ],
-        'newlines-between': 'always',
-        alphabetize: { order: 'asc', caseInsensitive: true },
-        pathGroups: [
-          { pattern: '@/**', group: 'internal', position: 'after' },
-        ],
-        pathGroupsExcludedImportTypes: ['builtin'],
-      },
-    ],
+    '@typescript-eslint/no-explicit-any': 'warn',
   },
-}
+};
