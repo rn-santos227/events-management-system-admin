@@ -13,6 +13,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   rightIcon?: ReactNode
   isLoading?: boolean
   loadingText?: string
+  block?: boolean
 }
 
 const variantStyles: Record<ButtonVariant, string> = {
@@ -32,7 +33,8 @@ const sizeStyles: Record<ButtonSize, string> = {
   lg: 'h-12 rounded-xl px-6 text-base',
 }
 
-const baseStyles = 'inline-flex items-center justify-center gap-2 font-medium transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed'
+const baseStyles =
+  'inline-flex items-center justify-center gap-2 font-medium transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed'
 
 const spinner = (
   <svg
@@ -72,11 +74,13 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       isLoading = false,
       loadingText = 'Loading',
       disabled,
+      block = false,
       ...props
     },
     ref,
   ) => {
     const isDisabled = disabled || isLoading
+
     return (
       <button
         ref={ref}
@@ -84,7 +88,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           baseStyles,
           variantStyles[variant],
           sizeStyles[size],
-          isLoading ? 'cursor-wait opacity-80' : undefined,
+          isLoading && 'cursor-wait opacity-80',
+          block && 'w-full',
           className,
         )}
         disabled={isDisabled}
@@ -99,9 +104,13 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ) : leftIcon ? (
           <span aria-hidden="true">{leftIcon}</span>
         ) : null}
+
         <span className="truncate">{children}</span>
+
         {rightIcon ? <span aria-hidden="true">{rightIcon}</span> : null}
       </button>
     )
   }
 )
+
+Button.displayName = 'Button'
