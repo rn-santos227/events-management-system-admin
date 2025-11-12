@@ -59,3 +59,23 @@ const spinner = (
     />
   </svg>
 )
+
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  (
+    {
+      variant = 'primary',
+      size = 'md',
+      className,
+      leftIcon,
+      rightIcon,
+      children,
+      isLoading = false,
+      loadingText = 'Loading',
+      disabled,
+      ...props
+    },
+    ref,
+  ) => {
+
+  }
+)
