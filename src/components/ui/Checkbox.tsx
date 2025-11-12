@@ -22,4 +22,11 @@ const CheckboxGroupContext = createContext<CheckboxGroupContextValue | null>(
   null,
 )
 
+const useCheckboxGroupContext = () => useContext(CheckboxGroupContext)
 
+export interface CheckboxProps
+  extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type'> {
+  label?: ReactNode
+  description?: ReactNode
+  wrapperClassName?: string
+}
