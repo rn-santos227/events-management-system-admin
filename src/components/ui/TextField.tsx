@@ -19,4 +19,25 @@ const baseInputStyles =
 const errorInputStyles =
   'border-red-500 focus:border-red-500 focus:ring-red-500/20 text-red-900 placeholder:text-red-400'
 
+  
+export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
+  (
+    {
+      label,
+      helperText,
+      error,
+      id,
+      className,
+      containerClassName,
+      type = 'text',
+      numbersOnly = false,
+      onChange,
+      ...props
+    },
+    ref,
+  ) => {
 
+  }
+)
+
+TextField.displayName = 'TextField'
