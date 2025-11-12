@@ -72,6 +72,16 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
           onChange={handleChange}
           {...props}
         />
+
+        {error ? (
+          <p id={errorId} className="text-xs font-medium text-red-600">
+            {error}
+          </p>
+        ) : helperText ? (
+          <p id={helperId} className="text-xs text-slate-500">
+            {helperText}
+          </p>
+        ) : null}
       </div>
     )
   }
