@@ -5,8 +5,7 @@ import { classNames } from '@/helpers/classNames'
 const baseCardStyles =
   'rounded-xl border border-slate-200 bg-white shadow-sm transition-colors'
 
-export interface CardProps extends ComponentPropsWithoutRef<'div'> {}
-
+export type CardProps = ComponentPropsWithoutRef<'div'>
 export const Card = forwardRef<HTMLDivElement, CardProps>(
   ({ className, ...props }, ref) => (
     <div ref={ref} className={classNames(baseCardStyles, className)} {...props} />
@@ -14,8 +13,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
 )
 Card.displayName = 'Card'
 
-export interface CardHeaderProps extends ComponentPropsWithoutRef<'div'> {}
-
+export type CardHeaderProps = ComponentPropsWithoutRef<'div'>
 export const CardHeader = forwardRef<HTMLDivElement, CardHeaderProps>(
   ({ className, ...props }, ref) => (
     <div
@@ -30,8 +28,7 @@ export const CardHeader = forwardRef<HTMLDivElement, CardHeaderProps>(
 )
 CardHeader.displayName = 'CardHeader'
 
-export interface CardTitleProps extends ComponentPropsWithoutRef<'h3'> {}
-
+export type CardTitleProps = ComponentPropsWithoutRef<'h3'>
 export const CardTitle = forwardRef<HTMLHeadingElement, CardTitleProps>(
   ({ className, ...props }, ref) => (
     <h3
@@ -42,3 +39,34 @@ export const CardTitle = forwardRef<HTMLHeadingElement, CardTitleProps>(
   ),
 )
 CardTitle.displayName = 'CardTitle'
+
+export type CardDescriptionProps = ComponentPropsWithoutRef<'p'>
+export const CardDescription = forwardRef<HTMLParagraphElement, CardDescriptionProps>(
+  ({ className, ...props }, ref) => (
+    <p ref={ref} className={classNames('text-sm text-slate-500', className)} {...props} />
+  ),
+)
+CardDescription.displayName = 'CardDescription'
+
+export type CardContentProps = ComponentPropsWithoutRef<'div'>
+export const CardContent = forwardRef<HTMLDivElement, CardContentProps>(
+  ({ className, ...props }, ref) => (
+    <div ref={ref} className={classNames('px-6 py-4', className)} {...props} />
+  ),
+)
+CardContent.displayName = 'CardContent'
+
+export type CardFooterProps = ComponentPropsWithoutRef<'div'>
+export const CardFooter = forwardRef<HTMLDivElement, CardFooterProps>(
+  ({ className, ...props }, ref) => (
+    <div
+      ref={ref}
+      className={classNames(
+        'flex items-center gap-3 border-t border-slate-200 px-6 py-4',
+        className,
+      )}
+      {...props}
+    />
+  ),
+)
+CardFooter.displayName = 'CardFooter'
