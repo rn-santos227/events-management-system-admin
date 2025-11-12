@@ -50,7 +50,11 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
 
     return (
       <div className={classNames('flex flex-col gap-1', containerClassName)}>
-
+        {label && (
+          <label className="text-sm font-medium text-slate-700" htmlFor={inputId}>
+            {label}
+          </label>
+        )}
       </div>
     )
   }
