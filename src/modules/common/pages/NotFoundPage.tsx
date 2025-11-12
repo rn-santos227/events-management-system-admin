@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion'
-import Footer from '@/components/shared/Footer'
 
 export default function NotFoundPage() {
   return (
@@ -20,7 +19,6 @@ export default function NotFoundPage() {
           </p>
         </div>
       </main>
-      <Footer />
     </div>
   )
 }

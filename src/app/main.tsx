@@ -6,11 +6,14 @@ import { RouterProvider } from 'react-router-dom';
 import { store } from './store';
 import { router } from './router';
 import './index.css';
+import { Footer, Header } from '@/components';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <Provider store={store}>
+      <Header />
       <RouterProvider router={router} />
+      <Footer />
     </Provider>
   </React.StrictMode>,
 );
