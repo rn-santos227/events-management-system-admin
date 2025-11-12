@@ -31,3 +31,5 @@ const sizeStyles: Record<ButtonSize, string> = {
   md: 'h-10 rounded-lg px-4 text-sm',
   lg: 'h-12 rounded-xl px-6 text-base',
 }
+
+const baseStyles = 'inline-flex items-center justify-center gap-2 font-medium transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed'
