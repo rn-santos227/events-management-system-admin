@@ -55,6 +55,23 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
             {label}
           </label>
         )}
+
+        <input
+          id={inputId}
+          ref={ref}
+          type={type}
+          inputMode={numbersOnly ? 'numeric' : undefined}
+          pattern={numbersOnly ? '[0-9]*' : undefined}
+          className={classNames(
+            baseInputStyles,
+            error && errorInputStyles,
+            className,
+          )}
+          aria-invalid={Boolean(error)}
+          aria-describedby={describedBy}
+          onChange={handleChange}
+          {...props}
+        />
       </div>
     )
   }
