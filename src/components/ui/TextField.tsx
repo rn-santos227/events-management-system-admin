@@ -10,7 +10,9 @@ export interface TextFieldProps
   error?: string
   containerClassName?: string
   type?: 'text' | 'password' | 'number'
-  numbersOnly?: boolean
+  numbersOnly?: boolean,
+  active?: boolean
+  hidden?: boolean
 }
 
 const baseInputStyles =
@@ -30,12 +32,16 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
       containerClassName,
       type = 'text',
       numbersOnly = false,
+      active = false,
+      hidden = false,
       onChange,
       ...props
     },
     ref,
   ) => {
     const generatedId = useId()
+    if (hidden) return null
+    
     const inputId = id ?? generatedId
     const helperId = helperText ? `${inputId}-helper` : undefined
     const errorId = error ? `${inputId}-error` : undefined
@@ -49,7 +55,13 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
     }
 
     return (
-      <div className={classNames('flex flex-col gap-1', containerClassName)}>
+      <div 
+        className={classNames(
+          'flex flex-col gap-1',
+          active && 'ring-2 ring-slate-500 ring-offset-2 rounded-lg',
+          containerClassName,
+        )}
+      >
         {label && (
           <label className="text-sm font-medium text-slate-700" htmlFor={inputId}>
             {label}

@@ -14,6 +14,8 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   isLoading?: boolean
   loadingText?: string
   block?: boolean
+  active?: boolean
+  hidden?: boolean
 }
 
 const variantStyles: Record<ButtonVariant, string> = {
@@ -75,10 +77,13 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       loadingText = 'Loading',
       disabled,
       block = false,
+      active = false,
+      hidden = false,
       ...props
     },
     ref,
   ) => {
+    if (hidden) return null
     const isDisabled = disabled || isLoading
 
     return (
@@ -90,6 +95,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           sizeStyles[size],
           isLoading && 'cursor-wait opacity-80',
           block && 'w-full',
+          active && 'ring-2 ring-slate-500 ring-offset-2',
           className,
         )}
         disabled={isDisabled}
