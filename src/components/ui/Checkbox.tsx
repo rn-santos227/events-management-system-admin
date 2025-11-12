@@ -115,4 +115,71 @@ export interface CheckboxGroupProps
   name?: string
 }
 
+export const CheckboxGroup = forwardRef<HTMLFieldSetElement, CheckboxGroupProps>(
+  (
+    {
+      label,
+      helperText,
+      error,
+      orientation = 'vertical',
+      className,
+      children,
+      name,
+      id,
+      disabled,
+      ...props
+    },
+    ref,
+  ) => {
+    const generatedId = useId()
+    const groupId = id ?? `checkbox-group-${generatedId}`
+    const helperId = helperText ? `${groupId}-helper` : undefined
+    const errorId = error ? `${groupId}-error` : undefined
+    const describedBy = [helperId, errorId].filter(Boolean).join(' ') || undefined
 
+    return (
+      <fieldset
+        ref={ref}
+        id={groupId}
+        className={classNames('flex flex-col gap-2 border-0 p-0', className)}
+        aria-describedby={describedBy}
+        aria-invalid={Boolean(error)}
+        disabled={disabled}
+        {...props}
+      >
+        {label ? (
+          <legend className="text-sm font-medium text-slate-700">{label}</legend>
+        ) : null}
+        <CheckboxGroupContext.Provider
+          value={{
+            name,
+            helperId,
+            errorId,
+            orientation,
+            disabled,
+          }}
+        >
+          <div
+            className={classNames(
+              'flex gap-3',
+              orientation === 'horizontal' ? 'flex-wrap items-center' : 'flex-col',
+            )}
+          >
+            {children}
+          </div>
+        </CheckboxGroupContext.Provider>
+        {error ? (
+          <p id={errorId} className="text-xs font-medium text-red-600">
+            {error}
+          </p>
+        ) : helperText ? (
+          <p id={helperId} className="text-xs text-slate-500">
+            {helperText}
+          </p>
+        ) : null}
+      </fieldset>
+    )
+  },
+)
+
+CheckboxGroup.displayName = 'CheckboxGroup'
