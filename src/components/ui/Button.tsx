@@ -76,6 +76,23 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     },
     ref,
   ) => {
-
+    const isDisabled = disabled || isLoading
+    return (
+      <button
+        ref={ref}
+        className={classNames(
+          baseStyles,
+          variantStyles[variant],
+          sizeStyles[size],
+          isLoading ? 'cursor-wait opacity-80' : undefined,
+          className,
+        )}
+        disabled={isDisabled}
+        aria-busy={isLoading || undefined}
+        {...props}
+      >
+        
+      </button>
+    )
   }
 )
