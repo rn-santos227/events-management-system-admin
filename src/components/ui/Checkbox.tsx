@@ -102,3 +102,17 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
     )
   },
 )
+
+Checkbox.displayName = 'Checkbox'
+
+export interface CheckboxGroupProps
+  extends Omit<FieldsetHTMLAttributes<HTMLFieldSetElement>, 'className'> {
+  label?: ReactNode
+  helperText?: ReactNode
+  error?: ReactNode
+  orientation?: Orientation
+  className?: string
+  name?: string
+}
+
+
