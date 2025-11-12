@@ -8,3 +8,15 @@ import type {
 import { classNames } from '@/helpers/classNames'
 
 type Orientation = 'vertical' | 'horizontal'
+
+interface RadioGroupContextValue {
+  name?: string
+  helperId?: string
+  errorId?: string
+  orientation: Orientation
+  disabled?: boolean
+}
+
+const RadioGroupContext = createContext<RadioGroupContextValue | null>(null)
+
+const useRadioGroupContext = () => useContext(RadioGroupContext)
