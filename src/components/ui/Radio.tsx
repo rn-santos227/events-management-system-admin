@@ -101,3 +101,81 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
 
 Radio.displayName = 'Radio'
 
+export interface RadioGroupProps
+  extends Omit<FieldsetHTMLAttributes<HTMLFieldSetElement>, 'className'> {
+  label?: ReactNode
+  helperText?: ReactNode
+  error?: ReactNode
+  orientation?: Orientation
+  className?: string
+  name: string
+}
+
+export const RadioGroup = forwardRef<HTMLFieldSetElement, RadioGroupProps>(
+  (
+    {
+      label,
+      helperText,
+      error,
+      orientation = 'vertical',
+      className,
+      children,
+      name,
+      id,
+      disabled,
+      ...props
+    },
+    ref,
+  ) => {
+    const generatedId = useId()
+    const groupId = id ?? `radio-group-${generatedId}`
+    const helperId = helperText ? `${groupId}-helper` : undefined
+    const errorId = error ? `${groupId}-error` : undefined
+    const describedBy = [helperId, errorId].filter(Boolean).join(' ') || undefined
+
+    return (
+      <fieldset
+        ref={ref}
+        id={groupId}
+        className={classNames('flex flex-col gap-2 border-0 p-0', className)}
+        aria-describedby={describedBy}
+        aria-invalid={Boolean(error)}
+        disabled={disabled}
+        {...props}
+      >
+        {label ? (
+          <legend className="text-sm font-medium text-slate-700">{label}</legend>
+        ) : null}
+        <RadioGroupContext.Provider
+          value={{
+            name,
+            helperId,
+            errorId,
+            orientation,
+            disabled,
+          }}
+        >
+          <div
+            className={classNames(
+              'flex gap-3',
+              orientation === 'horizontal' ? 'flex-wrap items-center' : 'flex-col',
+            )}
+          >
+            {children}
+          </div>
+        </RadioGroupContext.Provider>
+        {error ? (
+          <p id={errorId} className="text-xs font-medium text-red-600">
+            {error}
+          </p>
+        ) : helperText ? (
+          <p id={helperId} className="text-xs text-slate-500">
+            {helperText}
+          </p>
+        ) : null}
+      </fieldset>
+    )
+  },
+)
+
+RadioGroup.displayName = 'RadioGroup'
