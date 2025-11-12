@@ -36,7 +36,11 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
     },
     ref,
   ) => {
-
+    const generatedId = useId()
+    const inputId = id ?? generatedId
+    const helperId = helperText ? `${inputId}-helper` : undefined
+    const errorId = error ? `${inputId}-error` : undefined
+    const describedBy = [errorId, helperId].filter(Boolean).join(' ') || undefined
   }
 )
 
