@@ -1,5 +1,5 @@
 import { forwardRef, useId } from 'react'
-import type { InputHTMLAttributes } from 'react'
+import type { InputHTMLAttributes, ChangeEvent } from 'react'
 
 import { classNames } from '@/helpers/classNames'
 
@@ -41,6 +41,12 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
     const helperId = helperText ? `${inputId}-helper` : undefined
     const errorId = error ? `${inputId}-error` : undefined
     const describedBy = [errorId, helperId].filter(Boolean).join(' ') || undefined
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+      if (numbersOnly) {
+        e.target.value = e.target.value.replace(/[^0-9]/g, '') // 👈 only digits
+      }
+      onChange?.(e)
+    }
   }
 )
 
