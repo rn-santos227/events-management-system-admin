@@ -91,7 +91,16 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         aria-busy={isLoading || undefined}
         {...props}
       >
-        
+        {isLoading ? (
+          <span className="inline-flex items-center gap-2">
+            <span aria-hidden="true">{spinner}</span>
+            <span className="sr-only">{loadingText}</span>
+          </span>
+        ) : leftIcon ? (
+          <span aria-hidden="true">{leftIcon}</span>
+        ) : null}
+        <span className="truncate">{children}</span>
+        {rightIcon ? <span aria-hidden="true">{rightIcon}</span> : null}
       </button>
     )
   }
