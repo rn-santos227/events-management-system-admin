@@ -88,4 +88,27 @@ export const variantConfig: Record<DialogType, DialogVariantConfig> = {
       </svg>
     ),
   },
+  error: {
+    accent: 'text-rose-600',
+    ring: 'ring-rose-200',
+    confirm: 'bg-rose-600 text-white hover:bg-rose-700 focus-visible:ring-rose-500',
+    cancel: 'border border-rose-200 text-rose-700 hover:bg-rose-50 focus-visible:ring-rose-200',
+    icon: (
+      <svg viewBox="0 0 24 24" className="size-10" aria-hidden="true" fill="none">
+        <path
+          d="M14.828 9.172 9.172 14.828"
+          stroke="currentColor"
+          strokeWidth="1.8"
+          strokeLinecap="round"
+        />
+        <path
+          d="M9.172 9.172l5.656 5.656"
+          stroke="currentColor"
+          strokeWidth="1.8"
+          strokeLinecap="round"
+        />
+        <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.5" />
+      </svg>
+    ),
+  },
 }
