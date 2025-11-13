@@ -112,3 +112,22 @@ export const variantConfig: Record<DialogType, DialogVariantConfig> = {
     ),
   },
 }
+
+export const defaultConfirmText: Record<DialogType, string> = {
+  success: 'Okay',
+  question: 'Yes',
+  warning: 'Okay',
+  information: 'Got it',
+  error: 'Try again',
+}
+
+export const defaultCancelText: Record<DialogType, string> = {
+  success: 'Cancel',
+  question: 'No',
+  warning: 'Dismiss',
+  information: 'Close',
+  error: 'Dismiss',
+}
+
+export const defaultShowCancelTypes: DialogType[] = ['question', 'warning', 'error']
+export const defaultOutsideDismissTypes: DialogType[] = ['success', 'information']
