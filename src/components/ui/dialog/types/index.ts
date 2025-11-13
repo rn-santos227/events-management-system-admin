@@ -16,6 +16,14 @@ export interface DialogOptions {
   onCancel?: () => void | Promise<void>
 }
 
+export interface ActiveDialogState extends DialogOptions {
+  id: number
+  confirmText: string
+  cancelText: string
+  showCancel: boolean
+  allowOutsideDismiss: boolean
+}
+
 export interface DialogContextValue {
   showDialog: (options: DialogOptions) => void
   hideDialog: () => void
