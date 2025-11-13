@@ -69,4 +69,23 @@ export const variantConfig: Record<DialogType, DialogVariantConfig> = {
       </svg>
     ),
   },
+  information: {
+    accent: 'text-indigo-600',
+    ring: 'ring-indigo-200',
+    confirm: 'bg-indigo-600 text-white hover:bg-indigo-700 focus-visible:ring-indigo-500',
+    cancel:
+      'border border-indigo-200 text-indigo-700 hover:bg-indigo-50 focus-visible:ring-indigo-200',
+    icon: (
+      <svg viewBox="0 0 24 24" className="size-10" aria-hidden="true" fill="none">
+        <path
+          d="M12 11.5v5"
+          stroke="currentColor"
+          strokeWidth="1.8"
+          strokeLinecap="round"
+        />
+        <circle cx="12" cy="7.5" r="1" fill="currentColor" />
+        <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.5" />
+      </svg>
+    ),
+  },
 }
