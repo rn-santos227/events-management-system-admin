@@ -20,4 +20,28 @@ export const variantConfig: Record<DialogType, DialogVariantConfig> = {
       </svg>
     ),
   },
+  question: {
+    accent: 'text-sky-600',
+    ring: 'ring-sky-200',
+    confirm: 'bg-sky-600 text-white hover:bg-sky-700 focus-visible:ring-sky-500',
+    cancel: 'border border-sky-200 text-sky-700 hover:bg-sky-50 focus-visible:ring-sky-200',
+    icon: (
+      <svg viewBox="0 0 24 24" className="size-10" aria-hidden="true" fill="none">
+        <path
+          d="M12 17.25v.5"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
+        <path
+          d="M12 14c0-1.649 2.25-1.5 2.25-4a2.25 2.25 0 10-4.5 0"
+          stroke="currentColor"
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.5" />
+      </svg>
+    ),
+  },
 }
