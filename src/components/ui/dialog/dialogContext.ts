@@ -4,3 +4,14 @@ type DialogBaseType = 'success' | 'question' | 'warning' | 'information' | 'erro
 
 export type DialogType = DialogBaseType
 
+export interface DialogOptions {
+  type: DialogType
+  title: string
+  description?: string
+  confirmText?: string
+  cancelText?: string
+  showCancel?: boolean
+  allowOutsideDismiss?: boolean
+  onConfirm?: () => void | Promise<void>
+  onCancel?: () => void | Promise<void>
+}
