@@ -20,3 +20,8 @@ export interface ApiErrorPayload {
   details?: unknown;
 }
 
+
+export class ApiService {
+  private readonly axiosInstance: AxiosInstance;
+  private authToken?: string | null;
+}
