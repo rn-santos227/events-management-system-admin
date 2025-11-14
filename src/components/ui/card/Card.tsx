@@ -1,6 +1,6 @@
 import { forwardRef } from 'react'
 import type { ComponentPropsWithoutRef } from 'react'
-import { classNames } from '@/helpers/classNames'
+import { classNames } from '@/utils'
 
 const baseCardStyles =
   'rounded-xl border border-slate-200 bg-white shadow-sm transition-colors'

@@ -1,7 +1,7 @@
 import { forwardRef, useEffect, useId, useState } from 'react'
 import type { ChangeEvent, TextareaHTMLAttributes } from 'react'
 
-import { classNames } from '@/helpers/classNames'
+import { classNames } from '@/utils'
 
 const getCharacterLength = (input: unknown): number => {
   if (typeof input === 'string') return input.length

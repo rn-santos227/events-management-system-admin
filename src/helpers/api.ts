@@ -1,12 +1,12 @@
 export const API = {
   AUTH: {
-    LOGIN: { 
+    LOGIN: {
       method: 'POST',
       module: 'auth',
       path: '/api/auth/login',
-      description: 'User login'
+      description: 'User login',
     } as const,
-  }
+  },
 } as const;
 
-export type ApiGroup = typeof API;
+export type ApiGroup = typeof API

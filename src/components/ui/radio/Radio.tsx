@@ -5,7 +5,7 @@ import type {
   ReactNode,
 } from 'react'
 
-import { classNames } from '@/helpers/classNames'
+import { classNames } from '@/utils'
 
 type Orientation = 'vertical' | 'horizontal'
 

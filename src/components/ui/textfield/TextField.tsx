@@ -1,7 +1,7 @@
 import { forwardRef, useEffect, useId, useState } from 'react'
 import type { ChangeEvent, InputHTMLAttributes } from 'react'
 
-import { classNames } from '@/helpers/classNames'
+import { classNames } from '@/utils'
 
 const getCharacterLength = (value: unknown): number => {
   if (typeof value === 'string') return value.length
