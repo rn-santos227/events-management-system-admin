@@ -29,3 +29,25 @@ const initialState: AuthState = {
   error: null,
   lastLoginAt: null,
 }
+
+export const loginUser = createAsyncThunk<
+  LoginResponse,
+  LoginCredentials,
+  { rejectValue: string }
+>('auth/login', async (credentials, { rejectWithValue }) => {
+  try {
+    const response = await apiClient.request<'AUTH', 'LOGIN', LoginResponse, LoginCredentials>(
+      'AUTH',
+      'LOGIN',
+      {
+        data: credentials,
+      },
+    )
+
+    apiClient.setAuthToken(response.token)
+    return response
+  } catch (error) {
+    const apiError = error as ApiErrorPayload
+    return rejectWithValue(apiError.message ?? 'Unable to login right now')
+  }
+})
