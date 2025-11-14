@@ -56,4 +56,26 @@ export class ApiService {
       return acc.replace(matcher, encodeURIComponent(String(value)));
     }, path);
   }
+
+  private normalizeError(error: unknown): ApiErrorPayload {
+    if (isAxiosError(error)) {
+      return {
+        status: error.response?.status,
+        message:
+          (error.response?.data as { message?: string } | undefined)?.message ??
+          error.message ??
+          'Request failed',
+        details: error.response?.data,
+      };
+    }
+
+    if (error instanceof Error) {
+      return { message: error.message };
+    }
+
+    return { message: 'Unexpected error occurred' };
+  }
 }
+
+export const apiClient = new ApiService(API);
+export type { AxiosRequestConfig };
