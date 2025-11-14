@@ -1,7 +1,7 @@
 import { forwardRef, useId } from 'react'
 import type { SelectHTMLAttributes } from 'react'
 
-import { classNames } from '@/utils'
+import { classNames } from '@/utils/classNames'
 
 export interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
   label?: string

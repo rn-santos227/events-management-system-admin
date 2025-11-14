@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion'
 
-import { classNames } from '@/utils'
+import { classNames } from '@/utils/classNames'
 
 import { variantConfig } from './DialogConfig'
 import type { ActiveDialogState } from './types'
