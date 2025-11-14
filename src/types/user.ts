@@ -9,3 +9,13 @@ export interface RoleSummary {
   name: string
   privileges: RolePrivilege[]
 }
+
+export interface UserProfile {
+  id: number
+  email: string
+  firstName: string
+  lastName: string
+  contactNumber: string
+  active: boolean
+  role: RoleSummary
+}
