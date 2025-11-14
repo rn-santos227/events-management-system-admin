@@ -23,7 +23,7 @@ export interface TextFieldProps
   helperText?: string
   error?: string
   containerClassName?: string
-  type?: 'text' | 'password' | 'number'
+  type?: 'text' | 'password' | 'number' | 'email'
   numbersOnly?: boolean,
   active?: boolean
   hidden?: boolean
