@@ -4,22 +4,21 @@ import { API, type ApiGroup } from '../config/api'
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL ?? '/'
 
-export type ApiEndpointGroup = keyof ApiGroup;
-export type ApiEndpointKey<G extends ApiEndpointGroup> = keyof ApiGroup[G];
+export type ApiEndpointGroup = keyof ApiGroup
+export type ApiEndpointKey<G extends ApiEndpointGroup> = keyof ApiGroup[G]
 
 export type RequestOptions<D = unknown> = Omit<
   AxiosRequestConfig<D>,
   'url' | 'method'
 > & {
   pathParams?: Record<string, string | number>;
-};
+}
 
 export interface ApiErrorPayload {
   status?: number;
   message: string;
   details?: unknown;
 }
-
 
 export class ApiService {
   private readonly axiosInstance: AxiosInstance;
@@ -43,6 +42,46 @@ export class ApiService {
 
   clearAuthToken() {
     this.authToken = null;
+  }
+
+  async request<
+    G extends ApiEndpointGroup,
+    E extends ApiEndpointKey<G>,
+    Response = unknown,
+    Data = unknown
+  >(
+    group: G,
+    endpoint: E,
+    options?: RequestOptions<Data>
+  ): Promise<Response> {
+    const endpointDefinition = this.group?.[group]?.[endpoint] as
+      | ({ method: AxiosRequestConfig<Data>['method']; path: string } & Record<string, unknown>)
+      | undefined;
+
+    if (!endpointDefinition) {
+      throw new Error(`API endpoint ${String(group)}.${String(endpoint)} is not configured.`);
+    }
+
+    const { pathParams, ...axiosConfig } = options ?? {};
+    const requestConfig: AxiosRequestConfig<Data> = {
+      method: endpointDefinition.method,
+      url: this.interpolatePath(endpointDefinition.path, pathParams),
+      ...axiosConfig,
+    };
+
+    if (this.authToken) {
+      requestConfig.headers = {
+        ...requestConfig.headers,
+        Authorization: `Bearer ${this.authToken}`,
+      };
+    }
+
+    try {
+      const response = await this.axiosInstance.request<Response>(requestConfig);
+      return response.data;
+    } catch (error) {
+      throw this.normalizeError(error);
+    }
   }
 
   private interpolatePath(
@@ -77,5 +116,5 @@ export class ApiService {
   }
 }
 
-export const apiClient = new ApiService(API);
-export type { AxiosRequestConfig };
+export const apiClient = new ApiService(API)
+export type { AxiosRequestConfig }
