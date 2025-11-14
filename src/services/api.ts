@@ -44,4 +44,16 @@ export class ApiService {
   clearAuthToken() {
     this.authToken = null;
   }
+
+  private interpolatePath(
+    path: string,
+    params?: Record<string, string | number>
+  ): string {
+    if (!params) return path;
+
+    return Object.entries(params).reduce((acc, [key, value]) => {
+      const matcher = new RegExp(`:${key}(?=/|$)`, 'g');
+      return acc.replace(matcher, encodeURIComponent(String(value)));
+    }, path);
+  }
 }
