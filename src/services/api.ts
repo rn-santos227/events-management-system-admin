@@ -14,3 +14,9 @@ export type RequestOptions<D = unknown> = Omit<
   pathParams?: Record<string, string | number>;
 };
 
+export interface ApiErrorPayload {
+  status?: number;
+  message: string;
+  details?: unknown;
+}
+
