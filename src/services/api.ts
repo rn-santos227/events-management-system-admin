@@ -36,4 +36,12 @@ export class ApiService {
         },
       });
   }
+
+  setAuthToken(token: string | null) {
+    this.authToken = token;
+  }
+
+  clearAuthToken() {
+    this.authToken = null;
+  }
 }
