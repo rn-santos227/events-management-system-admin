@@ -6,12 +6,14 @@ export const routes: Route[] = [
   {
     name: 'login-page',
     path: '/',
+    protected: false,
     element: <LoginPage />,
     meta: { title: 'Sign In' },
   },
   {
     name: 'not-found-page',
     path: '*',
+    protected: false,
     element: <NotFoundPage />,
     meta: { title: 'Page Not Found' },
   },
