@@ -19,3 +19,13 @@ export interface UserProfile {
   active: boolean
   role: RoleSummary
 }
+
+export const getUserFullName = (
+  user: Pick<UserProfile, 'firstName' | 'lastName'>,
+): string => {
+  return [user.firstName, user.lastName]
+    .map((value) => value?.trim())
+    .filter((value) => Boolean(value))
+    .join(' ')
+    .trim()
+}
