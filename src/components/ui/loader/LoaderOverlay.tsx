@@ -25,3 +25,45 @@ const barIndicator = (
     </div>
   </div>
 )
+
+
+export function LoaderOverlay({
+  open,
+  message = 'Processing your request…',
+  variant = 'circular',
+  dismissible = false,
+  onDismiss,
+}: LoaderOverlayProps) {
+  const [isMounted, setIsMounted] = useState(false)
+
+  useEffect(() => {
+    setIsMounted(true)
+    return () => setIsMounted(false)
+  }, [])
+
+  if (!isMounted || !open) {
+    return null
+  }
+
+  const handleOverlayClick = () => {
+    if (dismissible) {
+      onDismiss?.()
+    }
+  }
+
+  return createPortal(
+    <div
+      className="fixed inset-0 z-[999] flex items-center justify-center bg-slate-900/70 px-4"
+      role="alert"
+      aria-live="assertive"
+      aria-busy="true"
+      onClick={handleOverlayClick}
+    >
+      <div className="flex w-full max-w-sm flex-col items-center gap-4 rounded-2xl bg-white/90 px-6 py-6 text-center shadow-2xl">
+        {variant === 'circular' ? circularIndicator : barIndicator}
+        <p className="text-sm font-medium text-slate-700">{message}</p>
+      </div>
+    </div>,
+    document.body,
+  )
+}
