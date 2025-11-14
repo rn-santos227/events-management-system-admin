@@ -24,4 +24,16 @@ export interface ApiErrorPayload {
 export class ApiService {
   private readonly axiosInstance: AxiosInstance;
   private authToken?: string | null;
+
+  constructor(private readonly group: ApiGroup, instance?: AxiosInstance) {
+    this.axiosInstance = instance ??
+      axios.create({
+        baseURL: API_BASE_URL,
+        timeout: 15_000,
+        withCredentials: true,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+  }
 }
