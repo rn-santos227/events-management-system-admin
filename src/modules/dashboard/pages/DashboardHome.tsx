@@ -25,4 +25,8 @@ export default function DashboardHomePage() {
     const name = getUserFullName(profile)
     return `Welcome back, ${name || profile.email}`
   }, [profile])
+
+  return (
+    <section className="bg-slate-50 px-4 py-10"></section>
+  )
 }
