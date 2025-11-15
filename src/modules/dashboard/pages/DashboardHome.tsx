@@ -37,6 +37,21 @@ export default function DashboardHomePage() {
             organizer activity.
           </p>
         </div>
+
+
+        <div className="grid gap-4 md:grid-cols-2">
+          {sampleHighlights.map((highlight) => (
+            <Card key={highlight.title} className="shadow-sm">
+              <CardHeader>
+                <CardTitle className="text-base font-medium text-slate-500">{highlight.title}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-3xl font-semibold text-slate-900">{highlight.value}</p>
+                <p className="mt-1 text-sm text-slate-500">{highlight.description}</p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
       </div>
     </section>
   )
