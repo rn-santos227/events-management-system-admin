@@ -1,4 +1,5 @@
 import type { Endpoint } from '../types/endpoints'
+import { API_ENDPOINTS } from '@/constants/api'
 
 export type ApiConfig = Record<string, Record<string, Endpoint>>
 
@@ -11,7 +12,7 @@ export const API = defineApiConfig({
     LOGIN: defineEndpoint({
       method: 'POST',
       module: 'auth',
-      path: '/api/auth/login',
+      path: API_ENDPOINTS.AUTH.LOGIN,
       description: 'User login',
     }),
   },

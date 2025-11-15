@@ -2,6 +2,7 @@ import { useEffect, useState, type ChangeEvent, type FormEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '@/app/hooks'
+import { ROUTES } from '@/constants/routes'
 import {
   loginUser,
   type LoginCredentials,
@@ -38,7 +39,7 @@ function LoginPage() {
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate('/dashboard', { replace: true })
+      navigate(ROUTES.DASHBOARD, { replace: true })
     }
   }, [isAuthenticated, navigate])
 
