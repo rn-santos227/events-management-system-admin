@@ -1,4 +1,5 @@
-import { useState, type ChangeEvent, type FormEvent } from 'react'
+import { useEffect, useState, type ChangeEvent, type FormEvent } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '@/app/hooks'
 import {
@@ -27,12 +28,19 @@ function LoginPage() {
   const dispatch = useAppDispatch()
   const authState = useAppSelector((state) => state.auth)
   const userState = useAppSelector((state) => state.user)
+  const navigate = useNavigate()
   const [credentials, setCredentials] = useState<LoginCredentials>(initialCredentials)
 
   const isSubmitting = authState.status === 'loading' || userState.status === 'loading'
   const errorMessage = authState.error ?? userState.error
   const isAuthenticated = authState.status === 'authenticated' && Boolean(userState.profile)
   const authenticatedUserName = userState.profile ? getUserFullName(userState.profile) : ''
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/dashboard', { replace: true })
+    }
+  }, [isAuthenticated, navigate])
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target
