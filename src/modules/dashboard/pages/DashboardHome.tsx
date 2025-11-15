@@ -18,5 +18,11 @@ const sampleHighlights = [
 ]
 
 export default function DashboardHomePage() {
+  const profile = useAppSelector((state) => state.user.profile)
 
+  const welcomeMessage = useMemo(() => {
+    if (!profile) return 'Welcome to EMS Admin'
+    const name = getUserFullName(profile)
+    return `Welcome back, ${name || profile.email}`
+  }, [profile])
 }
