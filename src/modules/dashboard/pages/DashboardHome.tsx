@@ -52,6 +52,22 @@ export default function DashboardHomePage() {
             </Card>
           ))}
         </div>
+
+        <Card className="shadow-sm">
+          <CardHeader>
+            <CardTitle>Getting started</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-3 text-slate-600">
+            <p>
+              Use the navigation to manage events, review venue availability, and collaborate with organizers. As new
+              modules are connected, insights will appear here automatically.
+            </p>
+            <p className="text-sm text-slate-500">
+              You are signed in with the <span className="font-medium text-slate-700">{profile?.role.name ?? 'admin'}</span>{' '}
+              role. Only authenticated administrators can access this page.
+            </p>
+          </CardContent>
+        </Card>
       </div>
     </section>
   )
