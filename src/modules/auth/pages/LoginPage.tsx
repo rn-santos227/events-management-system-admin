@@ -5,7 +5,6 @@ import { useAppDispatch, useAppSelector } from '@/app/hooks'
 import { ROUTES } from '@/constants/routes'
 import {
   loginUser,
-  type LoginCredentials,
 } from '@/modules/auth/store/AuthSlice'
 import {
   Button,
@@ -19,6 +18,7 @@ import {
   TextField,
 } from '@/components/ui'
 import { getUserFullName } from '@/types/user'
+import { type LoginCredentials } from '../types/auth'
 
 const initialCredentials: LoginCredentials = {
   email: '',
