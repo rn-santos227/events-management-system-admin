@@ -15,6 +15,13 @@ export const API = defineApiConfig({
       path: API_ENDPOINTS.AUTH.LOGIN,
       description: 'User login',
     }),
+
+    LOGOUT: defineEndpoint({
+      method: 'POST',
+      module: 'auth',
+      path: API_ENDPOINTS.AUTH.LOGOUT,
+      description: 'User logout',
+    }),
   },
 })
 
