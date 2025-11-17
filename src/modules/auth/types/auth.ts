@@ -10,7 +10,7 @@ export interface LoginResponse {
   tokenType: string
   expiresAt: number
   refreshToken?: string | null
-  user: UserProfile
+  user?: UserProfile | null
 }
 
 export interface LogoutResponse {
@@ -27,12 +27,3 @@ export interface AuthState {
   lastLoginAt: string | null
 }
 
-export const initialState: AuthState = {
-  token: null,
-  refreshToken: null,
-  tokenType: null,
-  expiresAt: null,
-  status: 'idle',
-  error: null,
-  lastLoginAt: null,
-}

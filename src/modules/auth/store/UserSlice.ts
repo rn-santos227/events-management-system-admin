@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 import type { UserProfile } from '@/types/user'
-import { loginUser, logoutUser  } from './AuthSlice'
+import { loginUser, logoutUser } from './AuthSlice'
 
 export interface UserState {
   profile: UserProfile | null
@@ -31,7 +31,7 @@ const userSlice = createSlice({
       })
       .addCase(loginUser.fulfilled, (state, action) => {
         state.status = 'succeeded'
-        state.profile = action.payload.user
+        state.profile = action.payload.user ?? null
         state.lastSyncedAt = new Date().toISOString()
       })
       .addCase(loginUser.rejected, (state, action) => {

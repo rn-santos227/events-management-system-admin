@@ -7,7 +7,20 @@ import axios, {
 
 import { API, type ApiGroup } from '../config/api'
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL ?? '/'
+const DEFAULT_API_BASE_PATH = ''
+
+const API_BASE_URL = (() => {
+  const normalize = (value?: string | null) => value?.trim() || undefined
+
+  if (import.meta.env.DEV) {
+    const devBase = normalize(import.meta.env.VITE_API_DEV_BASE_URL)
+    if (devBase) {
+      return devBase
+    }
+  }
+
+  return normalize(import.meta.env.VITE_API_BASE_URL) ?? DEFAULT_API_BASE_PATH
+})()
 
 export type ApiEndpointGroup = keyof ApiGroup
 export type ApiEndpointKey<G extends ApiEndpointGroup> = keyof ApiGroup[G]
@@ -39,6 +52,18 @@ export class ApiService {
           'Content-Type': 'application/json',
         },
       });
+
+    this.axiosInstance.interceptors.request.use((config) => {
+      this.serializeJsonPayload(config);
+
+      if (this.authToken) {
+        const headers = this.normalizeHeaders(config.headers);
+        headers.set('Authorization', `Bearer ${this.authToken}`);
+        config.headers = headers;
+      }
+
+      return config;
+    });
   }
 
   setAuthToken(token: string | null) {
@@ -73,15 +98,6 @@ export class ApiService {
       url: this.interpolatePath(endpointDefinition.path, pathParams),
       ...axiosConfig,
     };
-
-    this.serializeJsonPayload(requestConfig);
-
-    if (this.authToken) {
-      requestConfig.headers = {
-        ...requestConfig.headers,
-        Authorization: `Bearer ${this.authToken}`,
-      };
-    }
 
     try {
       const response = await this.axiosInstance.request<Response>(requestConfig);

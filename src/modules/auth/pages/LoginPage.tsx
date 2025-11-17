@@ -32,9 +32,9 @@ function LoginPage() {
   const navigate = useNavigate()
   const [credentials, setCredentials] = useState<LoginCredentials>(initialCredentials)
 
-  const isSubmitting = authState.status === 'loading' || userState.status === 'loading'
+  const isSubmitting = authState.status === 'loading'
   const errorMessage = authState.error ?? userState.error
-  const isAuthenticated = authState.status === 'authenticated' && Boolean(userState.profile)
+  const isAuthenticated = authState.status === 'authenticated' && Boolean(authState.token)
   const authenticatedUserName = userState.profile ? getUserFullName(userState.profile) : ''
 
   useEffect(() => {
