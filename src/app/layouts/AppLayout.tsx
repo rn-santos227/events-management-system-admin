@@ -3,7 +3,7 @@ import type { ReactNode } from 'react'
 import { Footer, Header } from '@/components'
 import { Button } from '@/components/ui'
 import { useAppDispatch, useAppSelector } from '@/app/hooks'
-import { logout } from '@/modules/auth/store/AuthSlice'
+import { logoutUser } from '@/modules/auth/store/AuthSlice'
 import { getUserFullName } from '@/types/user'
 
 interface AppLayoutProps {
@@ -17,7 +17,7 @@ export function AppLayout({ children }: AppLayoutProps) {
   const isAuthenticated = authState.status === 'authenticated' && Boolean(userProfile)
 
   const handleLogout = () => {
-    dispatch(logout())
+    dispatch(logoutUser())
   }
 
   const headerActions =

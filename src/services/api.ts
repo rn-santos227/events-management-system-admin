@@ -1,4 +1,9 @@
-import axios, { type AxiosInstance, type AxiosRequestConfig, isAxiosError } from 'axios'
+import axios, {
+  AxiosHeaders,
+  type AxiosInstance,
+  type AxiosRequestConfig,
+  isAxiosError,
+} from 'axios'
 
 import { API, type ApiGroup } from '../config/api'
 
@@ -63,11 +68,13 @@ export class ApiService {
     }
 
     const { pathParams, ...axiosConfig } = options ?? {};
-    const requestConfig: AxiosRequestConfig<Data> = {
+    const requestConfig: AxiosRequestConfig = {
       method: endpointDefinition.method,
       url: this.interpolatePath(endpointDefinition.path, pathParams),
       ...axiosConfig,
     };
+
+    this.serializeJsonPayload(requestConfig);
 
     if (this.authToken) {
       requestConfig.headers = {
@@ -113,6 +120,46 @@ export class ApiService {
     }
 
     return { message: 'Unexpected error occurred' };
+  }
+
+  private serializeJsonPayload(config: AxiosRequestConfig) {
+    const payload = config.data;
+    if (!this.shouldSerializePayload(payload)) {
+      return;
+    }
+
+    config.data = JSON.stringify(payload);
+    const headers = this.normalizeHeaders(config.headers);
+    if (!headers.hasContentType()) {
+      headers.setContentType('application/json', false);
+    }
+
+    config.headers = headers;
+  }
+
+  private normalizeHeaders(
+    headers: AxiosRequestConfig['headers']
+  ): AxiosHeaders {
+    if (!headers) {
+      return new AxiosHeaders();
+    }
+
+    return AxiosHeaders.from(
+      headers as Parameters<typeof AxiosHeaders.from>[0]
+    );
+  }
+
+  private shouldSerializePayload(payload: unknown): payload is Record<string, unknown> | unknown[] {
+    if (payload == null) return false;
+    if (typeof payload !== 'object') return false;
+
+    if (typeof FormData !== 'undefined' && payload instanceof FormData) return false;
+    if (typeof Blob !== 'undefined' && payload instanceof Blob) return false;
+    if (payload instanceof URLSearchParams) return false;
+    if (payload instanceof ArrayBuffer) return false;
+    if (ArrayBuffer.isView(payload)) return false;
+
+    return true;
   }
 }
 
