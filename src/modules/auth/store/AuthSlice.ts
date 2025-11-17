@@ -38,18 +38,26 @@ export const loginUser = createAsyncThunk<
   }
 })
 
+export const logoutUser = createAsyncThunk<
+  LogoutResponse,
+  void,
+  { rejectValue: string }
+>('auth/logout', async (_, { rejectWithValue }) => {
+  try {
+    const response = await apiClient.request<'AUTH', 'LOGOUT', LogoutResponse>('AUTH', 'LOGOUT')
+    apiClient.clearAuthToken()
+    return response
+  } catch (error) {
+    apiClient.clearAuthToken()
+    const apiError = error as ApiErrorPayload
+    return rejectWithValue(apiError.message ?? 'Unable to logout right now')
+  }
+})
+
 const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    logout(state) {
-      state.token = null
-      state.refreshToken = null
-      state.status = 'idle'
-      state.error = null
-      state.lastLoginAt = null
-      apiClient.clearAuthToken()
-    },
     setTokenFromStorage(state, action: PayloadAction<string | null>) {
       state.token = action.payload
       state.status = action.payload ? 'authenticated' : 'idle'
@@ -64,16 +72,40 @@ const authSlice = createSlice({
       })
       .addCase(loginUser.fulfilled, (state, action) => {
         state.status = 'authenticated'
-        state.token = action.payload.token
+        state.token = action.payload.accessToken
         state.refreshToken = action.payload.refreshToken ?? null
+        state.tokenType = action.payload.tokenType
+        state.expiresAt = action.payload.expiresAt
         state.lastLoginAt = new Date().toISOString()
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.status = 'error'
         state.error = action.payload ?? action.error.message ?? 'Login failed'
       })
+      .addCase(logoutUser.pending, (state) => {
+        state.status = 'loading'
+        state.error = null
+      })
+      .addCase(logoutUser.fulfilled, (state) => {
+        state.token = null
+        state.refreshToken = null
+        state.tokenType = null
+        state.expiresAt = null
+        state.status = 'idle'
+        state.error = null
+        state.lastLoginAt = null
+      })
+      .addCase(logoutUser.rejected, (state, action) => {
+        state.token = null
+        state.refreshToken = null
+        state.tokenType = null
+        state.expiresAt = null
+        state.status = 'idle'
+        state.error = action.payload ?? action.error.message ?? 'Logout failed'
+        state.lastLoginAt = null
+      })
   },
 })
 
-export const { logout, setTokenFromStorage } = authSlice.actions
+export const { setTokenFromStorage } = authSlice.actions
 export const authReducer = authSlice.reducer
