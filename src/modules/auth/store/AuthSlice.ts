@@ -23,11 +23,14 @@ export const loginUser = createAsyncThunk<
       'AUTH',
       'LOGIN',
       {
-        data: credentials,
+        data: {
+          email: credentials.email,
+          password: credentials.password,
+        },
       },
     )
 
-    apiClient.setAuthToken(response.token)
+    apiClient.setAuthToken(response.accessToken)
     return response
   } catch (error) {
     const apiError = error as ApiErrorPayload
