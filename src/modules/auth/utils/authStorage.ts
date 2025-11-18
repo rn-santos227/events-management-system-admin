@@ -23,3 +23,17 @@ const DEFAULT_PERSISTED_STATE: PersistedAuthState = {
   lastLoginAt: null,
   lastSyncedAt: null,
 }
+
+type PreloadedAuthStore = { auth: AuthState; user: UserState }
+
+const getStorage = (): Storage | undefined => {
+  if (typeof window === 'undefined') {
+    return undefined
+  }
+
+  try {
+    return window.localStorage
+  } catch {
+    return undefined
+  }
+}
