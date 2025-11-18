@@ -16,10 +16,8 @@ if (preloadedState?.auth?.token) {
 }
 
 export const store = configureStore({
-  reducer: {
-    auth: authReducer,
-    user: userReducer,
-  },
+  reducer: rootReducer,
+  preloadedState,
   devTools: import.meta.env.DEV,
 })
 
