@@ -37,3 +37,7 @@ const getStorage = (): Storage | undefined => {
     return undefined
   }
 }
+
+const readPersistedState = (): PersistedAuthState | undefined => {
+
+}
