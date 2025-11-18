@@ -104,5 +104,8 @@ export function clearPersistedAuthState(): void {
 }
 
 export function loadAuthStateFromStorage(): PreloadedAuthStore | undefined {
-
+  const persistedState = readPersistedState()
+  if (!persistedState || !persistedState.token) {
+    return undefined
+  }
 }
