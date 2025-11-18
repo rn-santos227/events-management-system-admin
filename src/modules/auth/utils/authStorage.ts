@@ -67,5 +67,8 @@ export interface AuthSessionPayload {
 }
 
 export function persistAuthSession(payload: AuthSessionPayload): void {
-
+  const storage = getStorage()
+  if (!storage) {
+    return
+  }
 }
