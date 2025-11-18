@@ -48,4 +48,12 @@ const readPersistedState = (): PersistedAuthState | undefined => {
   if (!serializedState) {
     return undefined
   }
+
+  try {
+    const parsedState = JSON.parse(serializedState) as PersistedAuthState
+    return { ...DEFAULT_PERSISTED_STATE, ...parsedState }
+  } catch {
+    storage.removeItem(AUTH_STORAGE_KEY)
+    return undefined
+  }
 }
