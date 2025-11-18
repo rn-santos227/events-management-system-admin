@@ -13,3 +13,13 @@ type PersistedAuthState = {
   lastLoginAt: string | null
   lastSyncedAt: string | null
 }
+
+const DEFAULT_PERSISTED_STATE: PersistedAuthState = {
+  token: null,
+  refreshToken: null,
+  tokenType: null,
+  expiresAt: null,
+  userProfile: null,
+  lastLoginAt: null,
+  lastSyncedAt: null,
+}
