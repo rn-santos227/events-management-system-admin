@@ -53,12 +53,13 @@ export const logoutUser = createAsyncThunk<
 >('auth/logout', async (_, { rejectWithValue }) => {
   try {
     const response = await apiClient.request<'AUTH', 'LOGOUT', LogoutResponse>('AUTH', 'LOGOUT')
-    apiClient.clearAuthToken()
     return response
   } catch (error) {
-    apiClient.clearAuthToken()
     const apiError = error as ApiErrorPayload
     return rejectWithValue(apiError.message ?? 'Unable to logout right now')
+  } finally {
+    apiClient.clearAuthToken()
+    clearPersistedAuthState()
   }
 })
 
