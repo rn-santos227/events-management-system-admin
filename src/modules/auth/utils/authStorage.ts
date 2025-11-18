@@ -102,3 +102,7 @@ export function clearPersistedAuthState(): void {
     // Ignore storage errors
   }
 }
+
+export function loadAuthStateFromStorage(): PreloadedAuthStore | undefined {
+
+}
