@@ -71,4 +71,15 @@ export function persistAuthSession(payload: AuthSessionPayload): void {
   if (!storage) {
     return
   }
+
+  const timestamp = new Date().toISOString()
+  const stateToPersist: PersistedAuthState = {
+    token: payload.token,
+    refreshToken: payload.refreshToken ?? null,
+    tokenType: payload.tokenType ?? null,
+    expiresAt: payload.expiresAt ?? null,
+    userProfile: payload.user ?? null,
+    lastLoginAt: timestamp,
+    lastSyncedAt: payload.user ? timestamp : null,
+  }
 }
