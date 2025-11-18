@@ -118,4 +118,11 @@ export function loadAuthStateFromStorage(): PreloadedAuthStore | undefined {
     error: null,
     lastLoginAt: persistedState.lastLoginAt,
   }
+
+  const userState: UserState = {
+    profile: persistedState.userProfile,
+    status: persistedState.userProfile ? 'succeeded' : 'idle',
+    error: null,
+    lastSyncedAt: persistedState.lastSyncedAt,
+  }
 }
