@@ -91,5 +91,8 @@ export function persistAuthSession(payload: AuthSessionPayload): void {
 }
 
 export function clearPersistedAuthState(): void {
-
+  const storage = getStorage()
+  if (!storage) {
+    return
+  }
 }
