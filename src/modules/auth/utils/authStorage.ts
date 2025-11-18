@@ -65,3 +65,7 @@ export interface AuthSessionPayload {
   refreshToken?: string | null
   user?: UserProfile | null
 }
+
+export function persistAuthSession(payload: AuthSessionPayload): void {
+
+}
