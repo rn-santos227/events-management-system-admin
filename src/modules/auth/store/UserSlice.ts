@@ -1,14 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-import type { UserProfile } from '@/types/user'
+import type { UserState } from '../types/user'
 import { loginUser, logoutUser } from './AuthSlice'
-
-export interface UserState {
-  profile: UserProfile | null
-  status: 'idle' | 'loading' | 'succeeded' | 'failed'
-  error: string | null
-  lastSyncedAt: string | null
-}
 
 const initialState: UserState = {
   profile: null,
