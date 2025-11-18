@@ -5,6 +5,11 @@ import { userReducer } from '@/modules/auth/store/UserSlice'
 import { loadAuthStateFromStorage } from '@/modules/auth/utils/authStorage'
 import { apiClient } from '@/services/api'
 
+const rootReducer = combineReducers({
+  auth: authReducer,
+  user: userReducer,
+})
+
 export const store = configureStore({
   reducer: {
     auth: authReducer,
