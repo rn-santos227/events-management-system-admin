@@ -108,4 +108,14 @@ export function loadAuthStateFromStorage(): PreloadedAuthStore | undefined {
   if (!persistedState || !persistedState.token) {
     return undefined
   }
+
+  const authState: AuthState = {
+    token: persistedState.token,
+    refreshToken: persistedState.refreshToken,
+    tokenType: persistedState.tokenType,
+    expiresAt: persistedState.expiresAt,
+    status: 'authenticated',
+    error: null,
+    lastLoginAt: persistedState.lastLoginAt,
+  }
 }
