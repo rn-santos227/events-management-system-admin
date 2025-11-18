@@ -57,3 +57,11 @@ const readPersistedState = (): PersistedAuthState | undefined => {
     return undefined
   }
 }
+
+export interface AuthSessionPayload {
+  token: string
+  tokenType: string
+  expiresAt: number
+  refreshToken?: string | null
+  user?: UserProfile | null
+}
