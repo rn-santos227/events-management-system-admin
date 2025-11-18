@@ -43,4 +43,9 @@ const readPersistedState = (): PersistedAuthState | undefined => {
   if (!storage) {
     return undefined
   }
+
+  const serializedState = storage.getItem(AUTH_STORAGE_KEY)
+  if (!serializedState) {
+    return undefined
+  }
 }
