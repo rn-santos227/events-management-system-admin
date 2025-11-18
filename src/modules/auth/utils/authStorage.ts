@@ -95,4 +95,10 @@ export function clearPersistedAuthState(): void {
   if (!storage) {
     return
   }
+
+ try {
+    storage.removeItem(AUTH_STORAGE_KEY)
+  } catch {
+    // Ignore storage errors
+  }
 }
