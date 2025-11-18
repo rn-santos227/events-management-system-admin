@@ -89,3 +89,7 @@ export function persistAuthSession(payload: AuthSessionPayload): void {
     // Ignore storage errors
   }
 }
+
+export function clearPersistedAuthState(): void {
+
+}
