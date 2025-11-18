@@ -82,4 +82,10 @@ export function persistAuthSession(payload: AuthSessionPayload): void {
     lastLoginAt: timestamp,
     lastSyncedAt: payload.user ? timestamp : null,
   }
+
+  try {
+    storage.setItem(AUTH_STORAGE_KEY, JSON.stringify(stateToPersist))
+  } catch {
+    // Ignore storage errors
+  }
 }
