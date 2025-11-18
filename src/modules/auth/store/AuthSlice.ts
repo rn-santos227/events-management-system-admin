@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice, type PayloadAction } from '@reduxjs/toolkit'
 
 import { LoginCredentials, LoginResponse, LogoutResponse, AuthState } from '../types/auth'
+import { clearPersistedAuthState, persistAuthSession } from '../utils/authStorage'
 import { apiClient, type ApiErrorPayload } from '@/services/api'
 
 const initialState: AuthState = {
@@ -31,6 +32,13 @@ export const loginUser = createAsyncThunk<
     )
 
     apiClient.setAuthToken(response.accessToken)
+    persistAuthSession({
+      token: response.accessToken,
+      refreshToken: response.refreshToken ?? null,
+      tokenType: response.tokenType,
+      expiresAt: response.expiresAt,
+      user: response.user ?? null,
+    })
     return response
   } catch (error) {
     const apiError = error as ApiErrorPayload
