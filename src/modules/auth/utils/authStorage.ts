@@ -125,4 +125,6 @@ export function loadAuthStateFromStorage(): PreloadedAuthStore | undefined {
     error: null,
     lastSyncedAt: persistedState.lastSyncedAt,
   }
+
+  return { auth: authState, user: userState }
 }
