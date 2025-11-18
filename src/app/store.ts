@@ -10,6 +10,11 @@ const rootReducer = combineReducers({
   user: userReducer,
 })
 
+const preloadedState = loadAuthStateFromStorage()
+if (preloadedState?.auth?.token) {
+  apiClient.setAuthToken(preloadedState.auth.token)
+}
+
 export const store = configureStore({
   reducer: {
     auth: authReducer,
