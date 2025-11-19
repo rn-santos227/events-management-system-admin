@@ -18,4 +18,17 @@ const statusCopy: Record<NonNullable<DrawerLink['status']>, string> = {
 export default function NavigationDrawer({ userProfile }: NavigationDrawerProps) {
   const [isCondensed, setIsCondensed] = useState(false)
   const userName = getUserFullName(userProfile)
+  const userInitials = useMemo(() => {
+    const target = userName || userProfile.email
+    if (!target) return 'EM'
+
+    const matches = target
+      .trim()
+      .split(/\s+/)
+      .slice(0, 2)
+      .map((token) => token.charAt(0).toUpperCase())
+      .join('')
+
+    return matches || 'EM'
+  }, [userName, userProfile.email])
 }
