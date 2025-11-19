@@ -68,7 +68,16 @@ export default function NavigationDrawer({ userProfile }: NavigationDrawerProps)
           isCondensed ? 'px-2 py-3 text-center' : '',
         ].join(' ')}
       >
-        
+        <div className="flex flex-col items-center gap-3">
+          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-50 text-base font-semibold text-brand-700">
+            {userInitials}
+          </div>
+          <div className={isCondensed ? 'sr-only' : 'text-left'}>
+            <p className="text-xs font-medium uppercase tracking-wide text-slate-400">Signed in</p>
+            <p className="mt-1 text-base font-semibold text-slate-900">{userName || userProfile.email}</p>
+            <p className="text-xs text-slate-500">{userProfile.role.name}</p>
+          </div>
+        </div>
       </div>
     </aside>
   )
