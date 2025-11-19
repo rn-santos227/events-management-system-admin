@@ -16,5 +16,6 @@ const statusCopy: Record<NonNullable<DrawerLink['status']>, string> = {
 }
 
 export default function NavigationDrawer({ userProfile }: NavigationDrawerProps) {
-
+  const [isCondensed, setIsCondensed] = useState(false)
+  const userName = getUserFullName(userProfile)
 }
