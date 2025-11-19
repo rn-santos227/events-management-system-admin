@@ -3,11 +3,16 @@ import { Badge } from 'flowbite-react'
 import { NavLink } from 'react-router-dom'
 
 import { DrawerLink } from '@/types/drawer'
+import { navigationSections } from '@/config/drawer'
 import type { UserProfile } from '@/types/user'
 import { getUserFullName } from '@/types/user'
 import {
   HiOutlineArrowsRightLeft,
 } from 'react-icons/hi2'
+
+interface NavigationDrawerProps {
+  userProfile: UserProfile
+}
 
 const statusCopy: Record<NonNullable<DrawerLink['status']>, string> = {
   beta: 'Beta',
@@ -79,7 +84,7 @@ export default function NavigationDrawer({ userProfile }: NavigationDrawerProps)
         </div>
       </div>
 
-     <nav className="mt-6 flex w-full flex-1 flex-col space-y-6 overflow-y-auto">
+      <nav className="mt-6 flex w-full flex-1 flex-col space-y-6 overflow-y-auto">
         {navigationSections.map((section) => (
           <section key={section.title} aria-label={section.title} className="space-y-3">
             <p className={isCondensed ? 'sr-only' : 'text-xs font-semibold uppercase tracking-wide text-slate-400'}>
@@ -89,6 +94,7 @@ export default function NavigationDrawer({ userProfile }: NavigationDrawerProps)
               {section.links.map((link) => {
                 const statusLabel = link.status ? statusCopy[link.status] : undefined
                 const Icon = link.icon
+
                 if (link.disabled || !link.to) {
                   return (
                     <div
@@ -118,12 +124,45 @@ export default function NavigationDrawer({ userProfile }: NavigationDrawerProps)
                   )
                 }
 
-
+                return (
+                  <NavLink
+                    key={link.label}
+                    to={link.to}
+                    title={isCondensed ? link.label : undefined}
+                    aria-label={isCondensed ? link.label : undefined}
+                    className={({ isActive }) =>
+                      [
+                        'flex rounded-xl border transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400',
+                        isCondensed
+                          ? 'flex-col items-center gap-2 px-2 py-4 text-center'
+                          : 'flex-row items-center gap-3 px-4 py-3 text-left',
+                        isActive
+                          ? 'border-brand-100 bg-brand-50/70 text-brand-950 shadow-sm'
+                          : 'border-slate-200 text-slate-600 hover:border-slate-300 hover:bg-slate-50',
+                      ].join(' ')
+                    }
+                  >
+                    <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/70 text-base">
+                      <Icon className="h-5 w-5" aria-hidden />
+                    </span>
+                    <span className={isCondensed ? 'sr-only' : 'flex flex-col text-left'}>
+                      <span className="text-sm font-semibold">{link.label}</span>
+                      <span className="text-xs">{link.description}</span>
+                    </span>
+                  </NavLink>
+                )
               })}
             </div>
           </section>
-        })}
-     </nav>
+        ))}
+      </nav>
+
+      <div className={['mt-6 rounded-2xl border border-slate-200 bg-slate-50 p-4 text-xs text-slate-500', isCondensed ? 'sr-only' : ''].join(' ')}>
+        <p className="font-semibold text-slate-700">Need anything?</p>
+        <p className="mt-1">
+          This drawer will grow with additional modules. Use the dashboard to start reviewing activity today.
+        </p>
+      </div>
     </aside>
   )
 }
