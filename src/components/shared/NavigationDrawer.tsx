@@ -1,11 +1,10 @@
+import { useMemo, useState } from 'react'
+import { Badge } from 'flowbite-react'
 import { NavLink } from 'react-router-dom'
 
 import { DrawerLink } from '@/types/drawer'
-
-import { 
-  getUserFullName,
-  type UserProfile
-} from '@/types/user'
+import type { UserProfile } from '@/types/user'
+import { getUserFullName } from '@/types/user'
 import {
   HiOutlineArrowsRightLeft,
 } from 'react-icons/hi2'
@@ -86,8 +85,44 @@ export default function NavigationDrawer({ userProfile }: NavigationDrawerProps)
             <p className={isCondensed ? 'sr-only' : 'text-xs font-semibold uppercase tracking-wide text-slate-400'}>
               {section.title}
             </p>
+            <div className="space-y-3">
+              {section.links.map((link) => {
+                const statusLabel = link.status ? statusCopy[link.status] : undefined
+                const Icon = link.icon
+                if (link.disabled || !link.to) {
+                  return (
+                    <div
+                      key={link.label}
+                      title={link.label}
+                      className={[
+                        'group rounded-xl border border-dashed border-slate-200/70 bg-slate-50/70 text-slate-400',
+                        isCondensed ? 'px-2 py-4 text-center' : 'px-4 py-3 text-left',
+                      ].join(' ')}
+                      aria-disabled
+                    >
+                      <div className="flex flex-col items-center gap-2">
+                        <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-white text-slate-400">
+                          <Icon className="h-5 w-5" aria-hidden />
+                        </span>
+                        <div className={isCondensed ? 'sr-only' : 'space-y-1 text-left'}>
+                          <p className="text-sm font-medium text-slate-500">{link.label}</p>
+                          <p className="text-xs">{link.description}</p>
+                          {statusLabel ? (
+                            <Badge color="gray" className="mt-2 w-max uppercase tracking-wide" size="xs">
+                              {statusLabel}
+                            </Badge>
+                          ) : null}
+                        </div>
+                      </div>
+                    </div>
+                  )
+                }
+
+
+              })}
+            </div>
           </section>
-        )}
+        })}
      </nav>
     </aside>
   )
