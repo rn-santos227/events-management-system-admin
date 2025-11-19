@@ -31,4 +31,21 @@ export default function NavigationDrawer({ userProfile }: NavigationDrawerProps)
 
     return matches || 'EM'
   }, [userName, userProfile.email])
+
+  const toggleCondensed = () => {
+    setIsCondensed((prev) => !prev)
+  }
+
+  return (
+    <aside
+      aria-label="Primary navigation"
+      data-condensed={isCondensed ? 'true' : 'false'}
+      className={[
+        'hidden flex-col border-r border-slate-200 bg-white/90 text-sm text-slate-600 transition-[width] duration-200 ease-out lg:flex',
+        isCondensed ? 'w-24 px-3 py-6 items-center text-center' : 'w-[var(--sidebar-width)] p-6',
+      ].join(' ')}
+    >
+      
+    </aside>
+  )
 }
