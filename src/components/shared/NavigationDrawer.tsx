@@ -79,6 +79,16 @@ export default function NavigationDrawer({ userProfile }: NavigationDrawerProps)
           </div>
         </div>
       </div>
+
+     <nav className="mt-6 flex w-full flex-1 flex-col space-y-6 overflow-y-auto">
+        {navigationSections.map((section) => (
+          <section key={section.title} aria-label={section.title} className="space-y-3">
+            <p className={isCondensed ? 'sr-only' : 'text-xs font-semibold uppercase tracking-wide text-slate-400'}>
+              {section.title}
+            </p>
+          </section>
+        )}
+     </nav>
     </aside>
   )
 }
