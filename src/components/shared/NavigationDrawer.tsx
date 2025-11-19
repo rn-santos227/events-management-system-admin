@@ -51,6 +51,15 @@ export default function NavigationDrawer({ userProfile }: NavigationDrawerProps)
           <p className="mt-1 text-lg font-semibold text-slate-900">Sidekick navigation</p>
           <p className="mt-2 text-xs text-slate-500">Quick links to the core admin surfaces.</p>
         </div>
+        <button
+          type="button"
+          onClick={toggleCondensed}
+          aria-pressed={isCondensed}
+          className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-500 transition hover:text-slate-900"
+        >
+          <span className="sr-only">{isCondensed ? 'Expand navigation drawer' : 'Collapse navigation drawer'}</span>
+          <HiOutlineArrowsRightLeft className={isCondensed ? 'h-4 w-4 rotate-180' : 'h-4 w-4'} />
+        </button>
       </div>
     </aside>
   )
