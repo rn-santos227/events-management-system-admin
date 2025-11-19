@@ -12,4 +12,21 @@ export const navigationSections: DrawerSection[] = [
       },
     ],
   },
+  {
+    title: 'Operations',
+    links: [
+      {
+        label: 'Event Pipeline',
+        description: 'Track upcoming event proposals and scheduling',
+        status: 'beta',
+        disabled: true,
+      },
+      {
+        label: 'Venue Availability',
+        description: 'Monitor venue holds and conflicts',
+        status: 'soon',
+        disabled: true,
+      },
+    ],
+  },
 ]
