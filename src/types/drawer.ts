@@ -6,3 +6,7 @@ export interface DrawerLink {
   disabled?: boolean
 }
 
+export interface DrawerSection {
+  title: string
+  links: DrawerLink[]
+}
