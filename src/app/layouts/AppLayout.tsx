@@ -32,7 +32,7 @@ export function AppLayout({ children }: AppLayoutProps) {
         </Button>
       </div>
     ) : undefined
-
+    
   if (!isAuthenticated || !userProfile) {
     return (
       <div className="flex min-h-screen flex-col bg-slate-50">
@@ -45,9 +45,12 @@ export function AppLayout({ children }: AppLayoutProps) {
 
   return (
     <div className="flex min-h-screen flex-col">
-      <Header title={isAuthenticated ? 'EMS Admin Dashboard' : undefined} actions={headerActions} />
-      <main className="flex-1">{children}</main>
-      <Footer />
+      <NavigationDrawer userProfile={userProfile} />
+      <div className="flex flex-1 flex-col">
+        <Header title="EMS Admin Dashboard" actions={headerActions} />
+        <main className="flex-1">{children}</main>
+        <Footer />
+      </div>
     </div>
   )
 }
