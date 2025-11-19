@@ -29,4 +29,21 @@ export const navigationSections: DrawerSection[] = [
       },
     ],
   },
+  {
+    title: 'Collaboration',
+    links: [
+      {
+        label: 'Organizer Directory',
+        description: 'Reference organizer profiles and contacts',
+        status: 'soon',
+        disabled: true,
+      },
+      {
+        label: 'Approvals',
+        description: 'Coordinate approvals with internal teams',
+        status: 'soon',
+        disabled: true,
+      },
+    ],
+  },
 ]
