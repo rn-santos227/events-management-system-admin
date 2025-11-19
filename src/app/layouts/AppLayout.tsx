@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 
-import { Footer, Header } from '@/components'
+import { Footer, Header, NavigationDrawer } from '@/components'
 import { Button } from '@/components/ui'
 import { useAppDispatch, useAppSelector } from '@/app/hooks'
 import { logoutUser } from '@/modules/auth/store/AuthSlice'
@@ -32,6 +32,16 @@ export function AppLayout({ children }: AppLayoutProps) {
         </Button>
       </div>
     ) : undefined
+
+  if (!isAuthenticated || !userProfile) {
+    return (
+      <div className="flex min-h-screen flex-col bg-slate-50">
+        <Header title={undefined} actions={headerActions} />
+        <main className="flex-1">{children}</main>
+        <Footer />
+      </div>
+    )
+  }
 
   return (
     <div className="flex min-h-screen flex-col">
