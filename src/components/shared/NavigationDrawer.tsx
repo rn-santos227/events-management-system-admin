@@ -61,6 +61,15 @@ export default function NavigationDrawer({ userProfile }: NavigationDrawerProps)
           <HiOutlineArrowsRightLeft className={isCondensed ? 'h-4 w-4 rotate-180' : 'h-4 w-4'} />
         </button>
       </div>
+
+      <div
+        className={[
+          'mt-6 w-full rounded-2xl border border-slate-200 bg-white p-4 shadow-sm',
+          isCondensed ? 'px-2 py-3 text-center' : '',
+        ].join(' ')}
+      >
+        
+      </div>
     </aside>
   )
 }
