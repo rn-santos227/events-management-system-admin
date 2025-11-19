@@ -45,7 +45,13 @@ export default function NavigationDrawer({ userProfile }: NavigationDrawerProps)
         isCondensed ? 'w-24 px-3 py-6 items-center text-center' : 'w-[var(--sidebar-width)] p-6',
       ].join(' ')}
     >
-      
+      <div className="flex w-full items-center justify-between gap-2">
+        <div className={isCondensed ? 'sr-only' : 'text-left'}>
+          <p className="text-xs uppercase tracking-[0.2em] text-slate-400">EMS Admin</p>
+          <p className="mt-1 text-lg font-semibold text-slate-900">Sidekick navigation</p>
+          <p className="mt-2 text-xs text-slate-500">Quick links to the core admin surfaces.</p>
+        </div>
+      </div>
     </aside>
   )
 }
