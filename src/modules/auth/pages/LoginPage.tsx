@@ -16,6 +16,7 @@ import {
   CardTitle,
   LoaderOverlay,
   TextField,
+  useToast,
 } from '@/components/ui'
 import { getUserFullName } from '@/types/user'
 import { type LoginCredentials } from '../types/auth'
@@ -36,6 +37,17 @@ function LoginPage() {
   const errorMessage = authState.error ?? userState.error
   const isAuthenticated = authState.status === 'authenticated' && Boolean(authState.token)
   const authenticatedUserName = userState.profile ? getUserFullName(userState.profile) : ''
+  const { showToast } = useToast()
+
+  useEffect(() => {
+    if (errorMessage) {
+      showToast({
+        type: 'error',
+        title: 'Sign-in failed',
+        message: errorMessage,
+      })
+    }
+  }, [errorMessage, showToast])
 
   useEffect(() => {
     if (isAuthenticated) {
