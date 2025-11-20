@@ -6,4 +6,8 @@ interface ToastRendererProps {
   onDismiss: (id: number) => void
 }
 
-
+export function ToastRenderer({ toasts, onDismiss }: ToastRendererProps) {
+  if (!toasts.length) {
+    return null
+  }
+}
