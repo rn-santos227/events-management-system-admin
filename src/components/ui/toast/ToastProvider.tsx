@@ -50,11 +50,25 @@ export function ToastProvider({ children, defaultDuration = DEFAULT_DURATION }: 
     [defaultDuration, hideToast],
   )
 
-
   useEffect(() => {
+    const timersSnapshot = { ...timersRef.current }
     return () => {
-      Object.values(timersRef.current).forEach((timeoutId) => window.clearTimeout(timeoutId))
+      Object.values(timersSnapshot).forEach((timeoutId) => window.clearTimeout(timeoutId))
     }
   }, [])
 
+  const value = useMemo(
+    () => ({
+      showToast,
+      hideToast,
+    }),
+    [showToast, hideToast],
+  )
+
+  return (
+    <ToastContext.Provider value={value}>
+      {children}
+      <ToastRenderer toasts={toasts} onDismiss={hideToast} />
+    </ToastContext.Provider>
+  )
 }
