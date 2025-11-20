@@ -9,4 +9,7 @@ import {
 } from 'react-icons/hi2'
 
 import type { ToastItem } from './types'
-import { classNames } from '@/utils'
+
+export const typeStyles: Record<ToastItem['type'], { icon: ReactNode; accentClass: string }> = {
+
+}
