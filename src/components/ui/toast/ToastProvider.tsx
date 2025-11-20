@@ -24,4 +24,29 @@ export function ToastProvider({ children, defaultDuration = DEFAULT_DURATION }: 
       delete timersRef.current[id]
     }
   }, [])
+
+  const showToast = useCallback(
+    ({ title, message, type = 'info', duration }: ToastOptions) => {
+      const id = Date.now() + Math.floor(Math.random() * 1000)
+      const toastDuration = typeof duration === 'number' ? duration : defaultDuration
+
+      setToasts((prev) => [
+        ...prev,
+        {
+          id,
+          title,
+          message,
+          type,
+          duration: toastDuration,
+        },
+      ])
+
+      if (toastDuration > 0) {
+        timersRef.current[id] = window.setTimeout(() => hideToast(id), toastDuration)
+      }
+
+      return id
+    },
+    [defaultDuration, hideToast],
+  )
 }
