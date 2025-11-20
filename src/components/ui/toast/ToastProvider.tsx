@@ -15,4 +15,13 @@ const DEFAULT_DURATION = 5000
 export function ToastProvider({ children, defaultDuration = DEFAULT_DURATION }: ToastProviderProps) {
   const [toasts, setToasts] = useState<ToastItem[]>([])
   const timersRef = useRef<Record<number, number>>({})
+
+  const hideToast = useCallback((id: number) => {
+    setToasts((prev) => prev.filter((toast) => toast.id !== id))
+    const timeoutId = timersRef.current[id]
+    if (timeoutId) {
+      window.clearTimeout(timeoutId)
+      delete timersRef.current[id]
+    }
+  }, [])
 }
