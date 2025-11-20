@@ -49,4 +49,12 @@ export function ToastProvider({ children, defaultDuration = DEFAULT_DURATION }: 
     },
     [defaultDuration, hideToast],
   )
+
+
+  useEffect(() => {
+    return () => {
+      Object.values(timersRef.current).forEach((timeoutId) => window.clearTimeout(timeoutId))
+    }
+  }, [])
+
 }
