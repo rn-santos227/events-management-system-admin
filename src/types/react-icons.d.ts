@@ -13,4 +13,9 @@ declare module 'react-icons/hi2' {
   export const HiOutlineUserGroup: IconType
   export const HiOutlineShieldCheck: IconType
   export const HiOutlineArrowsRightLeft: IconType
+  export const HiMiniCheckCircle: IconType
+  export const HiMiniExclamationCircle: IconType
+  export const HiMiniExclamationTriangle: IconType
+  export const HiMiniInformationCircle: IconType
+  export const HiMiniXMark: IconType
 }
