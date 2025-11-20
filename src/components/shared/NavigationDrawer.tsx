@@ -45,7 +45,7 @@ export default function NavigationDrawer({ userProfile }: NavigationDrawerProps)
       aria-label="Primary navigation"
       data-condensed={isCondensed ? 'true' : 'false'}
       className={[
-        'hidden flex-col border-r border-slate-200 bg-white/90 text-sm text-slate-600 transition-[width] duration-200 ease-out lg:flex',
+        'hidden h-screen flex-col border-r border-slate-200 bg-white/90 text-sm text-slate-600 transition-[width] duration-200 ease-out lg:sticky lg:top-0 lg:flex',
         isCondensed ? 'w-24 px-3 py-6 items-center text-center' : 'w-[var(--sidebar-width)] p-6',
       ].join(' ')}
     >

@@ -49,9 +49,9 @@ export function AppLayout({ children }: AppLayoutProps) {
   }
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex min-h-screen bg-slate-50">
       <NavigationDrawer userProfile={userProfile} />
-      <div className="flex flex-1 flex-col">
+      <div className="flex min-h-screen flex-1 flex-col">
         <Header title="EMS Admin Dashboard" actions={headerActions} />
         <main className="flex-1">{content}</main>
         <Footer />
