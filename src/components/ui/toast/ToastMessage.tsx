@@ -1,12 +1,7 @@
-import type { ReactNode } from 'react'
-
-import {
-  HiMiniXMark,
-} from 'react-icons/hi2'
-
-import { classNames } from '@/utils'
+import { HiMiniXMark } from 'react-icons/hi2'
 import { typeStyles } from './ToastConfig'
 import type { ToastItem } from './types'
+import { classNames } from '@/utils'
 
 interface ToastMessageProps {
   toast: ToastItem
@@ -31,6 +26,14 @@ export function ToastMessage({ toast, onDismiss }: ToastMessageProps) {
         {toast.title ? <p className="text-sm font-semibold text-slate-900">{toast.title}</p> : null}
         <p className="text-sm text-slate-600">{toast.message}</p>
       </div>
+      <button
+        type="button"
+        className="flex-shrink-0 rounded-md p-1 text-slate-400 transition hover:bg-slate-100 hover:text-slate-600"
+        onClick={onDismiss}
+        aria-label="Dismiss notification"
+      >
+        <HiMiniXMark className="h-5 w-5" aria-hidden="true" />
+      </button>
     </div>
   )
 }
