@@ -26,7 +26,11 @@ export function ToastMessage({ toast, onDismiss }: ToastMessageProps) {
       role={statusRole}
       aria-live={statusRole === 'alert' ? 'assertive' : 'polite'}
     >
-      
+      <div className="flex-shrink-0">{typeConfig.icon}</div>
+      <div className="flex-1">
+        {toast.title ? <p className="text-sm font-semibold text-slate-900">{toast.title}</p> : null}
+        <p className="text-sm text-slate-600">{toast.message}</p>
+      </div>
     </div>
   )
 }
