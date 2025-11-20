@@ -5,5 +5,8 @@ import { ToastContext } from './context'
 import { ToastRenderer } from './ToastRenderer'
 import type { ToastItem, ToastOptions } from './types'
 
-
-
+interface ToastProviderProps {
+  children: ReactNode
+  defaultDuration?: number
+}
+const DEFAULT_DURATION = 5000
