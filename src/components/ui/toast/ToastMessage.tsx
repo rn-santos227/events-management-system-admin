@@ -12,3 +12,7 @@ interface ToastMessageProps {
   toast: ToastItem
   onDismiss: () => void
 }
+
+export function ToastMessage({ toast, onDismiss }: ToastMessageProps) {
+
+}
