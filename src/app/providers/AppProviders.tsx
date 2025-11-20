@@ -2,7 +2,7 @@ import type { ReactNode } from 'react'
 import { Provider } from 'react-redux'
 
 import { store } from '../store'
-import { DialogProvider } from '@/components/ui'
+import { DialogProvider, ToastProvider } from '@/components/ui'
 
 interface AppProvidersProps {
   children: ReactNode
@@ -11,7 +11,9 @@ interface AppProvidersProps {
 export function AppProviders({ children }: AppProvidersProps) {
   return (
     <Provider store={store}>
-      <DialogProvider>{children}</DialogProvider>
+      <ToastProvider>
+        <DialogProvider>{children}</DialogProvider>
+      </ToastProvider>
     </Provider>
   )
 }
