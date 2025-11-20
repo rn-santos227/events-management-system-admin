@@ -10,3 +10,9 @@ interface ToastProviderProps {
   defaultDuration?: number
 }
 const DEFAULT_DURATION = 5000
+
+
+export function ToastProvider({ children, defaultDuration = DEFAULT_DURATION }: ToastProviderProps) {
+  const [toasts, setToasts] = useState<ToastItem[]>([])
+  const timersRef = useRef<Record<number, number>>({})
+}
