@@ -23,4 +23,8 @@ export const typeStyles: Record<ToastItem['type'], { icon: ReactNode; accentClas
     icon: <HiMiniExclamationTriangle className="h-5 w-5 text-amber-500" aria-hidden="true" />,
     accentClass: 'border-amber-200',
   },
+  error: {
+    icon: <HiMiniExclamationCircle className="h-5 w-5 text-red-500" aria-hidden="true" />,
+    accentClass: 'border-red-200',
+  },
 }
