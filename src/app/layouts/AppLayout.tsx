@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import { Outlet } from 'react-router-dom'
 
 import { Footer, Header, NavigationDrawer } from '@/components'
 import { Button } from '@/components/ui'
@@ -7,7 +8,7 @@ import { logoutUser } from '@/modules/auth/store/AuthSlice'
 import { getUserFullName } from '@/types/user'
 
 interface AppLayoutProps {
-  children: ReactNode
+  children?: ReactNode
 }
 
 export function AppLayout({ children }: AppLayoutProps) {
@@ -15,7 +16,7 @@ export function AppLayout({ children }: AppLayoutProps) {
   const authState = useAppSelector((state) => state.auth)
   const userProfile = useAppSelector((state) => state.user.profile)
   const isAuthenticated = authState.status === 'authenticated' && Boolean(authState.token)
-
+  const content = children ?? <Outlet />
   const displayName = userProfile ? getUserFullName(userProfile) || userProfile.email : null
 
   const handleLogout = () => {
@@ -41,7 +42,7 @@ export function AppLayout({ children }: AppLayoutProps) {
     return (
       <div className="flex min-h-screen flex-col bg-slate-50">
         <Header title={undefined} actions={headerActions} />
-        <main className="flex-1">{children}</main>
+        <main className="flex-1">{content}</main>
         <Footer />
       </div>
     )
@@ -52,7 +53,7 @@ export function AppLayout({ children }: AppLayoutProps) {
       <NavigationDrawer userProfile={userProfile} />
       <div className="flex flex-1 flex-col">
         <Header title="EMS Admin Dashboard" actions={headerActions} />
-        <main className="flex-1">{children}</main>
+        <main className="flex-1">{content}</main>
         <Footer />
       </div>
     </div>

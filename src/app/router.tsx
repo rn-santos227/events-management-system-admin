@@ -3,6 +3,7 @@ import { createBrowserRouter, type RouteObject } from 'react-router-dom'
 import { routes } from '@/config/routes'
 import ProtectedRoute from '@/modules/auth/components/ProtectedRoute'
 import type { Route } from '@/types/route'
+import { AppLayout } from './layouts'
 
 function convertRoutes(customRoutes: Route[]): RouteObject[] {
   return customRoutes.map((r) => {
@@ -31,4 +32,9 @@ function convertRoutes(customRoutes: Route[]): RouteObject[] {
   });
 }
 
-export const router = createBrowserRouter(convertRoutes(routes))
+export const router = createBrowserRouter([
+  {
+    element: <AppLayout />,
+    children: convertRoutes(routes),
+  },
+])
