@@ -5,7 +5,6 @@ import {
   HiMiniExclamationCircle,
   HiMiniExclamationTriangle,
   HiMiniInformationCircle,
-  HiMiniXMark,
 } from 'react-icons/hi2'
 
 import type { ToastItem } from './types'
