@@ -11,5 +11,8 @@ import {
 import type { ToastItem } from './types'
 
 export const typeStyles: Record<ToastItem['type'], { icon: ReactNode; accentClass: string }> = {
-
+  success: {
+    icon: <HiMiniCheckCircle className="h-5 w-5 text-green-500" aria-hidden="true" />,
+    accentClass: 'border-green-200',
+  },
 }
