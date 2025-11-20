@@ -14,5 +14,6 @@ interface ToastMessageProps {
 }
 
 export function ToastMessage({ toast, onDismiss }: ToastMessageProps) {
-
+  const typeConfig = typeStyles[toast.type]
+  const statusRole = toast.type === 'error' || toast.type === 'warning' ? 'alert' : 'status'
 }
