@@ -15,4 +15,9 @@ export const typeStyles: Record<ToastItem['type'], { icon: ReactNode; accentClas
     icon: <HiMiniCheckCircle className="h-5 w-5 text-green-500" aria-hidden="true" />,
     accentClass: 'border-green-200',
   },
+
+  info: {
+    icon: <HiMiniInformationCircle className="h-5 w-5 text-blue-500" aria-hidden="true" />,
+    accentClass: 'border-blue-200',
+  },
 }
