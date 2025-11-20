@@ -11,7 +11,7 @@ import {
 } from 'react-icons/hi2'
 
 interface NavigationDrawerProps {
-  userProfile: UserProfile
+  userProfile?: UserProfile | null
 }
 
 const statusCopy: Record<NonNullable<DrawerLink['status']>, string> = {
@@ -21,9 +21,9 @@ const statusCopy: Record<NonNullable<DrawerLink['status']>, string> = {
 
 export default function NavigationDrawer({ userProfile }: NavigationDrawerProps) {
   const [isCondensed, setIsCondensed] = useState(false)
-  const userName = getUserFullName(userProfile)
+  const userName = userProfile ? getUserFullName(userProfile) : ''
   const userInitials = useMemo(() => {
-    const target = userName || userProfile.email
+    const target = userName || userProfile?.email
     if (!target) return 'EM'
 
     const matches = target
@@ -34,7 +34,7 @@ export default function NavigationDrawer({ userProfile }: NavigationDrawerProps)
       .join('')
 
     return matches || 'EM'
-  }, [userName, userProfile.email])
+  }, [userName, userProfile?.email])
 
   const toggleCondensed = () => {
     setIsCondensed((prev) => !prev)
@@ -78,8 +78,8 @@ export default function NavigationDrawer({ userProfile }: NavigationDrawerProps)
           </div>
           <div className={isCondensed ? 'sr-only' : 'text-left'}>
             <p className="text-xs font-medium uppercase tracking-wide text-slate-400">Signed in</p>
-            <p className="mt-1 text-base font-semibold text-slate-900">{userName || userProfile.email}</p>
-            <p className="text-xs text-slate-500">{userProfile.role.name}</p>
+            <p className="mt-1 text-base font-semibold text-slate-900">{userName || userProfile?.email || 'Administrator'}</p>
+            <p className="text-xs text-slate-500">{userProfile?.role.name ?? 'EMS admin'}</p>
           </div>
         </div>
       </div>

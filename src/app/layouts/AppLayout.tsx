@@ -14,18 +14,22 @@ export function AppLayout({ children }: AppLayoutProps) {
   const dispatch = useAppDispatch()
   const authState = useAppSelector((state) => state.auth)
   const userProfile = useAppSelector((state) => state.user.profile)
-  const isAuthenticated = authState.status === 'authenticated' && Boolean(userProfile)
+  const isAuthenticated = authState.status === 'authenticated' && Boolean(authState.token)
+
+  const displayName = userProfile ? getUserFullName(userProfile) || userProfile.email : null
 
   const handleLogout = () => {
     dispatch(logoutUser())
   }
 
   const headerActions =
-    isAuthenticated && userProfile ? (
+    isAuthenticated ? (
       <div className="flex items-center gap-4 text-sm text-slate-600">
-        <span>
-          Signed in as{' '}
-          <span className="font-semibold text-slate-900">{getUserFullName(userProfile) || userProfile.email}</span>
+        <span className="flex flex-col gap-0.5 text-left text-xs uppercase tracking-wide text-slate-500">
+          <span className="text-[10px] font-semibold text-slate-400">Signed in</span>
+          <span className="text-sm font-semibold text-slate-900">
+            {displayName ?? 'Administrator'}
+          </span>
         </span>
         <Button size="sm" variant="outline" onClick={handleLogout}>
           Sign out
@@ -33,7 +37,7 @@ export function AppLayout({ children }: AppLayoutProps) {
       </div>
     ) : undefined
     
-  if (!isAuthenticated || !userProfile) {
+  if (!isAuthenticated) {
     return (
       <div className="flex min-h-screen flex-col bg-slate-50">
         <Header title={undefined} actions={headerActions} />
