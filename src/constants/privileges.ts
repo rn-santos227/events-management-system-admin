@@ -34,5 +34,14 @@ export const PRIVILEGE_ACTIONS = {
 } as const
 
 export type PrivilegeAction =
-  (typeof PRIVILEGE_ACTIONS)[keyof typeof PRIVILEGE_ACTIONS][keyof (typeof PRIVILEGE_ACTIONS)[keyof typeof PRIVILEGE_ACTIONS]]
-  
+  (typeof PRIVILEGE_ACTIONS)[keyof typeof PRIVILEGE_ACTIONS] extends infer G
+    ? G extends Record<string, infer V>
+      ? V
+      : never
+    : never
+
+export const ALL_PRIVILEGE_ACTIONS = [
+  ...Object.values(PRIVILEGE_ACTIONS).flatMap((group) =>
+    Object.values(group),
+  ),
+] as const satisfies readonly PrivilegeAction[]
