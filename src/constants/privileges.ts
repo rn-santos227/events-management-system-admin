@@ -5,6 +5,12 @@ export const PRIVILEGE_ACTIONS = {
     UPDATE: 'privileges:update',
     DELETE: 'privileges:delete',
   },
+  ROLES: {
+    CREATE: 'roles:create',
+    READ: 'roles:read',
+    UPDATE: 'roles:update',
+    DELETE: 'roles:delete',
+  },
 } as const
 
 export type PrivilegeAction =
