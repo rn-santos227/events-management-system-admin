@@ -1,0 +1,23 @@
+.card {
+  @apply rounded-xl border border-slate-200 bg-white shadow-sm transition-colors;
+}
+
+.card__header {
+  @apply flex flex-col gap-1 border-b border-slate-200 px-6 py-4;
+}
+
+.card__title {
+  @apply text-lg font-semibold text-slate-900;
+}
+
+.card__description {
+  @apply text-sm text-slate-500;
+}
+
+.card__content {
+  @apply px-6 py-4;
+}
+
+.card__footer {
+  @apply flex items-center gap-3 border-t border-slate-200 px-6 py-4;
+}
