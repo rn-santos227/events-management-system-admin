@@ -1,0 +1,27 @@
+.loader-overlay {
+  @apply fixed inset-0 z-[999] flex items-center justify-center bg-slate-900/70 px-4;
+}
+
+.loader-overlay__card {
+  @apply flex w-full max-w-sm flex-col items-center gap-4 rounded-2xl bg-white/90 px-6 py-6 text-center shadow-2xl;
+}
+
+.loader-overlay__message {
+  @apply text-sm font-medium text-slate-700;
+}
+
+.loader-overlay__circular {
+  @apply h-12 w-12 animate-spin rounded-full border-4 border-slate-200 border-t-blue-600;
+}
+
+.loader-overlay__bar-wrapper {
+  @apply w-48;
+}
+
+.loader-overlay__bar-track {
+  @apply h-2 w-full overflow-hidden rounded-full bg-slate-200;
+}
+
+.loader-overlay__bar-indicator {
+  @apply h-full w-1/2 animate-pulse rounded-full bg-blue-600;
+}
