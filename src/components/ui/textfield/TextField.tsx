@@ -1,6 +1,7 @@
 import { forwardRef, useEffect, useId, useState } from 'react'
 import type { ChangeEvent, InputHTMLAttributes } from 'react'
 
+import './index.css'
 import { classNames } from '@/utils/classNames'
 
 const getCharacterLength = (value: unknown): number => {
@@ -29,11 +30,8 @@ export interface TextFieldProps
   hidden?: boolean
 }
 
-const baseInputStyles =
-  'w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 shadow-sm transition placeholder:text-slate-400 focus:border-slate-500 focus:outline-none focus:ring-2 focus:ring-slate-500/20 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500'
-
-const errorInputStyles =
-  'border-red-500 focus:border-red-500 focus:ring-red-500/20 text-red-900 placeholder:text-red-400'
+const baseInputStyles = 'text-field__input'
+const errorInputStyles = 'text-field__input--error'
 
 export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
   (
@@ -85,25 +83,19 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
     }
 
     const helperContent = error ? (
-      <p id={errorId} className="text-xs font-medium text-red-600">
+     <p id={errorId} className="text-field__helper text-field__helper--error">
         {error}
       </p>
     ) : helperText ? (
-      <p id={helperId} className="text-xs text-slate-500">
+      <p id={helperId} className="text-field__helper">
         {helperText}
       </p>
     ) : null
 
     return (
-      <div 
-        className={classNames(
-          'flex flex-col gap-1',
-          active && 'ring-2 ring-slate-500 ring-offset-2 rounded-lg',
-          containerClassName,
-        )}
-      >
+      <div className={classNames('text-field', active && 'text-field--active', containerClassName)}>
         {label ? (
-          <label className="text-sm font-medium text-slate-700" htmlFor={inputId}>
+          <label className="text-field__label" htmlFor={inputId}>
             {label}
           </label>
         ) : null}
@@ -128,13 +120,13 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
         />
 
         {helperContent || maxLength != null ? (
-          <div className="flex items-start gap-2">
+          <div className="text-field__helper-row">
             {helperContent ? <div className="flex-1">{helperContent}</div> : null}
             {maxLength != null ? (
               <span
                 className={classNames(
-                  'ml-auto text-xs tabular-nums text-slate-500',
-                  error ? 'text-red-600' : undefined,
+                  'text-field__counter',
+                  error ? 'text-field__counter--error' : undefined,
                 )}
               >
                 {characterCount}/{maxLength}
