@@ -22,3 +22,26 @@ const DefaultUnauthorized = () => (
     </div>
   </div>
 )
+
+export default function PrivilegeGuard({
+  children,
+  required,
+  mode = 'all',
+  redirectTo = ROUTES.DASHBOARD,
+  fallback,
+}: PrivilegeGuardProps) {
+  const location = useLocation()
+  const { hasPrivileges } = useAuthorization()
+
+  const isAuthorized = hasPrivileges(required, mode)
+
+  if (!isAuthorized) {
+    if (redirectTo) {
+      return <Navigate to={redirectTo} replace state={{ from: location }} />
+    }
+
+    return fallback ?? <DefaultUnauthorized />
+  }
+
+  return <>{children}</>
+}
