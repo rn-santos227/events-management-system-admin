@@ -1,6 +1,7 @@
 import { forwardRef } from 'react'
 import type { ButtonHTMLAttributes, ReactNode } from 'react'
 
+import './index.css'
 import { classNames } from '@/utils/classNames'
 
 type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost'
@@ -19,20 +20,16 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const variantStyles: Record<ButtonVariant, string> = {
-  primary:
-    'bg-slate-900 text-white hover:bg-slate-800 focus-visible:ring-slate-500 disabled:bg-slate-400 disabled:text-white/70',
-  secondary:
-    'bg-slate-100 text-slate-900 hover:bg-slate-200 focus-visible:ring-slate-400 disabled:bg-slate-100 disabled:text-slate-500',
-  outline:
-    'border border-slate-300 bg-white text-slate-900 hover:bg-slate-50 focus-visible:ring-slate-400 disabled:bg-white disabled:text-slate-400',
-  ghost:
-    'text-slate-700 hover:bg-slate-100 focus-visible:ring-slate-400 disabled:text-slate-400',
+  primary: 'button--primary',
+  secondary: 'button--secondary',
+  outline: 'button--outline',
+  ghost: 'button--ghost',
 }
 
 const sizeStyles: Record<ButtonSize, string> = {
-  sm: 'h-8 rounded-md px-3 text-sm',
-  md: 'h-10 rounded-lg px-4 text-sm',
-  lg: 'h-12 rounded-xl px-6 text-base',
+  sm: 'button--sm',
+  md: 'button--md',
+  lg: 'button--lg',
 }
 
 const baseStyles =
@@ -40,12 +37,12 @@ const baseStyles =
 
 const spinner = (
   <svg
-    className="size-4 animate-spin"
+    className="button__spinner"
     viewBox="0 0 24 24"
     aria-hidden="true"
   >
     <circle
-      className="opacity-25"
+      className="button__spinner-circle"
       cx="12"
       cy="12"
       r="10"
@@ -54,7 +51,7 @@ const spinner = (
       fill="none"
     />
     <path
-      className="opacity-75"
+      className="button__spinner-path"
       d="M4 12a8 8 0 018-8"
       stroke="currentColor"
       strokeWidth="4"
@@ -93,9 +90,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           baseStyles,
           variantStyles[variant],
           sizeStyles[size],
-          isLoading && 'cursor-wait opacity-80',
-          block && 'w-full',
-          active && 'ring-2 ring-slate-500 ring-offset-2',
+          isLoading && 'button--loading',
+          block && 'button--block',
+          active && 'button--active',
           className,
         )}
         disabled={isDisabled}
@@ -103,15 +100,15 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         {...props}
       >
         {isLoading ? (
-          <span className="inline-flex items-center gap-2">
+          <span className="button__loading-content">
             <span aria-hidden="true">{spinner}</span>
-            <span className="sr-only">{loadingText}</span>
+            <span className="button__sr-only">{loadingText}</span>
           </span>
         ) : leftIcon ? (
           <span aria-hidden="true">{leftIcon}</span>
         ) : null}
 
-        <span className="truncate">{children}</span>
+        <span className="button__text">{children}</span>
 
         {rightIcon ? <span aria-hidden="true">{rightIcon}</span> : null}
       </button>
