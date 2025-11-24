@@ -6,6 +6,7 @@ import { DrawerLink } from '@/types/drawer'
 import { navigationSections } from '@/config/drawer'
 import type { UserProfile } from '@/types/user'
 import { getUserFullName } from '@/types/user'
+import { useAuthorization } from '@/modules/auth/hooks/useAuthorization'
 import {
   HiOutlineArrowsRightLeft,
 } from 'react-icons/hi2'
@@ -21,6 +22,7 @@ const statusCopy: Record<NonNullable<DrawerLink['status']>, string> = {
 
 export default function NavigationDrawer({ userProfile }: NavigationDrawerProps) {
   const [isCondensed, setIsCondensed] = useState(false)
+  const { hasPrivileges } = useAuthorization()
   const userName = userProfile ? getUserFullName(userProfile) : ''
   const userInitials = useMemo(() => {
     const target = userName || userProfile?.email
@@ -94,6 +96,11 @@ export default function NavigationDrawer({ userProfile }: NavigationDrawerProps)
               {section.links.map((link) => {
                 const statusLabel = link.status ? statusCopy[link.status] : undefined
                 const Icon = link.icon
+                const isAuthorized = hasPrivileges(link.requiredPrivileges, link.privilegeMode ?? 'all')
+
+                if (!isAuthorized) {
+                  return null
+                }
 
                 if (link.disabled || !link.to) {
                   return (
