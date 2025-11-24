@@ -11,19 +11,39 @@ import type { ToastItem } from './types'
 
 export const typeStyles: Record<ToastItem['type'], { icon: ReactNode; accentClass: string }> = {
   success: {
-    icon: <HiMiniCheckCircle className="h-5 w-5 text-green-500" aria-hidden="true" />,
+    icon: (
+      <HiMiniCheckCircle
+        className="toast-message__icon toast-message__icon--success"
+        aria-hidden="true"
+      />
+    ),
     accentClass: 'border-green-200',
   },
   info: {
-    icon: <HiMiniInformationCircle className="h-5 w-5 text-blue-500" aria-hidden="true" />,
+    icon: (
+      <HiMiniInformationCircle
+        className="toast-message__icon toast-message__icon--info"
+        aria-hidden="true"
+      />
+    ),
     accentClass: 'border-blue-200',
   },
   warning: {
-    icon: <HiMiniExclamationTriangle className="h-5 w-5 text-amber-500" aria-hidden="true" />,
+    icon: (
+      <HiMiniExclamationTriangle
+        className="toast-message__icon toast-message__icon--warning"
+        aria-hidden="true"
+      />
+    ),
     accentClass: 'border-amber-200',
   },
   error: {
-    icon: <HiMiniExclamationCircle className="h-5 w-5 text-red-500" aria-hidden="true" />,
+    icon: (
+      <HiMiniExclamationCircle
+        className="toast-message__icon toast-message__icon--error"
+        aria-hidden="true"
+      />
+    ),
     accentClass: 'border-red-200',
   },
 }

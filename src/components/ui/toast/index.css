@@ -1,0 +1,43 @@
+.toast-layer {
+  @apply pointer-events-none fixed inset-0 z-50 flex flex-col items-end px-4 py-6 sm:p-6;
+}
+
+.toast-stack {
+  @apply flex w-full flex-col items-end gap-3 sm:max-w-sm;
+}
+
+.toast-message {
+  @apply pointer-events-auto flex w-full items-start gap-3 rounded-lg border bg-white p-4 shadow-lg ring-1 ring-black/5;
+}
+
+.toast-message__title {
+  @apply text-sm font-semibold text-slate-900;
+}
+
+.toast-message__body {
+  @apply text-sm text-slate-600;
+}
+
+.toast-message__close {
+  @apply flex-shrink-0 rounded-md p-1 text-slate-400 transition hover:bg-slate-100 hover:text-slate-600;
+}
+
+.toast-message__icon {
+  @apply h-5 w-5;
+}
+
+.toast-message__icon--success {
+  @apply text-green-500;
+}
+
+.toast-message__icon--info {
+  @apply text-blue-500;
+}
+
+.toast-message__icon--warning {
+  @apply text-amber-500;
+}
+
+.toast-message__icon--error {
+  @apply text-red-500;
+}
