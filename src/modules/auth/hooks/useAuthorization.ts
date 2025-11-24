@@ -26,4 +26,11 @@ const hasRequiredPrivileges = (
 }
 
 
+export function useAuthorization() {
+  const privileges = useAppSelector((state) => state.user.profile?.role.privileges ?? [])
 
+  const hasPrivilege = useCallback(
+    (action: string) => hasRequiredPrivileges(privileges, normalizeRequired(action), 'all'),
+    [privileges],
+  )
+}
