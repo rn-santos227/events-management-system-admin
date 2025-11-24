@@ -49,4 +49,15 @@ export function useAuthorization() {
       hasRequiredPrivileges(privileges, normalizeRequired(required), mode),
     [privileges],
   )
+
+  return useMemo(
+    () => ({
+      privileges,
+      hasPrivilege,
+      hasAnyPrivilege,
+      hasAllPrivileges,
+      hasPrivileges,
+    }),
+    [privileges, hasPrivilege, hasAnyPrivilege, hasAllPrivileges, hasPrivileges],
+  )
 }
