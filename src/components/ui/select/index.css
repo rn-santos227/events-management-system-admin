@@ -1,0 +1,23 @@
+.select-field {
+  @apply flex flex-col gap-1;
+}
+
+.select-field__label {
+  @apply text-sm font-medium text-slate-700;
+}
+
+.select-field__control {
+  @apply w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 shadow-sm transition focus:border-slate-500 focus:outline-none focus:ring-2 focus:ring-slate-500/20 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500;
+}
+
+.select-field__control--error {
+  @apply border-red-500 text-red-900 focus:border-red-500 focus:ring-red-500/20;
+}
+
+.select-field__helper {
+  @apply text-xs text-slate-500;
+}
+
+.select-field__helper--error {
+  @apply font-medium text-red-600;
+}
