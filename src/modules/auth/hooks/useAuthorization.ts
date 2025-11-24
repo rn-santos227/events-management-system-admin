@@ -33,4 +33,20 @@ export function useAuthorization() {
     (action: string) => hasRequiredPrivileges(privileges, normalizeRequired(action), 'all'),
     [privileges],
   )
+
+  const hasAnyPrivilege = useCallback(
+    (actions: string[]) => hasRequiredPrivileges(privileges, normalizeRequired(actions), 'any'),
+    [privileges],
+  )
+
+  const hasAllPrivileges = useCallback(
+    (actions: string[]) => hasRequiredPrivileges(privileges, normalizeRequired(actions), 'all'),
+    [privileges],
+  )
+
+  const hasPrivileges = useCallback(
+    (required?: string | string[], mode: 'all' | 'any' = 'all') =>
+      hasRequiredPrivileges(privileges, normalizeRequired(required), mode),
+    [privileges],
+  )
 }
