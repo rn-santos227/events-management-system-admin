@@ -5,8 +5,10 @@ export interface DrawerLink {
   description: string
   to?: string
   status?: 'beta' | 'soon'
-  disabled?: boolean,
+  disabled?: boolean
   icon: IconComponent
+  requiredPrivileges?: string[]
+  privilegeMode?: 'all' | 'any'
 }
 
 export interface DrawerSection {
