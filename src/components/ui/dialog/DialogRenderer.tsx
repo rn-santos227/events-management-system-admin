@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion'
 
+import './index.css'
 import { classNames } from '@/utils/classNames'
 
 import { variantConfig } from './DialogConfig'
@@ -34,14 +35,14 @@ export function DialogRenderer({
       {dialog ? (
         <motion.div
           key={dialog.id}
-          className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/50 px-4 backdrop-blur-sm"
+          className="dialog-overlay"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={handleOverlayClick}
         >
           <motion.div
-            className="w-full max-w-sm overflow-hidden rounded-3xl bg-white p-8 shadow-2xl"
+            className="dialog-panel"
             role="alertdialog"
             aria-modal="true"
             aria-labelledby={titleId}
@@ -52,10 +53,10 @@ export function DialogRenderer({
             transition={{ type: 'spring', stiffness: 260, damping: 20 }}
             onClick={(event) => event.stopPropagation()}
           >
-            <div className="flex flex-col items-center text-center">
+            <div className="dialog-content">
               <div
                 className={classNames(
-                  'mb-6 flex size-20 items-center justify-center rounded-full bg-slate-50 ring-8',
+                  'dialog-icon',
                   variantConfig[dialog.type].ring,
                   variantConfig[dialog.type].accent,
                 )}
@@ -63,11 +64,11 @@ export function DialogRenderer({
                 {variantConfig[dialog.type].icon}
               </div>
               <div className="space-y-3">
-                <h2 id={titleId} className="text-2xl font-semibold text-slate-900">
+                <h2 id={titleId} className="dialog-title">
                   {dialog.title}
                 </h2>
                 {dialog.description ? (
-                  <p id={descriptionId} className="text-sm leading-relaxed text-slate-600">
+                 <p id={descriptionId} className="dialog-description">
                     {dialog.description}
                   </p>
                 ) : null}
@@ -77,8 +78,9 @@ export function DialogRenderer({
                   <button
                     type="button"
                     className={classNames(
-                      'inline-flex flex-1 items-center justify-center rounded-xl px-5 py-2.5 text-sm font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2',
-                      variantConfig[dialog.type].cancel,
+                     'dialog-button',
+                      'dialog-button--cancel',
+                      variantConfig[dialog.type].cancel
                     )}
                     onClick={onCancel}
                     disabled={isProcessing}
@@ -89,7 +91,8 @@ export function DialogRenderer({
                 <button
                   type="button"
                   className={classNames(
-                    'inline-flex flex-1 items-center justify-center rounded-xl px-5 py-2.5 text-sm font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-80',
+                    'dialog-button',
+                    'dialog-button--confirm',
                     variantConfig[dialog.type].confirm,
                   )}
                   onClick={onConfirm}

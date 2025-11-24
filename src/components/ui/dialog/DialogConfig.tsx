@@ -2,11 +2,10 @@ import type { DialogType, DialogVariantConfig } from './types'
 
 export const variantConfig: Record<DialogType, DialogVariantConfig> = {
   success: {
-    accent: 'text-emerald-600',
-    ring: 'ring-emerald-200',
-    confirm: 'bg-emerald-600 text-white hover:bg-emerald-700 focus-visible:ring-emerald-500',
-    cancel:
-      'border border-emerald-200 text-emerald-700 hover:bg-emerald-50 focus-visible:ring-emerald-200',
+    accent: 'dialog-icon--success',
+    ring: 'dialog-icon-ring--success',
+    confirm: 'dialog-button--confirm-success',
+    cancel: 'dialog-button--cancel-success',
     icon: (
       <svg viewBox="0 0 24 24" className="size-10" aria-hidden="true" fill="none">
         <path
@@ -21,10 +20,10 @@ export const variantConfig: Record<DialogType, DialogVariantConfig> = {
     ),
   },
   question: {
-    accent: 'text-sky-600',
-    ring: 'ring-sky-200',
-    confirm: 'bg-sky-600 text-white hover:bg-sky-700 focus-visible:ring-sky-500',
-    cancel: 'border border-sky-200 text-sky-700 hover:bg-sky-50 focus-visible:ring-sky-200',
+    accent: 'dialog-icon--question',
+    ring: 'dialog-icon-ring--question',
+    confirm: 'dialog-button--confirm-question',
+    cancel: 'dialog-button--cancel-question',
     icon: (
       <svg viewBox="0 0 24 24" className="size-10" aria-hidden="true" fill="none">
         <path
@@ -45,11 +44,10 @@ export const variantConfig: Record<DialogType, DialogVariantConfig> = {
     ),
   },
   warning: {
-    accent: 'text-amber-600',
-    ring: 'ring-amber-200',
-    confirm: 'bg-amber-600 text-white hover:bg-amber-700 focus-visible:ring-amber-500',
-    cancel:
-      'border border-amber-200 text-amber-700 hover:bg-amber-50 focus-visible:ring-amber-200',
+    accent: 'dialog-icon--warning',
+    ring: 'dialog-icon-ring--warning',
+    confirm: 'dialog-button--confirm-warning',
+    cancel: 'dialog-button--cancel-warning',
     icon: (
       <svg viewBox="0 0 24 24" className="size-10" aria-hidden="true" fill="none">
         <path
@@ -70,11 +68,10 @@ export const variantConfig: Record<DialogType, DialogVariantConfig> = {
     ),
   },
   information: {
-    accent: 'text-indigo-600',
-    ring: 'ring-indigo-200',
-    confirm: 'bg-indigo-600 text-white hover:bg-indigo-700 focus-visible:ring-indigo-500',
-    cancel:
-      'border border-indigo-200 text-indigo-700 hover:bg-indigo-50 focus-visible:ring-indigo-200',
+    accent: 'dialog-icon--information',
+    ring: 'dialog-icon-ring--information',
+    confirm: 'dialog-button--confirm-information',
+    cancel: 'dialog-button--cancel-information',
     icon: (
       <svg viewBox="0 0 24 24" className="size-10" aria-hidden="true" fill="none">
         <path
@@ -89,10 +86,10 @@ export const variantConfig: Record<DialogType, DialogVariantConfig> = {
     ),
   },
   error: {
-    accent: 'text-rose-600',
-    ring: 'ring-rose-200',
-    confirm: 'bg-rose-600 text-white hover:bg-rose-700 focus-visible:ring-rose-500',
-    cancel: 'border border-rose-200 text-rose-700 hover:bg-rose-50 focus-visible:ring-rose-200',
+    accent: 'dialog-icon--error',
+    ring: 'dialog-icon-ring--error',
+    confirm: 'dialog-button--confirm-error',
+    cancel: 'dialog-button--cancel-error',
     icon: (
       <svg viewBox="0 0 24 24" className="size-10" aria-hidden="true" fill="none">
         <path

@@ -1,0 +1,111 @@
+.dialog-overlay {
+  @apply fixed inset-0 z-50 flex items-center justify-center bg-slate-950/50 px-4 backdrop-blur-sm;
+}
+
+.dialog-panel {
+  @apply w-full max-w-sm overflow-hidden rounded-3xl bg-white p-8 shadow-2xl;
+}
+
+.dialog-content {
+  @apply flex flex-col items-center text-center;
+}
+
+.dialog-icon {
+  @apply mb-6 flex size-20 items-center justify-center rounded-full bg-slate-50 ring-8;
+}
+
+.dialog-title {
+  @apply text-2xl font-semibold text-slate-900;
+}
+
+.dialog-description {
+  @apply text-sm leading-relaxed text-slate-600;
+}
+
+.dialog-actions {
+  @apply mt-8 flex w-full flex-col gap-3 sm:flex-row;
+}
+
+.dialog-button {
+  @apply inline-flex flex-1 items-center justify-center rounded-xl px-5 py-2.5 text-sm font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-80;
+}
+
+.dialog-icon--success {
+  @apply text-emerald-600;
+}
+
+.dialog-icon-ring--success {
+  @apply ring-emerald-200;
+}
+
+.dialog-button--confirm-success {
+  @apply bg-emerald-600 text-white hover:bg-emerald-700 focus-visible:ring-emerald-500;
+}
+
+.dialog-button--cancel-success {
+  @apply border border-emerald-200 text-emerald-700 hover:bg-emerald-50 focus-visible:ring-emerald-200;
+}
+
+.dialog-icon--question {
+  @apply text-sky-600;
+}
+
+.dialog-icon-ring--question {
+  @apply ring-sky-200;
+}
+
+.dialog-button--confirm-question {
+  @apply bg-sky-600 text-white hover:bg-sky-700 focus-visible:ring-sky-500;
+}
+
+.dialog-button--cancel-question {
+  @apply border border-sky-200 text-sky-700 hover:bg-sky-50 focus-visible:ring-sky-200;
+}
+
+.dialog-icon--warning {
+  @apply text-amber-600;
+}
+
+.dialog-icon-ring--warning {
+  @apply ring-amber-200;
+}
+
+.dialog-button--confirm-warning {
+  @apply bg-amber-600 text-white hover:bg-amber-700 focus-visible:ring-amber-500;
+}
+
+.dialog-button--cancel-warning {
+  @apply border border-amber-200 text-amber-700 hover:bg-amber-50 focus-visible:ring-amber-200;
+}
+
+.dialog-icon--information {
+  @apply text-indigo-600;
+}
+
+.dialog-icon-ring--information {
+  @apply ring-indigo-200;
+}
+
+.dialog-button--confirm-information {
+  @apply bg-indigo-600 text-white hover:bg-indigo-700 focus-visible:ring-indigo-500;
+}
+
+.dialog-button--cancel-information {
+  @apply border border-indigo-200 text-indigo-700 hover:bg-indigo-50 focus-visible:ring-indigo-200;
+}
+
+.dialog-icon--error {
+  @apply text-rose-600;
+}
+
+.dialog-icon-ring--error {
+  @apply ring-rose-200;
+}
+
+.dialog-button--confirm-error {
+  @apply bg-rose-600 text-white hover:bg-rose-700 focus-visible:ring-rose-500;
+}
+
+.dialog-button--cancel-error {
+  @apply border border-rose-200 text-rose-700 hover:bg-rose-50 focus-visible:ring-rose-200;
+}
