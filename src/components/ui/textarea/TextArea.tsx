@@ -1,6 +1,7 @@
 import { forwardRef, useEffect, useId, useState } from 'react'
 import type { ChangeEvent, TextareaHTMLAttributes } from 'react'
 
+import './index.css'
 import { classNames } from '@/utils/classNames'
 
 const getCharacterLength = (input: unknown): number => {
@@ -16,11 +17,8 @@ export interface TextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElemen
   containerClassName?: string
 }
 
-const baseStyles =
-  'w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 shadow-sm transition placeholder:text-slate-400 focus:border-slate-500 focus:outline-none focus:ring-2 focus:ring-slate-500/20 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500'
-
-const errorStyles =
-  'border-red-500 focus:border-red-500 focus:ring-red-500/20 text-red-900 placeholder:text-red-400'
+const baseStyles = 'text-area__input'
+const errorStyles = 'text-area__input--error'
 
 export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
   (
@@ -68,19 +66,19 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
     }
 
     const helperContent = error ? (
-      <p id={errorId} className="text-xs font-medium text-red-600">
+      <p id={errorId} className="text-area__helper text-area__helper--error">
         {error}
       </p>
     ) : helperText ? (
-      <p id={helperId} className="text-xs text-slate-500">
+      <p id={helperId} className="text-area__helper">
         {helperText}
       </p>
     ) : null
 
     return (
-      <div className={classNames('flex flex-col gap-1', containerClassName)}>
+      <div className={classNames('text-area', containerClassName)}>
         {label ? (
-          <label className="text-sm font-medium text-slate-700" htmlFor={textAreaId}>
+          <label className="text-area__label" htmlFor={textAreaId}>
             {label}
           </label>
         ) : null}
@@ -98,13 +96,13 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
           {...props}
         />
         {helperContent || maxLength != null ? (
-          <div className="flex items-start gap-2">
+          <div className="text-area__helper-row">
             {helperContent ? <div className="flex-1">{helperContent}</div> : null}
             {maxLength != null ? (
               <span
                 className={classNames(
-                  'ml-auto text-xs tabular-nums text-slate-500',
-                  error ? 'text-red-600' : undefined,
+                  'text-area__counter',
+                  error ? 'text-area__counter--error' : undefined,
                 )}
               >
                 {characterCount}/{maxLength}
