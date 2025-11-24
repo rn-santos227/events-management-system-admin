@@ -5,10 +5,10 @@ import type {
   ReactNode,
 } from 'react'
 
+import './index.css'
 import { classNames } from '@/utils/classNames'
 
 type Orientation = 'vertical' | 'horizontal'
-
 
 interface CheckboxGroupContextValue {
   name?: string
@@ -55,17 +55,19 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
       .filter(Boolean)
       .join(' ') || undefined
 
+    const orientationClass =
+      group?.orientation === 'horizontal' ? 'checkbox--horizontal' : 'checkbox--vertical'
     const alignmentClass =
-      group?.orientation === 'horizontal' ? 'mt-0' : 'mt-1'
+      group?.orientation === 'horizontal'
+        ? 'checkbox__input--horizontal'
+        : 'checkbox__input--vertical'
 
     return (
       <label
         className={classNames(
-          'flex select-none gap-2 text-slate-700',
-          group?.orientation === 'horizontal'
-            ? 'items-center'
-            : 'items-start',
-          isDisabled ? 'cursor-not-allowed opacity-60' : 'cursor-pointer',
+          'checkbox',
+          orientationClass,
+          isDisabled ? 'checkbox--disabled' : 'checkbox--enabled',
           wrapperClassName,
         )}
       >
@@ -75,10 +77,9 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
           type="checkbox"
           name={name ?? group?.name}
           className={classNames(
-            `${alignmentClass} size-4 rounded border border-slate-300 text-slate-900 shadow-sm transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-500/20 accent-slate-900`,
-            isDisabled
-              ? 'cursor-not-allowed border-slate-200 bg-slate-100 text-slate-400'
-              : 'cursor-pointer hover:border-slate-400 hover:shadow',
+            'checkbox__input',
+            alignmentClass,
+            isDisabled ? 'checkbox__input--disabled' : 'checkbox__input--enabled',
             className,
           )}
           aria-describedby={describedBy}
@@ -88,13 +89,9 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
         />
         {(label ?? description) && (
           <span className="flex flex-col gap-0.5">
-            {label ? (
-              <span className="text-sm font-medium">{label}</span>
-            ) : null}
+            {label ? <span className="checkbox__label">{label}</span> : null}
             {description ? (
-              <span id={descriptionId} className="text-xs text-slate-500">
-                {description}
-              </span>
+              <span id={descriptionId} className="checkbox__description">{description}</span>
             ) : null}
           </span>
         )}
@@ -141,15 +138,13 @@ export const CheckboxGroup = forwardRef<HTMLFieldSetElement, CheckboxGroupProps>
       <fieldset
         ref={ref}
         id={groupId}
-        className={classNames('flex flex-col gap-2 border-0 p-0', className)}
+        className={classNames('checkbox-group', className)}
         aria-describedby={describedBy}
         aria-invalid={Boolean(error)}
         disabled={disabled}
         {...props}
       >
-        {label ? (
-          <legend className="text-sm font-medium text-slate-700">{label}</legend>
-        ) : null}
+        {label ? <legend className="checkbox-group__legend">{label}</legend> : null}
         <CheckboxGroupContext.Provider
           value={{
             name,
@@ -161,21 +156,19 @@ export const CheckboxGroup = forwardRef<HTMLFieldSetElement, CheckboxGroupProps>
         >
           <div
             className={classNames(
-              'flex gap-3',
-              orientation === 'horizontal' ? 'flex-wrap items-center' : 'flex-col',
+              'checkbox-group__options',
+              orientation === 'horizontal'
+                ? 'checkbox-group__options--horizontal'
+                : 'checkbox-group__options--vertical',
             )}
           >
             {children}
           </div>
         </CheckboxGroupContext.Provider>
         {error ? (
-          <p id={errorId} className="text-xs font-medium text-red-600">
-            {error}
-          </p>
+          <p id={errorId} className="checkbox-group__error">{error}</p>
         ) : helperText ? (
-          <p id={helperId} className="text-xs text-slate-500">
-            {helperText}
-          </p>
+          <p id={helperId} className="checkbox-group__helper">{helperText}</p>
         ) : null}
       </fieldset>
     )
