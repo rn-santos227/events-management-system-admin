@@ -1,0 +1,67 @@
+.button {
+  @apply inline-flex items-center justify-center gap-2 font-medium transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed;
+}
+
+.button--primary {
+  @apply bg-slate-900 text-white hover:bg-slate-800 focus-visible:ring-slate-500 disabled:bg-slate-400 disabled:text-white/70;
+}
+
+.button--secondary {
+  @apply bg-slate-100 text-slate-900 hover:bg-slate-200 focus-visible:ring-slate-400 disabled:bg-slate-100 disabled:text-slate-500;
+}
+
+.button--outline {
+  @apply border border-slate-300 bg-white text-slate-900 hover:bg-slate-50 focus-visible:ring-slate-400 disabled:bg-white disabled:text-slate-400;
+}
+
+.button--ghost {
+  @apply text-slate-700 hover:bg-slate-100 focus-visible:ring-slate-400 disabled:text-slate-400;
+}
+
+.button--sm {
+  @apply h-8 rounded-md px-3 text-sm;
+}
+
+.button--md {
+  @apply h-10 rounded-lg px-4 text-sm;
+}
+
+.button--lg {
+  @apply h-12 rounded-xl px-6 text-base;
+}
+
+.button--loading {
+  @apply cursor-wait opacity-80;
+}
+
+.button--block {
+  @apply w-full;
+}
+
+.button--active {
+  @apply ring-2 ring-slate-500 ring-offset-2;
+}
+
+.button__spinner {
+  @apply size-4 animate-spin;
+}
+
+.button__spinner-circle {
+  @apply opacity-25;
+}
+
+.button__spinner-path {
+  @apply opacity-75;
+}
+
+.button__loading-content {
+  @apply inline-flex items-center gap-2;
+}
+
+.button__sr-only {
+  @apply sr-only;
+}
+
+.button__text {
+  @apply truncate;
+}
