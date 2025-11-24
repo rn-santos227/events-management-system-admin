@@ -1,0 +1,199 @@
+.header {
+  @apply bg-white shadow-sm;
+}
+
+.header__content {
+  @apply flex w-full items-center justify-between gap-4 px-6 py-4;
+}
+
+.header__brand {
+  @apply block text-lg font-semibold text-brand-600;
+}
+
+.header__title {
+  @apply text-sm text-slate-500;
+}
+
+.header__actions {
+  @apply ml-auto flex items-center gap-3;
+}
+
+.footer {
+  @apply border-t border-slate-200 bg-white;
+}
+
+.footer__content {
+  @apply mx-auto flex w-full max-w-6xl flex-col items-center justify-center gap-2 px-6 py-4 text-center text-sm text-slate-500;
+}
+
+.footer__meta {
+  @apply text-slate-400;
+}
+
+.navigation-drawer {
+  @apply hidden h-screen flex-col border-r border-slate-200 bg-white/90 text-sm text-slate-600 transition-[width] duration-200 ease-out lg:sticky lg:top-0 lg:flex;
+}
+
+.navigation-drawer--condensed {
+  @apply w-24 items-center px-3 py-6 text-center;
+}
+
+.navigation-drawer--expanded {
+  @apply w-[var(--sidebar-width)] p-6;
+}
+
+.navigation-drawer__header {
+  @apply flex w-full items-center justify-between gap-2;
+}
+
+.navigation-drawer__intro {
+  @apply text-left;
+}
+
+.navigation-drawer__eyebrow {
+  @apply text-xs uppercase tracking-[0.2em] text-slate-400;
+}
+
+.navigation-drawer__title {
+  @apply mt-1 text-lg font-semibold text-slate-900;
+}
+
+.navigation-drawer__subtitle {
+  @apply mt-2 text-xs text-slate-500;
+}
+
+.navigation-drawer__toggle {
+  @apply inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-500 transition hover:text-slate-900;
+}
+
+.navigation-drawer__toggle-icon {
+  @apply h-4 w-4;
+}
+
+.navigation-drawer__toggle-icon--rotated {
+  @apply rotate-180;
+}
+
+.navigation-drawer__profile {
+  @apply mt-6 w-full rounded-2xl border border-slate-200 bg-white p-4 shadow-sm;
+}
+
+.navigation-drawer__profile--condensed {
+  @apply px-2 py-3 text-center;
+}
+
+.navigation-drawer__avatar {
+  @apply flex h-12 w-12 items-center justify-center rounded-full bg-brand-50 text-base font-semibold text-brand-700;
+}
+
+.navigation-drawer__identity {
+  @apply text-left;
+}
+
+.navigation-drawer__signed-in {
+  @apply text-xs font-medium uppercase tracking-wide text-slate-400;
+}
+
+.navigation-drawer__name {
+  @apply mt-1 text-base font-semibold text-slate-900;
+}
+
+.navigation-drawer__role {
+  @apply text-xs text-slate-500;
+}
+
+.navigation-drawer__nav {
+  @apply mt-6 flex w-full flex-1 flex-col space-y-6 overflow-y-auto;
+}
+
+.navigation-drawer__section {
+  @apply space-y-3;
+}
+
+.navigation-drawer__section-title {
+  @apply text-xs font-semibold uppercase tracking-wide text-slate-400;
+}
+
+.navigation-drawer__links {
+  @apply space-y-3;
+}
+
+.navigation-drawer__link-disabled {
+  @apply group rounded-xl border border-dashed border-slate-200/70 bg-slate-50/70 text-slate-400;
+}
+
+.navigation-drawer__link-disabled--condensed {
+  @apply px-2 py-4 text-center;
+}
+
+.navigation-drawer__link-disabled--expanded {
+  @apply px-4 py-3 text-left;
+}
+
+.navigation-drawer__pill {
+  @apply flex h-9 w-9 items-center justify-center rounded-xl bg-white text-slate-400;
+}
+
+.navigation-drawer__link-meta {
+  @apply space-y-1 text-left;
+}
+
+.navigation-drawer__link-label {
+  @apply text-sm font-medium text-slate-500;
+}
+
+.navigation-drawer__link-description {
+  @apply text-xs;
+}
+
+.navigation-drawer__badge {
+  @apply mt-2 w-max uppercase tracking-wide;
+}
+
+.navigation-drawer__link {
+  @apply flex rounded-xl border transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400;
+}
+
+.navigation-drawer__link--condensed {
+  @apply flex-col items-center gap-2 px-2 py-4 text-center;
+}
+
+.navigation-drawer__link--expanded {
+  @apply flex-row items-center gap-3 px-4 py-3 text-left;
+}
+
+.navigation-drawer__link--active {
+  @apply border-brand-100 bg-brand-50/70 text-brand-950 shadow-sm;
+}
+
+.navigation-drawer__link--inactive {
+  @apply border-slate-200 text-slate-600 hover:border-slate-300 hover:bg-slate-50;
+}
+
+.navigation-drawer__link-icon {
+  @apply flex h-9 w-9 items-center justify-center rounded-xl bg-white/70 text-base;
+}
+
+.navigation-drawer__link-text {
+  @apply flex flex-col text-left;
+}
+
+.navigation-drawer__link-text-label {
+  @apply text-sm font-semibold;
+}
+
+.navigation-drawer__link-text-description {
+  @apply text-xs;
+}
+
+.navigation-drawer__support {
+  @apply mt-6 rounded-2xl border border-slate-200 bg-slate-50 p-4 text-xs text-slate-500;
+}
+
+.navigation-drawer__support-title {
+  @apply font-semibold text-slate-700;
+}
+
+.navigation-drawer__support-description {
+  @apply mt-1;
+}

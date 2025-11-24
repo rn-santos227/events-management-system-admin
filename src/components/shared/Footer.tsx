@@ -1,4 +1,6 @@
 import type { ReactNode } from 'react'
+import './index.css'
+
 const currentYear = new Date().getFullYear()
 interface FooterProps {
   children?: ReactNode
@@ -6,10 +8,10 @@ interface FooterProps {
 
 export default function Footer({ children }: FooterProps) {
   return (
-    <footer className="border-t border-slate-200 bg-white">
-      <div className="mx-auto flex w-full max-w-6xl flex-col items-center justify-center gap-2 px-6 py-4 text-center text-sm text-slate-500">
+    <footer className="footer">
+      <div className="footer__content">
         <p>&copy; {currentYear} Events Management System. All rights reserved.</p>
-        {children ? <div className="text-slate-400">{children}</div> : null}
+        {children ? <div className="footer__meta">{children}</div> : null}
       </div>
     </footer>
   )

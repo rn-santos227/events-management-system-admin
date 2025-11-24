@@ -11,6 +11,9 @@ import {
   HiOutlineArrowsRightLeft,
 } from 'react-icons/hi2'
 
+import './index.css'
+import { classNames } from '@/utils/classNames'
+
 interface NavigationDrawerProps {
   userProfile?: UserProfile | null
 }
@@ -46,53 +49,64 @@ export default function NavigationDrawer({ userProfile }: NavigationDrawerProps)
     <aside
       aria-label="Primary navigation"
       data-condensed={isCondensed ? 'true' : 'false'}
-      className={[
-        'hidden h-screen flex-col border-r border-slate-200 bg-white/90 text-sm text-slate-600 transition-[width] duration-200 ease-out lg:sticky lg:top-0 lg:flex',
-        isCondensed ? 'w-24 px-3 py-6 items-center text-center' : 'w-[var(--sidebar-width)] p-6',
-      ].join(' ')}
+      className={classNames(
+        'navigation-drawer',
+        isCondensed ? 'navigation-drawer--condensed' : 'navigation-drawer--expanded',
+      )}
     >
-      <div className="flex w-full items-center justify-between gap-2">
-        <div className={isCondensed ? 'sr-only' : 'text-left'}>
-          <p className="text-xs uppercase tracking-[0.2em] text-slate-400">EMS Admin</p>
-          <p className="mt-1 text-lg font-semibold text-slate-900">Sidekick navigation</p>
-          <p className="mt-2 text-xs text-slate-500">Quick links to the core admin surfaces.</p>
+      <div className="navigation-drawer__header">
+        <div
+          className={classNames(
+            isCondensed ? 'sr-only' : 'navigation-drawer__intro',
+          )}
+        >
+          <p className="navigation-drawer__eyebrow">EMS Admin</p>
+          <p className="navigation-drawer__title">Sidekick navigation</p>
+          <p className="navigation-drawer__subtitle">Quick links to the core admin surfaces.</p>
         </div>
         <button
           type="button"
           onClick={toggleCondensed}
           aria-pressed={isCondensed}
-          className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-500 transition hover:text-slate-900"
+          className="navigation-drawer__toggle"
         >
           <span className="sr-only">{isCondensed ? 'Expand navigation drawer' : 'Collapse navigation drawer'}</span>
-          <HiOutlineArrowsRightLeft className={isCondensed ? 'h-4 w-4 rotate-180' : 'h-4 w-4'} />
+          <HiOutlineArrowsRightLeft
+            className={classNames(
+              'navigation-drawer__toggle-icon',
+              isCondensed && 'navigation-drawer__toggle-icon--rotated',
+            )}
+          />
         </button>
       </div>
 
       <div
-        className={[
-          'mt-6 w-full rounded-2xl border border-slate-200 bg-white p-4 shadow-sm',
-          isCondensed ? 'px-2 py-3 text-center' : '',
-        ].join(' ')}
+        className={classNames(
+          'navigation-drawer__profile',
+          isCondensed && 'navigation-drawer__profile--condensed',
+        )}
       >
         <div className="flex flex-col items-center gap-3">
-          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-50 text-base font-semibold text-brand-700">
-            {userInitials}
-          </div>
-          <div className={isCondensed ? 'sr-only' : 'text-left'}>
-            <p className="text-xs font-medium uppercase tracking-wide text-slate-400">Signed in</p>
-            <p className="mt-1 text-base font-semibold text-slate-900">{userName || userProfile?.email || 'Administrator'}</p>
-            <p className="text-xs text-slate-500">{userProfile?.role.name ?? 'EMS admin'}</p>
+          <div className="navigation-drawer__avatar">{userInitials}</div>
+          <div className={isCondensed ? 'sr-only' : 'navigation-drawer__identity'}>
+            <p className="navigation-drawer__signed-in">Signed in</p>
+            <p className="navigation-drawer__name">{userName || userProfile?.email || 'Administrator'}</p>
+            <p className="navigation-drawer__role">{userProfile?.role.name ?? 'EMS admin'}</p>
           </div>
         </div>
       </div>
 
-      <nav className="mt-6 flex w-full flex-1 flex-col space-y-6 overflow-y-auto">
+      <nav className="navigation-drawer__nav">
         {navigationSections.map((section) => (
-          <section key={section.title} aria-label={section.title} className="space-y-3">
-            <p className={isCondensed ? 'sr-only' : 'text-xs font-semibold uppercase tracking-wide text-slate-400'}>
+          <section key={section.title} aria-label={section.title} className="navigation-drawer__section">
+            <p
+              className={classNames(
+                isCondensed ? 'sr-only' : 'navigation-drawer__section-title',
+              )}
+            >
               {section.title}
             </p>
-            <div className="space-y-3">
+            <div className="navigation-drawer__links">
               {section.links.map((link) => {
                 const statusLabel = link.status ? statusCopy[link.status] : undefined
                 const Icon = link.icon
@@ -107,21 +121,27 @@ export default function NavigationDrawer({ userProfile }: NavigationDrawerProps)
                     <div
                       key={link.label}
                       title={link.label}
-                      className={[
-                        'group rounded-xl border border-dashed border-slate-200/70 bg-slate-50/70 text-slate-400',
-                        isCondensed ? 'px-2 py-4 text-center' : 'px-4 py-3 text-left',
-                      ].join(' ')}
+                      className={classNames(
+                        'navigation-drawer__link-disabled',
+                        isCondensed
+                          ? 'navigation-drawer__link-disabled--condensed'
+                          : 'navigation-drawer__link-disabled--expanded',
+                      )}
                       aria-disabled
                     >
                       <div className="flex flex-col items-center gap-2">
-                        <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-white text-slate-400">
+                        <span className="navigation-drawer__pill">
                           <Icon className="h-5 w-5" aria-hidden />
                         </span>
-                        <div className={isCondensed ? 'sr-only' : 'space-y-1 text-left'}>
-                          <p className="text-sm font-medium text-slate-500">{link.label}</p>
-                          <p className="text-xs">{link.description}</p>
+                        <div
+                          className={classNames(
+                            isCondensed ? 'sr-only' : 'navigation-drawer__link-meta',
+                          )}
+                        >
+                          <p className="navigation-drawer__link-label">{link.label}</p>
+                          <p className="navigation-drawer__link-description">{link.description}</p>
                           {statusLabel ? (
-                            <Badge color="gray" className="mt-2 w-max uppercase tracking-wide" size="xs">
+                            <Badge color="gray" className="navigation-drawer__badge" size="xs">
                               {statusLabel}
                             </Badge>
                           ) : null}
@@ -138,23 +158,27 @@ export default function NavigationDrawer({ userProfile }: NavigationDrawerProps)
                     title={isCondensed ? link.label : undefined}
                     aria-label={isCondensed ? link.label : undefined}
                     className={({ isActive }) =>
-                      [
-                        'flex rounded-xl border transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400',
+                      classNames(
+                        'navigation-drawer__link',
                         isCondensed
-                          ? 'flex-col items-center gap-2 px-2 py-4 text-center'
-                          : 'flex-row items-center gap-3 px-4 py-3 text-left',
+                          ? 'navigation-drawer__link--condensed'
+                          : 'navigation-drawer__link--expanded',
                         isActive
-                          ? 'border-brand-100 bg-brand-50/70 text-brand-950 shadow-sm'
-                          : 'border-slate-200 text-slate-600 hover:border-slate-300 hover:bg-slate-50',
-                      ].join(' ')
+                          ? 'navigation-drawer__link--active'
+                          : 'navigation-drawer__link--inactive',
+                      )
                     }
                   >
-                    <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/70 text-base">
+                    <span className="navigation-drawer__link-icon">
                       <Icon className="h-5 w-5" aria-hidden />
                     </span>
-                    <span className={isCondensed ? 'sr-only' : 'flex flex-col text-left'}>
-                      <span className="text-sm font-semibold">{link.label}</span>
-                      <span className="text-xs">{link.description}</span>
+                    <span
+                      className={classNames(
+                        isCondensed ? 'sr-only' : 'navigation-drawer__link-text',
+                      )}
+                    >
+                      <span className="navigation-drawer__link-text-label">{link.label}</span>
+                      <span className="navigation-drawer__link-text-description">{link.description}</span>
                     </span>
                   </NavLink>
                 )
@@ -164,9 +188,11 @@ export default function NavigationDrawer({ userProfile }: NavigationDrawerProps)
         ))}
       </nav>
 
-      <div className={['mt-6 rounded-2xl border border-slate-200 bg-slate-50 p-4 text-xs text-slate-500', isCondensed ? 'sr-only' : ''].join(' ')}>
-        <p className="font-semibold text-slate-700">Need anything?</p>
-        <p className="mt-1">
+      <div
+        className={classNames('navigation-drawer__support', isCondensed && 'sr-only')}
+      >
+        <p className="navigation-drawer__support-title">Need anything?</p>
+        <p className="navigation-drawer__support-description">
           This drawer will grow with additional modules. Use the dashboard to start reviewing activity today.
         </p>
       </div>

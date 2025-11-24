@@ -1,5 +1,7 @@
 import type { ReactNode } from 'react'
 
+import './index.css'
+
 interface HeaderProps {
   title?: string
   actions?: ReactNode
@@ -7,13 +9,13 @@ interface HeaderProps {
 
 export default function Header({ title = 'Events Management System', actions }: HeaderProps) {
   return (
-    <header className="bg-white shadow-sm">
-      <div className="flex w-full items-center justify-between gap-4 px-6 py-4">
+    <header className="header">
+      <div className="header__content">
         <div className="text-left">
-          <span className="block text-lg font-semibold text-brand-600">EMS Admin</span>
-          <p className="text-sm text-slate-500">{title}</p>
+          <span className="header__brand">EMS Admin</span>
+          <p className="header__title">{title}</p>
         </div>
-        {actions ? <div className="ml-auto flex items-center gap-3">{actions}</div> : null}
+        {actions ? <div className="header__actions">{actions}</div> : null}
       </div>
     </header>
   )
