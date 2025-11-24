@@ -1,6 +1,8 @@
 export interface RolePrivilege {
   id: number
+  name?: string
   action: string
+  resource?: string
   description?: string | null
 }
 
