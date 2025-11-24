@@ -5,6 +5,7 @@ import type {
   ReactNode,
 } from 'react'
 
+import './index.css'
 import { classNames } from '@/utils/classNames'
 
 type Orientation = 'vertical' | 'horizontal'
@@ -51,17 +52,19 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
       .filter(Boolean)
       .join(' ') || undefined
 
+    const orientationClass =
+      group?.orientation === 'horizontal' ? 'radio--horizontal' : 'radio--vertical'
     const alignmentClass =
-      group?.orientation === 'horizontal' ? 'mt-0' : 'mt-1'
+      group?.orientation === 'horizontal'
+        ? 'radio__input--horizontal'
+        : 'radio__input--vertical'
 
     return (
       <label
         className={classNames(
-          'flex select-none gap-2 text-slate-700',
-          group?.orientation === 'horizontal'
-            ? 'items-center'
-            : 'items-start',
-          isDisabled ? 'cursor-not-allowed opacity-60' : 'cursor-pointer',
+          'radio',
+          orientationClass,
+          isDisabled ? 'radio--disabled' : 'radio--enabled',
           wrapperClassName,
         )}
       >
@@ -71,11 +74,10 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
           type="radio"
           name={name ?? group?.name}
           className={classNames(
-            `${alignmentClass} size-4 rounded-full border border-slate-300 text-slate-900 shadow-sm transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-500/20 accent-slate-900`,
-            isDisabled
-              ? 'cursor-not-allowed border-slate-200 bg-slate-100 text-slate-400'
-              : 'cursor-pointer hover:border-slate-400 hover:shadow-inner',
-            className,
+            'radio__input',
+            alignmentClass,
+            isDisabled ? 'radio__input--disabled' : 'radio__input--enabled',
+            className
           )}
           aria-describedby={describedBy}
           aria-invalid={Boolean(group?.errorId)}
@@ -84,13 +86,9 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
         />
         {(label ?? description) && (
           <span className="flex flex-col gap-0.5">
-            {label ? (
-              <span className="text-sm font-medium">{label}</span>
-            ) : null}
+            {label ? <span className="radio__label">{label}</span> : null}
             {description ? (
-              <span id={descriptionId} className="text-xs text-slate-500">
-                {description}
-              </span>
+              <span id={descriptionId} className="radio__description">{description}</span>
             ) : null}
           </span>
         )}
