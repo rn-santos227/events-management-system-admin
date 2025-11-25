@@ -5,4 +5,8 @@ import { useMemo } from 'react'
 import { useAppSelector } from '../hooks'
 import { createGraphQLClient } from '@/services/graphql'
 
+interface GraphQLProviderProps {
+  children: ReactNode
+}
+
 
