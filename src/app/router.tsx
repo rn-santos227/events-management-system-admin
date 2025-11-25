@@ -5,7 +5,7 @@ import { routes } from '@/config/routes'
 import PrivilegeGuard from '@/modules/auth/components/PrivilegeGuard'
 import ProtectedRoute from '@/modules/auth/components/ProtectedRoute'
 import type { Route } from '@/types/route'
-import { AppLayout } from './layouts'
+import { AppLayout } from '../layouts'
 
 function convertRoutes(customRoutes: Route[]): RouteObject[] {
   return customRoutes.map((r) => {
