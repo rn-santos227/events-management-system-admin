@@ -1,35 +1,39 @@
-.text-area {
+.text-field {
   @apply flex flex-col gap-1;
 }
 
-.text-area__label {
+.text-field--active {
+  @apply rounded-lg ring-2 ring-slate-500 ring-offset-2;
+}
+
+.text-field__label {
   @apply text-sm font-medium text-slate-700;
 }
 
-.text-area__input {
+.text-field__input {
   @apply w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 shadow-sm transition placeholder:text-slate-400 focus:border-slate-500 focus:outline-none focus:ring-2 focus:ring-slate-500/20 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-500;
 }
 
-.text-area__input--error {
+.text-field__input--error {
   @apply border-red-500 text-red-900 placeholder:text-red-400 focus:border-red-500 focus:ring-red-500/20;
 }
 
-.text-area__helper {
+.text-field__helper {
   @apply text-xs text-slate-500;
 }
 
-.text-area__helper--error {
+.text-field__helper--error {
   @apply font-medium text-red-600;
 }
 
-.text-area__helper-row {
+.text-field__helper-row {
   @apply flex items-start gap-2;
 }
 
-.text-area__counter {
+.text-field__counter {
   @apply ml-auto text-xs tabular-nums text-slate-500;
 }
 
-.text-area__counter--error {
+.text-field__counter--error {
   @apply text-red-600;
 }

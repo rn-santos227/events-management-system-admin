@@ -24,4 +24,4 @@
 
 .loader-overlay__bar-indicator {
   @apply h-full w-1/2 animate-pulse rounded-full bg-blue-600;
-  
+}

@@ -119,7 +119,7 @@
 }
 
 .navigation-drawer__link-disabled {
-  @apply group rounded-xl border border-dashed border-slate-200/70 bg-slate-50/70 text-slate-400;
+  @apply rounded-xl border border-dashed border-slate-200/70 bg-slate-50/70 text-slate-400;
 }
 
 .navigation-drawer__link-disabled--condensed {
