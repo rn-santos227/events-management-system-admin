@@ -8,4 +8,11 @@ export const createGraphQLClient = (authToken?: string | null) => {
     uri: GRAPHQL_ENDPOINT,
     credentials: 'include',
   })
+
+  const authLink = setContext((_, { headers }) => ({
+    headers: {
+      ...headers,
+      ...(authToken ? { Authorization: `Bearer ${authToken}` } : {}),
+    },
+  }))
 }
