@@ -103,7 +103,8 @@
 }
 
 .navigation-drawer__nav {
-  @apply mt-6 flex w-full flex-1 flex-col space-y-6 overflow-y-auto;
+  @apply mt-6 flex w-full flex-1 flex-col space-y-6 overflow-y-auto pr-2;
+  scrollbar-gutter: stable;
 }
 
 .navigation-drawer__section {

@@ -29,7 +29,7 @@ export default function DashboardHomePage() {
   return (
     <section className="bg-slate-50 px-4 py-10">
       <div className="mx-auto flex w-full max-w-5xl flex-col gap-6">
-        <div className="rounded-2xl bg-gradient-to-r from-brand-500 to-brand-600 p-6 shadow-md">
+        <div className="rounded-2xl bg-gradient-to-r from-brand-500 to-brand-600 p-6 text-white shadow-md">
           <p className="text-sm uppercase tracking-wide">Dashboard</p>
           <h1 className="mt-2 text-3xl font-semibold leading-tight">
             {welcomeMessage}
