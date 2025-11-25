@@ -15,4 +15,10 @@ export const createGraphQLClient = (authToken?: string | null) => {
       ...(authToken ? { Authorization: `Bearer ${authToken}` } : {}),
     },
   }))
+
+  return new ApolloClient({
+    link: authLink.concat(httpLink),
+    cache: new InMemoryCache(),
+    connectToDevTools: import.meta.env.DEV,
+  })
 }
