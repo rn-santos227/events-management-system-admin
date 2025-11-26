@@ -75,4 +75,8 @@ export function DataTable<T extends object>({
   const [sort, setSort] = useState<{ key: string; direction: DataTableSortDirection } | null>(() =>
     buildInitialSort(columns, initialSort),
   )
+
+  const sortedData = useMemo(() => {
+
+  }, [data, columns, sort])
 }
