@@ -36,3 +36,5 @@ export type { LoaderOverlayProps, LoaderOverlayVariant } from './loader/LoaderOv
 export { ToastProvider } from './toast/ToastProvider'
 export { useToast } from './toast/useToast'
 export type { ToastOptions, ToastType } from './toast/types'
+export { DataTable } from './datatable/DataTable'
+export type { DataTableColumn, DataTableProps } from './datatable/DataTable'
