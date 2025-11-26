@@ -41,3 +41,9 @@ function resolveSortValue<T>(row: T, column: DataTableColumn<T>) {
   if (typeof rawValue === 'string' || typeof rawValue === 'number') return rawValue
   return undefined
 }
+
+function getAlignClass(align: DataTableAlign = 'left') {
+  if (align === 'center') return 'data-table__cell--align-center'
+  if (align === 'right') return 'data-table__cell--align-right'
+  return 'data-table__cell--align-left'
+}
