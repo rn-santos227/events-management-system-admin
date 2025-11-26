@@ -72,5 +72,7 @@ export function DataTable<T extends object>({
   initialSort,
   rowKey,
 }: DataTableProps<T>) {
-
+  const [sort, setSort] = useState<{ key: string; direction: DataTableSortDirection } | null>(() =>
+    buildInitialSort(columns, initialSort),
+  )
 }
