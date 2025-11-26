@@ -99,4 +99,16 @@ export function DataTable<T extends object>({
         : String(bValue).localeCompare(String(aValue))
     })
   }, [data, columns, sort])
+
+  const handleSort = (column: DataTableColumn<T>) => {
+    if (!column.sortable) return
+
+    setSort((current) => {
+      if (!current || current.key !== (column.key as string)) {
+        return { key: column.key as string, direction: 'asc' }
+      }
+
+      return { key: column.key as string, direction: current.direction === 'asc' ? 'desc' : 'asc' }
+    })
+  }
 }
