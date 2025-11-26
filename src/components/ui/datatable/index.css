@@ -1,0 +1,75 @@
+.data-table {
+  @apply overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm;
+}
+
+.data-table__caption {
+  @apply border-b border-slate-200 bg-white px-4 py-3 text-sm font-medium text-slate-800;
+}
+
+.data-table__container {
+  @apply w-full overflow-x-auto;
+}
+
+.data-table__table {
+  @apply w-full border-collapse text-left text-sm text-slate-700;
+}
+
+.data-table__header-cell {
+  @apply bg-slate-50 px-4 py-3 text-xs font-semibold uppercase tracking-wide text-slate-500;
+}
+
+.data-table__header-cell--sortable {
+  @apply select-none transition hover:bg-slate-100;
+}
+
+.data-table__header-cell--sorted {
+  @apply text-slate-700;
+}
+
+.data-table__header-content {
+  @apply inline-flex items-center gap-2;
+}
+
+.data-table__sort-indicator {
+  @apply text-[11px] text-slate-400;
+}
+
+.data-table__row {
+  @apply border-t border-slate-100 transition hover:bg-slate-50;
+}
+
+.data-table__cell {
+  @apply px-4 py-3 align-middle text-slate-800;
+}
+
+.data-table__cell--align-left {
+  @apply text-left;
+}
+
+.data-table__cell--align-center {
+  @apply text-center;
+}
+
+.data-table__cell--align-right {
+  @apply text-right;
+}
+
+.data-table__cell--muted {
+  @apply text-slate-400;
+}
+
+.data-table__badge {
+  @apply inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-semibold;
+}
+
+.data-table__badge--success {
+  @apply bg-emerald-50 text-emerald-700 ring-1 ring-inset ring-emerald-100;
+}
+
+.data-table__badge--warning {
+  @apply bg-amber-50 text-amber-700 ring-1 ring-inset ring-amber-100;
+}
+
+.data-table__badge--neutral {
+  @apply bg-slate-100 text-slate-700 ring-1 ring-inset ring-slate-200;
+}
