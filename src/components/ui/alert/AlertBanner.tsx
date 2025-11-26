@@ -41,7 +41,15 @@ export function AlertBanner({
       role={role}
       {...props}
     >
-      
+      <span className={classNames('alert-banner__icon', `alert-banner__icon--${variant}`)} aria-hidden="true">
+        <Icon className="h-5 w-5" />
+      </span>
+
+      <div className="flex flex-1 flex-col gap-1">
+        {title ? <p className="alert-banner__title">{title}</p> : null}
+        {description || children ? <div className="alert-banner__description">{description ?? children}</div> : null}
+        {action ? <div className="alert-banner__actions">{action}</div> : null}
+      </div>
     </div>
   )
 }
