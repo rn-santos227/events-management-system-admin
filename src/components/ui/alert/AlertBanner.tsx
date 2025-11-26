@@ -34,4 +34,14 @@ export function AlertBanner({
 }: AlertBannerProps) {
   const Icon = variantIconMap[variant]
   const role = variant === 'error' || variant === 'warning' ? 'alert' : 'status'
+
+  return (
+    <div
+      className={classNames('alert-banner', `alert-banner--${variant}`, className)}
+      role={role}
+      {...props}
+    >
+      
+    </div>
+  )
 }
