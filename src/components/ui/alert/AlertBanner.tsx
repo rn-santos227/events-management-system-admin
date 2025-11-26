@@ -50,6 +50,17 @@ export function AlertBanner({
         {description || children ? <div className="alert-banner__description">{description ?? children}</div> : null}
         {action ? <div className="alert-banner__actions">{action}</div> : null}
       </div>
+
+      {onClose ? (
+        <button
+          type="button"
+          className="alert-banner__close"
+          onClick={onClose}
+          aria-label="Dismiss alert"
+        >
+          <HiXMark className="h-5 w-5" />
+        </button>
+      ) : null}
     </div>
   )
 }
