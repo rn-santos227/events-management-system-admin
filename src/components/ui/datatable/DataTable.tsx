@@ -111,4 +111,10 @@ export function DataTable<T extends object>({
       return { key: column.key as string, direction: current.direction === 'asc' ? 'desc' : 'asc' }
     })
   }
+
+  const getRowKey = (row: T, index: number) => {
+    if (rowKey) return rowKey(row, index)
+    const candidate = (row as Record<string, unknown>).id
+    return typeof candidate === 'string' || typeof candidate === 'number' ? candidate : index
+  }
 }
