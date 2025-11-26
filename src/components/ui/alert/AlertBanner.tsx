@@ -14,3 +14,10 @@ export interface AlertBannerProps extends ComponentPropsWithoutRef<'div'> {
   action?: ReactNode
   onClose?: () => void
 }
+
+const variantIconMap: Record<AlertBannerVariant, IconType> = {
+  info: HiInformationCircle,
+  success: HiCheckCircle,
+  warning: HiExclamationTriangle,
+  error: HiXCircle,
+}
