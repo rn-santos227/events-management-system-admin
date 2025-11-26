@@ -21,3 +21,17 @@ const variantIconMap: Record<AlertBannerVariant, IconType> = {
   warning: HiExclamationTriangle,
   error: HiXCircle,
 }
+
+export function AlertBanner({
+  title,
+  description,
+  variant = 'info',
+  action,
+  onClose,
+  className,
+  children,
+  ...props
+}: AlertBannerProps) {
+  const Icon = variantIconMap[variant]
+  const role = variant === 'error' || variant === 'warning' ? 'alert' : 'status'
+}
