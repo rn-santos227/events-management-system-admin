@@ -54,11 +54,23 @@ function buildInitialSort<T>(columns: DataTableColumn<T>[], initialSort?: DataTa
     return { key: initialSort.key, direction }
   }
 
-
   const firstSortable = columns.find((column) => column.sortable)
   if (firstSortable) {
     return { key: firstSortable.key as string, direction: 'asc' as DataTableSortDirection }
   }
 
   return null
+}
+
+export function DataTable<T extends object>({
+  data,
+  columns,
+  caption,
+  emptyMessage = 'No records to display',
+  className,
+  isLoading = false,
+  initialSort,
+  rowKey,
+}: DataTableProps<T>) {
+
 }
