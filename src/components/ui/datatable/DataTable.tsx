@@ -117,4 +117,13 @@ export function DataTable<T extends object>({
     const candidate = (row as Record<string, unknown>).id
     return typeof candidate === 'string' || typeof candidate === 'number' ? candidate : index
   }
+
+  return (
+    <div className={classNames('data-table', className)}>
+      {caption ? <div className="data-table__caption">{caption}</div> : null}
+      <div className="data-table__container">
+        
+      </div>
+    </div>
+  )
 }
