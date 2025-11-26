@@ -1,0 +1,57 @@
+.alert-banner {
+  @apply flex w-full items-start gap-3 rounded-xl border p-4 shadow-sm;
+}
+
+.alert-banner--info {
+  @apply border-blue-200 bg-blue-50 text-blue-900;
+}
+
+.alert-banner--success {
+  @apply border-green-200 bg-green-50 text-green-900;
+}
+
+.alert-banner--warning {
+  @apply border-amber-200 bg-amber-50 text-amber-900;
+}
+
+.alert-banner--error {
+  @apply border-red-200 bg-red-50 text-red-900;
+}
+
+.alert-banner__icon {
+  @apply mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center;
+}
+
+.alert-banner__icon--info {
+  @apply text-blue-500;
+}
+
+.alert-banner__icon--success {
+  @apply text-green-500;
+}
+
+.alert-banner__icon--warning {
+  @apply text-amber-500;
+}
+
+.alert-banner__icon--error {
+  @apply text-red-500;
+}
+
+.alert-banner__title {
+  @apply text-sm font-semibold leading-5;
+}
+
+.alert-banner__description {
+  @apply text-sm leading-6;
+}
+
+.alert-banner__actions {
+  @apply mt-2 flex flex-wrap items-center gap-2;
+}
+
+.alert-banner__close {
+  @apply ml-3 flex h-8 w-8 items-center justify-center rounded-lg text-current transition hover:bg-white/70
+    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2
+    focus-visible:ring-offset-transparent;
+}
