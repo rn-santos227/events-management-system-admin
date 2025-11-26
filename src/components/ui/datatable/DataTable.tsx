@@ -81,5 +81,22 @@ export function DataTable<T extends object>({
 
     const column = columns.find((col) => (col.key as string) === sort.key)
     if (!column) return data
+
+    return [...data].sort((a, b) => {
+      const aValue = resolveSortValue(a, column)
+      const bValue = resolveSortValue(b, column)
+
+      if (aValue === bValue) return 0
+      if (aValue === undefined || aValue === null) return 1
+      if (bValue === undefined || bValue === null) return -1
+
+      if (typeof aValue === 'number' && typeof bValue === 'number') {
+        return sort.direction === 'asc' ? aValue - bValue : bValue - aValue
+      }
+
+      return sort.direction === 'asc'
+        ? String(aValue).localeCompare(String(bValue))
+        : String(bValue).localeCompare(String(aValue))
+    })
   }, [data, columns, sort])
 }
