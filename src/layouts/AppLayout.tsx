@@ -2,7 +2,7 @@ import type { ReactNode } from 'react'
 import { Outlet } from 'react-router-dom'
 
 import { Footer, Header, NavigationDrawer } from '@/components'
-import { Button } from '@/components/ui'
+import { Button, useDialog } from '@/components/ui'
 import { useAppDispatch, useAppSelector } from '@/app/hooks'
 import { logoutUser } from '@/modules/auth/store/AuthSlice'
 import { getUserFullName } from '@/types/user'
@@ -13,6 +13,8 @@ interface AppLayoutProps {
 
 export function AppLayout({ children }: AppLayoutProps) {
   const dispatch = useAppDispatch()
+  const { showDialog } = useDialog()
+
   const authState = useAppSelector((state) => state.auth)
   const userProfile = useAppSelector((state) => state.user.profile)
   const isAuthenticated = authState.status === 'authenticated' && Boolean(authState.token)
@@ -20,7 +22,14 @@ export function AppLayout({ children }: AppLayoutProps) {
   const displayName = userProfile ? getUserFullName(userProfile) || userProfile.email : null
 
   const handleLogout = () => {
-    dispatch(logoutUser())
+    showDialog({
+      type: 'question',
+      title: 'Confirm sign out',
+      description: 'Are you sure you want to sign out of your account?',
+      onConfirm: () => {
+        void dispatch(logoutUser())
+      },
+    })
   }
 
   const headerActions =
