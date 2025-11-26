@@ -29,4 +29,15 @@ export interface DataTableProps<T> {
   rowKey?: (row: T, index: number) => string | number
 }
 
+function resolveSortValue<T>(row: T, column: DataTableColumn<T>) {
+  if (column.sortAccessor) {
+    const value = column.sortAccessor(row)
+    if (value instanceof Date) return value.getTime()
+    return value
+  }
 
+  const rawValue = (row as Record<string, unknown>)[column.key as string]
+  if (rawValue instanceof Date) return rawValue.getTime()
+  if (typeof rawValue === 'string' || typeof rawValue === 'number') return rawValue
+  return undefined
+}
