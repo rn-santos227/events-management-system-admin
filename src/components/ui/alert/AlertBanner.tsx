@@ -5,3 +5,12 @@ import type { IconType } from 'react-icons'
 import './index.css'
 import { classNames } from '@/utils/classNames'
 
+type AlertBannerVariant = 'info' | 'success' | 'warning' | 'error'
+
+export interface AlertBannerProps extends ComponentPropsWithoutRef<'div'> {
+  title?: string
+  description?: ReactNode
+  variant?: AlertBannerVariant
+  action?: ReactNode
+  onClose?: () => void
+}
