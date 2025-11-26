@@ -77,6 +77,9 @@ export function DataTable<T extends object>({
   )
 
   const sortedData = useMemo(() => {
+    if (!sort) return data
 
+    const column = columns.find((col) => (col.key as string) === sort.key)
+    if (!column) return data
   }, [data, columns, sort])
 }
