@@ -163,6 +163,36 @@ export function DataTable<T extends object>({
               })}
             </tr>
           </thead>
+          <tbody>
+            {isLoading ? (
+              <tr>
+                <td colSpan={columns.length} className="data-table__cell data-table__cell--muted">
+                  Loading data...
+                </td>
+              </tr>
+            ) : sortedData.length === 0 ? (
+              <tr>
+                <td colSpan={columns.length} className="data-table__cell data-table__cell--muted">
+                  {emptyMessage}
+                </td>
+              </tr>
+            ) : (
+              sortedData.map((row, index) => (
+                <tr key={getRowKey(row, index)} className="data-table__row">
+                  {columns.map((column, columnIndex) => {
+                    const content = column.render ? column.render(row, index) : ((row as Record<string, unknown>)[column.key as string] as ReactNode)
+                    const alignClass = getAlignClass(column.align)
+
+                    return (
+                      <td key={column.key as string + columnIndex} className={classNames('data-table__cell', alignClass)}>
+                        {content ?? <span className="data-table__cell--muted">—</span>}
+                      </td>
+                    )
+                  })}
+                </tr>
+              ))
+            )}
+          </tbody>
         </table>
       </div>
     </div>
