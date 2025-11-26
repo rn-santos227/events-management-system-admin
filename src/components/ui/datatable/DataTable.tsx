@@ -49,5 +49,8 @@ function getAlignClass(align: DataTableAlign = 'left') {
 }
 
 function buildInitialSort<T>(columns: DataTableColumn<T>[], initialSort?: DataTableProps<T>['initialSort']) {
-
+  if (initialSort) {
+    const direction = initialSort.direction ?? 'asc'
+    return { key: initialSort.key, direction }
+  }
 }
