@@ -47,3 +47,7 @@ function getAlignClass(align: DataTableAlign = 'left') {
   if (align === 'right') return 'data-table__cell--align-right'
   return 'data-table__cell--align-left'
 }
+
+function buildInitialSort<T>(columns: DataTableColumn<T>[], initialSort?: DataTableProps<T>['initialSort']) {
+
+}
