@@ -18,3 +18,15 @@ export interface DataTableColumn<T> {
   hideLabel?: boolean
 }
 
+export interface DataTableProps<T> {
+  data: T[]
+  columns: DataTableColumn<T>[]
+  caption?: string
+  emptyMessage?: string
+  className?: string
+  isLoading?: boolean
+  initialSort?: { key: string; direction?: DataTableSortDirection }
+  rowKey?: (row: T, index: number) => string | number
+}
+
+
