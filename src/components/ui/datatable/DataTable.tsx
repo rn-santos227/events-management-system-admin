@@ -122,7 +122,48 @@ export function DataTable<T extends object>({
     <div className={classNames('data-table', className)}>
       {caption ? <div className="data-table__caption">{caption}</div> : null}
       <div className="data-table__container">
-        
+        <table className="data-table__table">
+          <thead>
+            <tr>
+             {columns.map((column) => {
+                const isSorted = sort?.key === (column.key as string)
+                const alignClass = getAlignClass(column.align)
+                return (
+                  <th
+                    key={column.key as string}
+                    scope="col"
+                    style={column.width ? { width: column.width } : undefined}
+                    className={classNames(
+                      'data-table__header-cell',
+                      column.sortable && 'data-table__header-cell--sortable',
+                      isSorted && 'data-table__header-cell--sorted',
+                      alignClass,
+                    )}
+                    onClick={() => handleSort(column)}
+                    aria-sort={
+                      column.sortable
+                        ? isSorted
+                          ? sort?.direction === 'asc'
+                            ? 'ascending'
+                            : 'descending'
+                          : 'none'
+                        : undefined
+                    }
+                  >
+                    <span className={classNames('data-table__header-content', column.hideLabel && 'sr-only')}>
+                      {column.header}
+                    </span>
+                    {column.sortable ? (
+                      <span aria-hidden="true" className="data-table__sort-indicator">
+                        {isSorted ? (sort?.direction === 'asc' ? '▲' : '▼') : '↕'}
+                      </span>
+                    ) : null}
+                  </th>
+                )
+              })}
+            </tr>
+          </thead>
+        </table>
       </div>
     </div>
   )
