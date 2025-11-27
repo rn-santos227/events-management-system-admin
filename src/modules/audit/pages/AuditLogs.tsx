@@ -19,3 +19,8 @@ import { useAuthorization } from '@/modules/auth/hooks/useAuthorization'
 import { AUDIT_LOGS_BY_USER_QUERY, AUDIT_LOGS_QUERY } from '../queries'
 import type { AuditLogEntry } from '@/types/auditLog'
 import { getAuditUserLabel } from '@/types/auditLog'
+
+interface AuditLogQueryResponse {
+  auditLogs?: AuditLogEntry[]
+  auditLogsByUser?: AuditLogEntry[]
+}
