@@ -52,4 +52,17 @@ export default function AuditLogsPage() {
     }
     return undefined
   }, [canReadAll, canReadOwn, normalizedLimit, profile?.id])
+
+  const activeQuery = canReadAll ? AUDIT_LOGS_QUERY : AUDIT_LOGS_BY_USER_QUERY
+
+  const { data, loading, error, refetch } = useQuery<AuditLogQueryResponse>(activeQuery, {
+    variables,
+    skip: !variables,
+    fetchPolicy: 'cache-and-network',
+  })
+
+  const auditLogs = useMemo(
+    () => data?.auditLogs ?? data?.auditLogsByUser ?? [],
+    [data?.auditLogs, data?.auditLogsByUser],
+  )
 }
