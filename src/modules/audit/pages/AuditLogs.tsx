@@ -33,3 +33,8 @@ const getStatusTone = (status?: number | null) => {
   return { tone: 'text-emerald-700 bg-emerald-100', label: `${status} OK` }
 }
 
+export default function AuditLogsPage() {
+  const profile = useAppSelector((state) => state.user.profile)
+  const { hasPrivilege } = useAuthorization()
+  const canReadAll = hasPrivilege(PRIVILEGE_ACTIONS.AUDIT_LOGS.READ)
+}
