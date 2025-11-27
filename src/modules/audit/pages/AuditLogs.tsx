@@ -39,4 +39,17 @@ export default function AuditLogsPage() {
   const canReadAll = hasPrivilege(PRIVILEGE_ACTIONS.AUDIT_LOGS.READ)
   const canReadOwn = hasPrivilege(PRIVILEGE_ACTIONS.AUDIT_LOGS.READ_OWN)
   const [limitInput, setLimitInput] = useState('50')
+
+  const normalizedLimit = useMemo(() => {
+    const parsed = Number(limitInput)
+    return Number.isFinite(parsed) && parsed > 0 ? parsed : undefined
+  }, [limitInput])
+
+  const variables = useMemo(() => {
+    if (canReadAll) return { limit: normalizedLimit }
+    if (canReadOwn && profile?.id != null) {
+      return { userId: String(profile.id), limit: normalizedLimit }
+    }
+    return undefined
+  }, [canReadAll, canReadOwn, normalizedLimit, profile?.id])
 }
