@@ -15,3 +15,10 @@ export interface AuditLogEntry {
   createdAt?: string | null
   user?: AuditLogUser | null
 }
+
+export const getAuditUserLabel = (log: Pick<AuditLogEntry, 'user'>): string => {
+  const fullName = log.user?.fullName?.trim()
+  if (fullName) return fullName
+  if (log.user?.email) return log.user.email
+  return 'System'
+}
