@@ -37,4 +37,6 @@ export default function AuditLogsPage() {
   const profile = useAppSelector((state) => state.user.profile)
   const { hasPrivilege } = useAuthorization()
   const canReadAll = hasPrivilege(PRIVILEGE_ACTIONS.AUDIT_LOGS.READ)
+  const canReadOwn = hasPrivilege(PRIVILEGE_ACTIONS.AUDIT_LOGS.READ_OWN)
+  const [limitInput, setLimitInput] = useState('50')
 }
