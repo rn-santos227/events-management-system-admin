@@ -131,4 +131,42 @@ export default function AuditLogsPage() {
       sortAccessor: (log) => log.statusCode ?? undefined,
     },
   ]
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    if (variables) {
+      void refetch(variables)
+    }
+  }
+
+  return (
+    <section className="bg-slate-50 px-4 py-10">
+      <div className="mx-auto flex w-full max-w-6xl flex-col gap-6">
+        <header className="flex flex-wrap items-center justify-between gap-4">
+          <div>
+            <p className="text-sm uppercase tracking-wide text-slate-500">Audit trail</p>
+            <h1 className="text-3xl font-semibold text-slate-900">Request activity</h1>
+            <p className="mt-2 max-w-2xl text-sm text-slate-600">
+              Review authenticated API activity captured by the administration backend. Limit the query to keep responses fast.
+            </p>
+          </div>
+          <form className="flex items-end gap-3" onSubmit={handleSubmit}>
+            <TextField
+              label="Limit"
+              type="number"
+              min={1}
+              step={1}
+              value={limitInput}
+              onChange={(event) => setLimitInput(event.target.value)}
+              helperText="Maximum records to fetch"
+              className="w-24"
+            />
+            <Button type="submit" variant="primary">
+              Apply
+            </Button>
+          </form> 
+        </header>
+      </div>
+    </section>
+  )
 }
