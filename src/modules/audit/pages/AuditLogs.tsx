@@ -17,8 +17,8 @@ import {
 import { PRIVILEGE_ACTIONS } from '@/constants/privileges'
 import { useAuthorization } from '@/modules/auth/hooks/useAuthorization'
 import { AUDIT_LOGS_BY_USER_QUERY, AUDIT_LOGS_QUERY } from '../queries'
-import type { AuditLogEntry } from '@/types/auditLog'
-import { getAuditUserLabel } from '@/types/auditLog'
+import type { AuditLogEntry } from '../types/audit'
+import { getAuditUserLabel } from '../types/audit'
 import { formatDateTime } from '@/utils/time'
 
 interface AuditLogQueryResponse {
@@ -166,6 +166,45 @@ export default function AuditLogsPage() {
             </Button>
           </form> 
         </header>
+
+        <Card className="shadow-sm">
+          <CardHeader className="flex flex-col gap-2 border-b border-slate-100">
+            <CardTitle>Audit log entries</CardTitle>
+            <CardDescription>
+              {canReadAll
+                ? 'Showing the most recent requests across all users.'
+                : 'Showing your recent authenticated requests.'}
+            </CardDescription>
+            <div className="flex flex-wrap gap-3 text-xs text-slate-500">
+              <span className="rounded-full bg-slate-100 px-3 py-1 font-medium text-slate-700">
+                Access scope: {canReadAll ? 'All users' : 'Own account only'}
+              </span>
+              <span className="rounded-full bg-slate-100 px-3 py-1 font-medium text-slate-700">
+                Current limit: {normalizedLimit ?? 'default'}
+              </span>
+              <span className="rounded-full bg-slate-100 px-3 py-1 font-medium text-slate-700">
+                Loaded: {auditLogs.length} entr{auditLogs.length === 1 ? 'y' : 'ies'}
+              </span>
+            </div>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            {error ? (
+              <AlertBanner
+                variant="error"
+                title="Unable to load audit logs"
+                description={error.message}
+              />
+            ) : null}
+            <DataTable
+              data={auditLogs}
+              columns={columns}
+              caption="Recent audit log entries"
+              emptyMessage={loading ? 'Loading audit logs...' : 'No audit activity found for this scope'}
+              isLoading={loading}
+              initialSort={{ key: 'createdAt', direction: 'desc' }}
+            />
+          </CardContent>
+        </Card>
       </div>
     </section>
   )
