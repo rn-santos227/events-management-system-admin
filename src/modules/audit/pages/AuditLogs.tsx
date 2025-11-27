@@ -88,5 +88,47 @@ export default function AuditLogsPage() {
       ),
       width: '18%',
     },
+    {
+      key: 'action',
+      header: 'Action',
+      render: (log) => (
+        <div className="flex flex-col gap-1">
+          <span className="text-sm font-semibold text-slate-900">{log.action ?? '—'}</span>
+          <span className="text-xs text-slate-500">{log.message ?? 'No message captured'}</span>
+        </div>
+      ),
+    },
+    {
+      key: 'path',
+      header: 'Endpoint',
+      render: (log) => (
+        <div className="flex flex-col gap-1">
+          <div className="flex items-center gap-2 text-sm text-slate-700">
+            <span className="rounded-full bg-slate-100 px-2 py-0.5 text-xs font-semibold uppercase text-slate-700">
+              {log.method ?? 'N/A'}
+            </span>
+            <span className="font-mono text-xs text-slate-600">{log.path ?? '—'}</span>
+          </div>
+          {log.ipAddress ? <span className="text-xs text-slate-500">IP: {log.ipAddress}</span> : null}
+        </div>
+      ),
+      width: '25%',
+    },
+    {
+      key: 'statusCode',
+      header: 'Status',
+      align: 'center',
+      sortable: true,
+      render: (log) => {
+        const { label, tone } = getStatusTone(log.statusCode)
+        return (
+          <span className={`inline-flex min-w-[90px] justify-center rounded-full px-2.5 py-1 text-xs font-semibold ${tone}`}>
+            {label}
+          </span>
+        )
+      },
+      width: '12%',
+      sortAccessor: (log) => log.statusCode ?? undefined,
+    },
   ]
 }
