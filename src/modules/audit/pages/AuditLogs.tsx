@@ -65,4 +65,28 @@ export default function AuditLogsPage() {
     () => data?.auditLogs ?? data?.auditLogsByUser ?? [],
     [data?.auditLogs, data?.auditLogsByUser],
   )
+
+  const columns: DataTableColumn<AuditLogEntry>[] = [
+    {
+      key: 'createdAt',
+      header: 'Timestamp',
+      sortable: true,
+      sortAccessor: (log) => (log.createdAt ? new Date(log.createdAt) : undefined),
+      render: (log) => (
+        <span className="font-medium text-slate-900">{formatDateTime(log.createdAt)}</span>
+      ),
+      width: '15%',
+    },
+    {
+      key: 'user',
+      header: 'Actor',
+      render: (log) => (
+        <div className="flex flex-col">
+          <span className="font-medium text-slate-900">{getAuditUserLabel(log)}</span>
+          {log.user?.email ? <span className="text-xs text-slate-500">{log.user.email}</span> : null}
+        </div>
+      ),
+      width: '18%',
+    },
+  ]
 }
