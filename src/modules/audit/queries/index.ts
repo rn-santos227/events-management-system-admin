@@ -26,3 +26,12 @@ export const AUDIT_LOGS_QUERY = gql`
   }
   ${AUDIT_LOG_FIELDS}
 `
+
+export const AUDIT_LOGS_BY_USER_QUERY = gql`
+  query AuditLogsByUser($userId: ID!, $limit: Int) {
+    auditLogsByUser(userId: $userId, limit: $limit) {
+      ...AuditLogFields
+    }
+  }
+  ${AUDIT_LOG_FIELDS}
+`
