@@ -15,3 +15,9 @@ export const formatDateTime = (
 
   return date.toLocaleString(locale, options)
 }
+
+export const isValidDateInput = (value: DateInput): boolean => {
+  if (value == null) return false
+  const date = value instanceof Date ? value : new Date(value)
+  return !Number.isNaN(date.getTime())
+}
