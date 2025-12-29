@@ -3,7 +3,8 @@ import { Outlet } from 'react-router-dom'
 
 import { Footer, Header, NavigationDrawer } from '@/components'
 import { Button, useDialog } from '@/components/ui'
-import { useAppDispatch, useAppSelector } from '@/app/hooks'
+import { useAppDispatch } from '@/app/hooks'
+import { useAuthState, useUserProfile } from '@/hooks'
 import { logoutUser } from '@/modules/auth/store/AuthSlice'
 import { getUserFullName } from '@/types/user'
 
@@ -15,8 +16,8 @@ export function AppLayout({ children }: AppLayoutProps) {
   const dispatch = useAppDispatch()
   const { showDialog } = useDialog()
 
-  const authState = useAppSelector((state) => state.auth)
-  const userProfile = useAppSelector((state) => state.user.profile)
+  const authState = useAuthState()
+  const userProfile = useUserProfile()
   const isAuthenticated = authState.status === 'authenticated' && Boolean(authState.token)
   const content = children ?? <Outlet />
   const displayName = userProfile ? getUserFullName(userProfile) || userProfile.email : null
