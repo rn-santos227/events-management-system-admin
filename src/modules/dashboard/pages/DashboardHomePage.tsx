@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 
-import { useAppSelector } from '@/app/hooks'
+import { useUserProfile } from '@/hooks'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui'
 import { getUserFullName } from '@/types/user'
 
@@ -18,7 +18,7 @@ const sampleHighlights = [
 ]
 
 export default function DashboardHomePage() {
-  const profile = useAppSelector((state) => state.user.profile)
+  const profile = useUserProfile()
 
   const welcomeMessage = useMemo(() => {
     if (!profile) return 'Welcome to EMS Admin'
