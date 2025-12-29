@@ -140,13 +140,13 @@ export default function AuditLogsPage() {
   }
 
   return (
-    <section className="bg-slate-50 px-4 py-10">
-      <div className="mx-auto flex w-full max-w-6xl flex-col gap-6">
+    <section className="page-section">
+      <div className="page-container page-container-wide">
         <header className="flex flex-wrap items-center justify-between gap-4">
           <div>
-            <p className="text-sm uppercase tracking-wide text-slate-500">Audit trail</p>
-            <h1 className="text-3xl font-semibold text-slate-900">Request activity</h1>
-            <p className="mt-2 max-w-2xl text-sm text-slate-600">
+            <p className="page-kicker">Audit trail</p>
+            <h1 className="page-title">Request activity</h1>
+            <p className="page-subtitle">
               Review authenticated API activity captured by the administration backend. Limit the query to keep responses fast.
             </p>
           </div>
@@ -167,7 +167,7 @@ export default function AuditLogsPage() {
           </form>
         </header>
 
-        <Card className="shadow-sm">
+        <Card className="page-card">
           <CardHeader className="flex flex-col gap-2 border-b border-slate-100">
             <CardTitle>Audit log entries</CardTitle>
             <CardDescription>
@@ -176,13 +176,13 @@ export default function AuditLogsPage() {
                 : 'Showing your recent authenticated requests.'}
             </CardDescription>
             <div className="flex flex-wrap gap-3 text-xs text-slate-500">
-              <span className="rounded-full bg-slate-100 px-3 py-1 font-medium text-slate-700">
+              <span className="page-chip">
                 Access scope: {canReadAll ? 'All users' : 'Own account only'}
               </span>
-              <span className="rounded-full bg-slate-100 px-3 py-1 font-medium text-slate-700">
+              <span className="page-chip">
                 Current limit: {normalizedLimit ?? 'default'}
               </span>
-              <span className="rounded-full bg-slate-100 px-3 py-1 font-medium text-slate-700">
+              <span className="page-chip">
                 Loaded: {auditLogs.length} entr{auditLogs.length === 1 ? 'y' : 'ies'}
               </span>
             </div>
