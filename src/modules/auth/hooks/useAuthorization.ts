@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from 'react'
 
-import { useAppSelector } from '@/app/hooks'
+import { useUserProfile } from '@/hooks'
 import type { RolePrivilege } from '@/types/user'
 
 const normalizeRequired = (required?: string | string[]): string[] => {
@@ -25,22 +25,29 @@ const hasRequiredPrivileges = (
   return required.every((action) => privilegeSet.has(action))
 }
 
-
 export function useAuthorization() {
-  const privileges = useAppSelector((state) => state.user.profile?.role.privileges ?? [])
+  const userProfile = useUserProfile()
+
+  const privileges = useMemo(
+    () => userProfile?.role.privileges ?? [],
+    [userProfile?.role.privileges],
+  )
 
   const hasPrivilege = useCallback(
-    (action: string) => hasRequiredPrivileges(privileges, normalizeRequired(action), 'all'),
+    (action: string) =>
+      hasRequiredPrivileges(privileges, normalizeRequired(action), 'all'),
     [privileges],
   )
 
   const hasAnyPrivilege = useCallback(
-    (actions: string[]) => hasRequiredPrivileges(privileges, normalizeRequired(actions), 'any'),
+    (actions: string[]) =>
+      hasRequiredPrivileges(privileges, normalizeRequired(actions), 'any'),
     [privileges],
   )
 
   const hasAllPrivileges = useCallback(
-    (actions: string[]) => hasRequiredPrivileges(privileges, normalizeRequired(actions), 'all'),
+    (actions: string[]) =>
+      hasRequiredPrivileges(privileges, normalizeRequired(actions), 'all'),
     [privileges],
   )
 

@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react'
 import { Navigate, useLocation } from 'react-router-dom'
 
-import { useAppSelector } from '@/app/hooks'
+import { useAuthState } from '@/hooks'
 import { ROUTES } from '@/constants/routes'
 
 interface ProtectedRouteProps {
@@ -10,7 +10,7 @@ interface ProtectedRouteProps {
 }
 
 export default function ProtectedRoute({ children, redirectTo = ROUTES.LOGIN }: ProtectedRouteProps) {
-  const authState = useAppSelector((state) => state.auth)
+  const authState = useAuthState()
   const location = useLocation()
 
   const isAuthenticated = authState.status === 'authenticated' && Boolean(authState.token)
