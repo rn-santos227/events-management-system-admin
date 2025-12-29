@@ -73,8 +73,8 @@ function LoginPage() {
   }
 
   return (
-    <section className="flex min-h-[70vh] items-center justify-center bg-slate-50 px-4 py-12">
-      <Card className="w-full max-w-lg shadow-lg">
+    <section className="page-login-section">
+      <Card className="page-login-card">
         <CardHeader>
           <CardTitle>Sign in to EMS Admin</CardTitle>
           <CardDescription>
@@ -129,7 +129,7 @@ function LoginPage() {
             </Button>
           </form>
         </CardContent>
-        <CardFooter className="flex-col items-start gap-1 text-sm text-slate-500">
+        <CardFooter className="page-login-footer">
           <p>
             Having trouble accessing your account? Reach out to the platform owner to reset your credentials.
           </p>
