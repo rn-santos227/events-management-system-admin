@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
 import { useQuery } from '@apollo/client'
 
-import { useAppSelector } from '@/app/hooks'
+import { useUserProfile } from '@/hooks'
 import {
   AlertBanner,
   Button,
@@ -34,7 +34,7 @@ const getStatusTone = (status?: number | null) => {
 }
 
 export default function AuditLogsPage() {
-  const profile = useAppSelector((state) => state.user.profile)
+  const profile = useUserProfile()
   const { hasPrivilege } = useAuthorization()
   const canReadAll = hasPrivilege(PRIVILEGE_ACTIONS.AUDIT_LOGS.READ)
   const canReadOwn = hasPrivilege(PRIVILEGE_ACTIONS.AUDIT_LOGS.READ_OWN)
@@ -164,7 +164,7 @@ export default function AuditLogsPage() {
             <Button type="submit" variant="primary">
               Apply
             </Button>
-          </form> 
+          </form>
         </header>
 
         <Card className="shadow-sm">
