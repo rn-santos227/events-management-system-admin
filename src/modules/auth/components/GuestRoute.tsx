@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react'
 import { Navigate } from 'react-router-dom'
 
-import { useAppSelector } from '@/app/hooks'
+import { useAuthState } from '@/hooks'
 import { ROUTES } from '@/constants/routes'
 
 interface GuestRouteProps {
@@ -10,7 +10,7 @@ interface GuestRouteProps {
 }
 
 export default function GuestRoute({ children, redirectTo = ROUTES.DASHBOARD }: GuestRouteProps) {
-  const { status, token } = useAppSelector((state) => state.auth)
+  const { status, token } = useAuthState()
   const isAuthenticated = status === 'authenticated' && Boolean(token)
 
   if (isAuthenticated) {
