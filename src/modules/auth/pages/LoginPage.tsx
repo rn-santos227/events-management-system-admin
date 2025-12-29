@@ -1,11 +1,12 @@
 import { useEffect, useState, type ChangeEvent, type FormEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { useAppDispatch, useAppSelector } from '@/app/hooks'
+import { useAppDispatch } from '@/app/hooks'
 import { ROUTES } from '@/constants/routes'
 import {
   loginUser,
 } from '@/modules/auth/store/AuthSlice'
+import { useAuthState, useUserState } from '@/hooks'
 import {
   Button,
   Card,
@@ -28,8 +29,9 @@ const initialCredentials: LoginCredentials = {
 
 function LoginPage() {
   const dispatch = useAppDispatch()
-  const authState = useAppSelector((state) => state.auth)
-  const userState = useAppSelector((state) => state.user)
+  const authState = useAuthState()
+  const userState = useUserState()
+
   const navigate = useNavigate()
   const [credentials, setCredentials] = useState<LoginCredentials>(initialCredentials)
 
