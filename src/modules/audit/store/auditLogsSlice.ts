@@ -26,8 +26,7 @@ const initialState: AuditLogsState = {
 
 const hasSearchFilters = (filters?: AuditLogFilters) => {
   if (!filters) return false
-  const { limit, ...searchFilters } = filters
-  return Object.values(searchFilters).some((value) => {
+  return Object.values(filters).some((value) => {
     if (value == null) return false
     if (typeof value === 'string') return value.trim().length > 0
     if (Array.isArray(value)) return value.length > 0
@@ -52,7 +51,7 @@ const buildParams = (filters?: AuditLogFilters) => {
   if (filters.endDate) params.endDate = filters.endDate
   if (filters.limit != null) params.limit = filters.limit
 
-  return params;
+  return params
 }
 
 export const fetchAuditLogs = createAsyncThunk<
@@ -89,3 +88,27 @@ export const fetchAuditLogs = createAsyncThunk<
     return rejectWithValue(apiError.message ?? 'Unable to load audit logs right now.')
   }
 })
+
+const auditLogsSlice = createSlice({
+  name: 'auditLogs',
+  initialState,
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchAuditLogs.pending, (state) => {
+        state.status = 'loading'
+        state.error = null
+      })
+      .addCase(fetchAuditLogs.fulfilled, (state, action) => {
+        state.status = 'succeeded'
+        state.entries = action.payload ?? []
+        state.error = null
+      })
+      .addCase(fetchAuditLogs.rejected, (state, action) => {
+        state.status = 'failed'
+        state.error = action.payload ?? action.error.message ?? 'Unable to load audit logs.'
+      })
+  },
+})
+
+export const auditLogsReducer = auditLogsSlice.reducer
