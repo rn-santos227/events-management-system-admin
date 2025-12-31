@@ -76,6 +76,14 @@ export const fetchAuditLogs = createAsyncThunk<
       )
     }
 
+    const endpoint = hasSearchFilters(filters) ? 'SEARCH' : 'LIST'
+    return await apiClient.request<'AUDIT_LOGS', typeof endpoint, AuditLogEntry[]>(
+      'AUDIT_LOGS',
+      endpoint,
+      {
+        params: buildParams(filters),
+      },
+    )
   } catch (error) {
     const apiError = error as ApiErrorPayload
     return rejectWithValue(apiError.message ?? 'Unable to load audit logs right now.')
