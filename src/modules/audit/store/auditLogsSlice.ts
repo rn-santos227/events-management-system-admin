@@ -39,5 +39,18 @@ const buildParams = (filters?: AuditLogFilters) => {
   if (!filters) return undefined
   const params: Record<string, string | number | string[] | undefined> = {}
 
+  if (filters.action) params.action = filters.action
+  if (filters.actions?.length) params.actions = filters.actions
+  if (filters.activities?.length) params.activities = filters.activities
+  if (filters.method) params.method = filters.method
+  if (filters.path) params.path = filters.path
+  if (filters.statusCode != null) params.statusCode = filters.statusCode
+  if (filters.ipAddress) params.ipAddress = filters.ipAddress
+  if (filters.message) params.message = filters.message
+  if (filters.userId) params.userId = filters.userId
+  if (filters.startDate) params.startDate = filters.startDate
+  if (filters.endDate) params.endDate = filters.endDate
+  if (filters.limit != null) params.limit = filters.limit
+
   return params;
 }
