@@ -27,14 +27,12 @@ export default function DashboardHomePage() {
   }, [profile])
 
   return (
-    <section className="bg-slate-50 px-4 py-10">
-      <div className="mx-auto flex w-full max-w-5xl flex-col gap-6">
-        <div className="rounded-2xl bg-gradient-to-r from-brand-500 to-brand-600 p-6 text-white shadow-md">
-          <p className="text-sm uppercase tracking-wide">Dashboard</p>
-          <h1 className="mt-2 text-3xl font-semibold leading-tight">
-            {welcomeMessage}
-          </h1>
-          <p className="mt-3 max-w-2xl text-base">
+    <section className="page-section">
+      <div className="page-container page-container-narrow">
+        <div className="page-hero">
+          <p className="page-hero-kicker">Dashboard</p>
+          <h1 className="page-hero-title">{welcomeMessage}</h1>
+          <p className="page-hero-body">
             This is your starting point for managing upcoming events, tracking approvals,
             and staying on top of organizer activity.
           </p>
