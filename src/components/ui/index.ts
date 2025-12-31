@@ -6,6 +6,8 @@ export { TextArea } from './textarea/TextArea'
 export type { TextAreaProps } from './textarea/TextArea'
 export { Select } from './select/Select'
 export type { SelectProps } from './select/Select'
+export { Accordion } from './accordion/Accordion'
+export type { AccordionProps } from './accordion/Accordion'
 export {
   Card,
   CardHeader,
