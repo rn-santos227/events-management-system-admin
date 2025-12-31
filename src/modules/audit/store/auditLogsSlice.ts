@@ -60,6 +60,11 @@ export const fetchAuditLogs = createAsyncThunk<
   FetchAuditLogsArgs,
   { rejectValue: string }
 >('auditLogs/fetch', async ({ scope, filters, userId }, { rejectWithValue }) => {
+  try {
 
+  } catch (error) {
+    const apiError = error as ApiErrorPayload
+    return rejectWithValue(apiError.message ?? 'Unable to load audit logs right now.')
+  }
 
 })
