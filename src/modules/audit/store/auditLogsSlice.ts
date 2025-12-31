@@ -12,4 +12,10 @@ interface FetchAuditLogsArgs {
   userId?: string
 }
 
+interface AuditLogsState {
+  entries: AuditLogEntry[]
+  status: 'idle' | 'loading' | 'succeeded' | 'failed'
+  error: string | null
+}
+
 
