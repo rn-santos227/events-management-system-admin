@@ -4,14 +4,16 @@ import type { ComponentPropsWithoutRef, ReactNode } from 'react'
 import './index.css'
 import { classNames } from '@/utils/classNames'
 
-export interface AccordionProps extends ComponentPropsWithoutRef<'div'> {
+export interface AccordionProps
+  extends Omit<
+    ComponentPropsWithoutRef<'div'>,
+    'title' | 'onToggle'
+  > {
   title: ReactNode
   description?: ReactNode
   defaultOpen?: boolean
   open?: boolean
-  onToggle?: (nextOpen: boolean) => void
+  onOpenChange?: (open: boolean) => void
   contentClassName?: string
 }
-
-
 
