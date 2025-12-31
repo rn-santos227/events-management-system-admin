@@ -2,13 +2,13 @@ import { motion } from 'framer-motion'
 
 export default function NotFoundPage() {
   return (
-    <main className="flex flex-1 flex-col items-center justify-center bg-slate-50 px-6 text-center">
+    <main className="page-notfound">
       <div className="max-w-md">
         <motion.h1
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
-          className="text-[6rem] font-extrabold text-brand-600"
+          className="page-notfound-title"
         >
           404
         </motion.h1>
