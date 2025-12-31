@@ -61,10 +61,23 @@ export const fetchAuditLogs = createAsyncThunk<
   { rejectValue: string }
 >('auditLogs/fetch', async ({ scope, filters, userId }, { rejectWithValue }) => {
   try {
+    if (scope === 'own') {
+      if (!userId) {
+        return rejectWithValue('User id is required to load audit logs.')
+      }
+
+      return await apiClient.request<'AUDIT_LOGS', 'BY_USER', AuditLogEntry[]>(
+        'AUDIT_LOGS',
+        'BY_USER',
+        {
+          pathParams: { id: userId },
+          params: filters?.limit != null ? { limit: filters.limit } : undefined,
+        },
+      )
+    }
 
   } catch (error) {
     const apiError = error as ApiErrorPayload
     return rejectWithValue(apiError.message ?? 'Unable to load audit logs right now.')
   }
-
 })
