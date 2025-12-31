@@ -6,5 +6,10 @@ import type { AuditLogFilters } from '../types/filters'
 
 export type AuditLogScope = 'all' | 'own'
 
+interface FetchAuditLogsArgs {
+  scope: AuditLogScope
+  filters?: AuditLogFilters
+  userId?: string
+}
 
 
