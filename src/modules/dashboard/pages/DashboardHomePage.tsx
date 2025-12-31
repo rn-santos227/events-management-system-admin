@@ -42,17 +42,17 @@ export default function DashboardHomePage() {
           {sampleHighlights.map((highlight) => (
             <Card key={highlight.title} className="page-card">
               <CardHeader>
-                <CardTitle className="text-base font-medium text-slate-500">{highlight.title}</CardTitle>
+                <CardTitle className="page-card-title-muted">{highlight.title}</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-3xl font-semibold text-slate-900">{highlight.value}</p>
-                <p className="mt-1 text-sm text-slate-500">{highlight.description}</p>
+                <p className="page-card-body-muted">{highlight.description}</p>
               </CardContent>
             </Card>
           ))}
         </div>
 
-        <Card className="shadow-sm">
+        <Card className="page-card">
           <CardHeader>
             <CardTitle>Getting started</CardTitle>
           </CardHeader>
