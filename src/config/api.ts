@@ -8,6 +8,15 @@ const defineEndpoint = <T extends Endpoint>(definition: T) => definition
 const defineApiConfig = <T extends ApiConfig>(config: T) => config
 
 export const API = defineApiConfig({
+  AUDIT_LOGS: {
+    LIST: defineEndpoint({
+      method: 'GET',
+      module: 'audit',
+      path: BASE_API_PREFIX + API_ENDPOINTS.AUDIT_LOGS.ROOT,
+      description: 'Audit log list',
+    }),
+  },
+
   AUTH: {
     LOGIN: defineEndpoint({
       method: 'POST',
