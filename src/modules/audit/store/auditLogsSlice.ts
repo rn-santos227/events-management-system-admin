@@ -18,4 +18,10 @@ interface AuditLogsState {
   error: string | null
 }
 
+const initialState: AuditLogsState = {
+  entries: [],
+  status: 'idle',
+  error: null,
+}
+
 
