@@ -22,6 +22,13 @@ export const API = defineApiConfig({
       path: BASE_API_PREFIX + API_ENDPOINTS.AUDIT_LOGS.SEARCH,
       description: 'Search audit logs',
     }),
+
+    BY_USER: defineEndpoint({
+      method: 'GET',
+      module: 'audit',
+      path: BASE_API_PREFIX + API_ENDPOINTS.AUDIT_LOGS.BY_USER,
+      description: 'Audit logs for user',
+    }),
   },
 
   AUTH: {
