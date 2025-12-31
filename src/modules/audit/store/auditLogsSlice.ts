@@ -35,4 +35,9 @@ const hasSearchFilters = (filters?: AuditLogFilters) => {
   })
 }
 
+const buildParams = (filters?: AuditLogFilters) => {
+  if (!filters) return undefined
+  const params: Record<string, string | number | string[] | undefined> = {}
 
+  return params;
+}
