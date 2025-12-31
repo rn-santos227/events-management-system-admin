@@ -40,7 +40,7 @@ export default function DashboardHomePage() {
 
         <div className="grid gap-4 md:grid-cols-2">
           {sampleHighlights.map((highlight) => (
-            <Card key={highlight.title} className="shadow-sm">
+            <Card key={highlight.title} className="page-card">
               <CardHeader>
                 <CardTitle className="text-base font-medium text-slate-500">{highlight.title}</CardTitle>
               </CardHeader>
