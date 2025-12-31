@@ -54,3 +54,12 @@ const buildParams = (filters?: AuditLogFilters) => {
 
   return params;
 }
+
+export const fetchAuditLogs = createAsyncThunk<
+  AuditLogEntry[],
+  FetchAuditLogsArgs,
+  { rejectValue: string }
+>('auditLogs/fetch', async ({ scope, filters, userId }, { rejectWithValue }) => {
+
+
+})
