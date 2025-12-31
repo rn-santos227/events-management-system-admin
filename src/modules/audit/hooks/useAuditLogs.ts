@@ -10,4 +10,10 @@ export const useAuditLogs = () => {
   const status = useAppSelector((state) => state.auditLogs.status)
   const error = useAppSelector((state) => state.auditLogs.error)
 
+  const loadAuditLogs = useCallback(
+    (scope: AuditLogScope, filters?: AuditLogFilters, userId?: string) =>
+      dispatch(fetchAuditLogs({ scope, filters, userId })),
+    [dispatch],
+  )
+
 }
