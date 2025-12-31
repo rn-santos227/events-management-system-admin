@@ -16,4 +16,10 @@ export const useAuditLogs = () => {
     [dispatch],
   )
 
+  return {
+    entries,
+    status,
+    error,
+    loadAuditLogs,
+  }
 }
