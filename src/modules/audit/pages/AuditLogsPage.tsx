@@ -49,12 +49,10 @@ export default function AuditLogsPage() {
   const canReadOwn = hasPrivilege(PRIVILEGE_ACTIONS.AUDIT_LOGS.READ_OWN)
   const [filters, setFilters] = useState<AuditLogFilterFormState>(DEFAULT_FILTERS)
   const { entries, status, error, loadAuditLogs } = useAuditLogs()
+  const normalizedFilters = useMemo(() => normalizeAuditLogFilters(filters), [filters])
+  const scope = canReadAll ? 'all' : 'own'
+  const defaultFiltersRef = useRef(normalizeAuditLogFilters(DEFAULT_FILTERS))
 
-
-  const normalizedLimit = useMemo(() => {
-    const parsed = Number(limitInput)
-    return Number.isFinite(parsed) && parsed > 0 ? parsed : undefined
-  }, [limitInput])
 
   const variables = useMemo(() => {
     if (canReadAll) return { limit: normalizedLimit }
