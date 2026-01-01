@@ -59,7 +59,9 @@ export const filterAuditLogs = (logs: AuditLogEntry[], filters: AuditLogFilters)
     if (!matchesString(log.path ?? null, filters.path)) return false
     if (!matchesString(log.ipAddress ?? null, filters.ipAddress)) return false
     if (!matchesString(log.message ?? null, filters.message)) return false
-
+    if (filters.userId && log.user?.id !== filters.userId) return false
+    if (statusFilter != null && log.statusCode !== statusFilter) return false
+    if (methodFilter && (log.method ?? '').toLowerCase() !== methodFilter) return false
     return true
   })
 }
