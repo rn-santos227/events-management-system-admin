@@ -51,4 +51,7 @@ const matchesString = (value: string | null | undefined, filter: string | undefi
 export const filterAuditLogs = (logs: AuditLogEntry[], filters: AuditLogFilters): AuditLogEntry[] => {
   const startDate = filters.startDate ? new Date(filters.startDate) : undefined
   const endDate = filters.endDate ? new Date(filters.endDate) : undefined
+  const statusFilter = filters.statusCode
+  const methodFilter = filters.method?.toLowerCase()
+
 }
