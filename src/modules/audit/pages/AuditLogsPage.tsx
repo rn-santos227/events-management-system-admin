@@ -161,21 +161,9 @@ export default function AuditLogsPage() {
               Review authenticated API activity captured by the administration backend. Limit the query to keep responses fast.
             </p>
           </div>
-          <form className="flex items-end gap-3" onSubmit={handleSubmit}>
-            <TextField
-              label="Limit"
-              type="number"
-              min={1}
-              step={1}
-              value={limitInput}
-              onChange={(event) => setLimitInput(event.target.value)}
-              helperText="Maximum records to fetch"
-              className="w-24"
-            />
-            <Button type="submit" variant="primary">
-              Apply
-            </Button>
-          </form>
+          <Button type="button" variant="primary" onClick={handleFiltersSubmit} isLoading={isLoading}>
+            Refresh
+          </Button>
         </header>
 
         <Card className="page-card">
