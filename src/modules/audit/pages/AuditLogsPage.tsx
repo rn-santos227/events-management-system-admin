@@ -1,8 +1,8 @@
-import { useMemo, useState } from 'react'
-import { useQuery } from '@apollo/client'
+import { useEffect, useMemo, useRef, useState } from 'react'
 
 import { useUserProfile } from '@/hooks'
 import {
+  Accordion,
   AlertBanner,
   Button,
   Card,
@@ -12,14 +12,15 @@ import {
   CardTitle,
   DataTable,
   type DataTableColumn,
-  TextField,
 } from '@/components/ui'
 import { PRIVILEGE_ACTIONS } from '@/constants/privileges'
 import { useAuthorization } from '@/modules/auth/hooks/useAuthorization'
-import { AUDIT_LOGS_BY_USER_QUERY, AUDIT_LOGS_QUERY } from '../queries'
 import type { AuditLogEntry } from '../types/audit'
 import { getAuditUserLabel } from '../types/audit'
 import { formatDateTime } from '@/utils/time'
+import { AuditLogFilters, type AuditLogFilterFormState } from '../components/AuditLogFilters'
+import { useAuditLogs } from '../hooks/useAuditLogs'
+import { filterAuditLogs, normalizeAuditLogFilters } from '../utils/filters'
 
 interface AuditLogQueryResponse {
   auditLogs?: AuditLogEntry[]
