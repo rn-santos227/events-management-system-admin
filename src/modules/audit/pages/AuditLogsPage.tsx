@@ -205,7 +205,7 @@ export default function AuditLogsPage() {
               <AlertBanner
                 variant="error"
                 title="Unable to load audit logs"
-                description={error.message}
+                description={error}
               />
             ) : null}
             <DataTable
