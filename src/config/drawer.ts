@@ -2,6 +2,7 @@ import { ROUTES } from '@/constants/routes'
 import { DrawerSection } from '@/types/drawer'
 import {
   HiOutlineCalendarDays,
+  HiOutlineClipboardDocumentList,
   HiOutlineRectangleStack,
   HiOutlineShieldCheck,
   HiOutlineSquares2X2,
@@ -17,6 +18,12 @@ export const navigationSections: DrawerSection[] = [
         description: 'High-level insight into events and approvals',
         to: ROUTES.DASHBOARD,
         icon: HiOutlineSquares2X2,
+      },
+      {
+        label: 'Audit Trail',
+        description: 'Review authenticated request activity',
+        to: ROUTES.AUDIT_LOGS,
+        icon: HiOutlineClipboardDocumentList,
       },
     ],
   },
