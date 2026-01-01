@@ -127,12 +127,15 @@ export default function AuditLogsPage() {
     },
   ]
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    if (variables) {
-      void refetch(variables)
-    }
-  }
+  useEffect(() => {
+    if (scope === 'own' && !canReadOwn) return
+    if (scope === 'own' && !profile?.id) return
+    void loadAuditLogs(
+      scope,
+      defaultFiltersRef.current,
+      profile?.id ? String(profile.id) : undefined,
+    )
+  }, [canReadOwn, loadAuditLogs, profile?.id, scope])
 
   return (
     <section className="page-section">
