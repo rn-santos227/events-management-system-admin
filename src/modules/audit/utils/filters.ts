@@ -10,3 +10,11 @@ const parseOptionalNumber = (value?: string) => {
   return parsed > 0 ? parsed : undefined
 }
 
+const toIsoString = (value?: string) => {
+  const trimmed = normalizeString(value)
+  if (!trimmed) return undefined
+  const date = new Date(trimmed)
+  if (Number.isNaN(date.getTime())) return undefined
+  return date.toISOString()
+}
+
