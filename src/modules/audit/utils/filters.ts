@@ -42,4 +42,10 @@ export const normalizeAuditLogFilters = (filters: {
   limit: parseOptionalNumber(filters.limit),
 })
 
+const matchesString = (value: string | null | undefined, filter: string | undefined) => {
+  if (!filter) return true
+  if (!value) return false
+  return value.toLowerCase().includes(filter.toLowerCase())
+}
+
 
