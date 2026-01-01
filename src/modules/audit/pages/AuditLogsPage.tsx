@@ -22,9 +22,17 @@ import { AuditLogFilters, type AuditLogFilterFormState } from '../components/Aud
 import { useAuditLogs } from '../hooks/useAuditLogs'
 import { filterAuditLogs, normalizeAuditLogFilters } from '../utils/filters'
 
-interface AuditLogQueryResponse {
-  auditLogs?: AuditLogEntry[]
-  auditLogsByUser?: AuditLogEntry[]
+const DEFAULT_FILTERS: AuditLogFilterFormState = {
+  action: '',
+  method: '',
+  path: '',
+  statusCode: '',
+  ipAddress: '',
+  message: '',
+  userId: '',
+  startDate: '',
+  endDate: '',
+  limit: '50',
 }
 
 const getStatusTone = (status?: number | null) => {
