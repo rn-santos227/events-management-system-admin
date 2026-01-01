@@ -48,4 +48,6 @@ const matchesString = (value: string | null | undefined, filter: string | undefi
   return value.toLowerCase().includes(filter.toLowerCase())
 }
 
+export const filterAuditLogs = (logs: AuditLogEntry[], filters: AuditLogFilters): AuditLogEntry[] => {
 
+}
