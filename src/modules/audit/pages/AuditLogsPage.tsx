@@ -187,6 +187,20 @@ export default function AuditLogsPage() {
             </div>
           </CardHeader>
           <CardContent className="space-y-4">
+            <Accordion
+              title="Search & filters"
+              description="Refine audit log results before fetching."
+              defaultOpen
+            >
+              <AuditLogFilters
+                values={filters}
+                onChange={setFilters}
+                onSubmit={handleFiltersSubmit}
+                onReset={handleFiltersReset}
+                canSearch={canReadAll}
+                isLoading={isLoading}
+              />
+            </Accordion>
             {error ? (
               <AlertBanner
                 variant="error"
