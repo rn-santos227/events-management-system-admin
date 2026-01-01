@@ -54,4 +54,8 @@ export const filterAuditLogs = (logs: AuditLogEntry[], filters: AuditLogFilters)
   const statusFilter = filters.statusCode
   const methodFilter = filters.method?.toLowerCase()
 
+  return logs.filter((log) => {
+
+    return true
+  })
 }
