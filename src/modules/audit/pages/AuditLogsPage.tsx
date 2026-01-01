@@ -182,7 +182,7 @@ export default function AuditLogsPage() {
                 Current limit: {normalizedFilters.limit ?? 'default'}
               </span>
               <span className="page-chip">
-                Loaded: {auditLogs.length} entr{auditLogs.length === 1 ? 'y' : 'ies'}
+                Loaded: {displayedLogs.length} entr{displayedLogs.length === 1 ? 'y' : 'ies'}
               </span>
             </div>
           </CardHeader>
