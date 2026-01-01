@@ -143,6 +143,13 @@ export default function AuditLogsPage() {
     void loadAuditLogs(scope, normalizedFilters, profile?.id ? String(profile.id) : undefined)
   }
 
+  const handleFiltersReset = () => {
+    setFilters(DEFAULT_FILTERS)
+    if (scope === 'own' && !canReadOwn) return
+    if (scope === 'own' && !profile?.id) return
+    void loadAuditLogs(scope, normalizeAuditLogFilters(DEFAULT_FILTERS), profile?.id ? String(profile.id) : undefined)
+  }
+
   return (
     <section className="page-section">
       <div className="page-container page-container-wide">
