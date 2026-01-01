@@ -58,7 +58,6 @@ export default function AuditLogsPage() {
     return filterAuditLogs(entries, normalizedFilters)
   }, [entries, normalizedFilters, scope])
 
-  const activeQuery = canReadAll ? AUDIT_LOGS_QUERY : AUDIT_LOGS_BY_USER_QUERY
   const isLoading = status === 'loading'
 
   const columns: DataTableColumn<AuditLogEntry>[] = [
@@ -209,11 +208,11 @@ export default function AuditLogsPage() {
               />
             ) : null}
             <DataTable
-              data={auditLogs}
+              data={displayedLogs}
               columns={columns}
               caption="Recent audit log entries"
-              emptyMessage={loading ? 'Loading audit logs...' : 'No audit activity found for this scope'}
-              isLoading={loading}
+              emptyMessage={isLoading ? 'Loading audit logs...' : 'No audit activity found for this scope'}
+              isLoading={isLoading}
               initialSort={{ key: 'createdAt', direction: 'desc' }}
             />
           </CardContent>
