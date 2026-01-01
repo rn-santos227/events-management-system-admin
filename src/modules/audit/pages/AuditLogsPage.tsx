@@ -179,7 +179,7 @@ export default function AuditLogsPage() {
                 Access scope: {canReadAll ? 'All users' : 'Own account only'}
               </span>
               <span className="page-chip">
-                Current limit: {normalizedLimit ?? 'default'}
+                Current limit: {normalizedFilters.limit ?? 'default'}
               </span>
               <span className="page-chip">
                 Loaded: {auditLogs.length} entr{auditLogs.length === 1 ? 'y' : 'ies'}
