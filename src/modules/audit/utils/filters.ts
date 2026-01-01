@@ -62,6 +62,14 @@ export const filterAuditLogs = (logs: AuditLogEntry[], filters: AuditLogFilters)
     if (filters.userId && log.user?.id !== filters.userId) return false
     if (statusFilter != null && log.statusCode !== statusFilter) return false
     if (methodFilter && (log.method ?? '').toLowerCase() !== methodFilter) return false
+
+    if (startDate || endDate) {
+      const createdAt = log.createdAt ? new Date(log.createdAt) : null
+      if (!createdAt || Number.isNaN(createdAt.getTime())) return false
+      if (startDate && createdAt < startDate) return false
+      if (endDate && createdAt > endDate) return false
+    }
+
     return true
   })
 }
