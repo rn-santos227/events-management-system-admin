@@ -18,3 +18,28 @@ const toIsoString = (value?: string) => {
   return date.toISOString()
 }
 
+export const normalizeAuditLogFilters = (filters: {
+  action?: string
+  method?: string
+  path?: string
+  statusCode?: string
+  ipAddress?: string
+  message?: string
+  userId?: string
+  startDate?: string
+  endDate?: string
+  limit?: string
+}): AuditLogFilters => ({
+  action: normalizeString(filters.action),
+  method: normalizeString(filters.method),
+  path: normalizeString(filters.path),
+  statusCode: parseOptionalNumber(filters.statusCode),
+  ipAddress: normalizeString(filters.ipAddress),
+  message: normalizeString(filters.message),
+  userId: normalizeString(filters.userId),
+  startDate: toIsoString(filters.startDate),
+  endDate: toIsoString(filters.endDate),
+  limit: parseOptionalNumber(filters.limit),
+})
+
+
