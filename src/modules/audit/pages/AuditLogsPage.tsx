@@ -137,6 +137,12 @@ export default function AuditLogsPage() {
     )
   }, [canReadOwn, loadAuditLogs, profile?.id, scope])
 
+  const handleFiltersSubmit = () => {
+    if (scope === 'own' && !canReadOwn) return
+    if (scope === 'own' && !profile?.id) return
+    void loadAuditLogs(scope, normalizedFilters, profile?.id ? String(profile.id) : undefined)
+  }
+
   return (
     <section className="page-section">
       <div className="page-container page-container-wide">
