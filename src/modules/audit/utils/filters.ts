@@ -55,7 +55,8 @@ export const filterAuditLogs = (logs: AuditLogEntry[], filters: AuditLogFilters)
   const methodFilter = filters.method?.toLowerCase()
 
   return logs.filter((log) => {
-
+    if (!matchesString(log.action ?? null, filters.action)) return false
+    if (!matchesString(log.path ?? null, filters.path)) return false
     return true
   })
 }
