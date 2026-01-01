@@ -53,14 +53,10 @@ export default function AuditLogsPage() {
   const scope = canReadAll ? 'all' : 'own'
   const defaultFiltersRef = useRef(normalizeAuditLogFilters(DEFAULT_FILTERS))
 
-
-  const variables = useMemo(() => {
-    if (canReadAll) return { limit: normalizedLimit }
-    if (canReadOwn && profile?.id != null) {
-      return { userId: String(profile.id), limit: normalizedLimit }
-    }
-    return undefined
-  }, [canReadAll, canReadOwn, normalizedLimit, profile?.id])
+  const displayedLogs = useMemo(() => {
+    if (scope === 'all') return entries
+    return filterAuditLogs(entries, normalizedFilters)
+  }, [entries, normalizedFilters, scope])
 
   const activeQuery = canReadAll ? AUDIT_LOGS_QUERY : AUDIT_LOGS_BY_USER_QUERY
 
