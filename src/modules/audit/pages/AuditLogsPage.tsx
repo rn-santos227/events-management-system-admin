@@ -47,7 +47,9 @@ export default function AuditLogsPage() {
   const { hasPrivilege } = useAuthorization()
   const canReadAll = hasPrivilege(PRIVILEGE_ACTIONS.AUDIT_LOGS.READ)
   const canReadOwn = hasPrivilege(PRIVILEGE_ACTIONS.AUDIT_LOGS.READ_OWN)
-  const [limitInput, setLimitInput] = useState('50')
+  const [filters, setFilters] = useState<AuditLogFilterFormState>(DEFAULT_FILTERS)
+  const { entries, status, error, loadAuditLogs } = useAuditLogs()
+
 
   const normalizedLimit = useMemo(() => {
     const parsed = Number(limitInput)
