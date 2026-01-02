@@ -1,9 +1,9 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 
 import { auditLogsReducer } from '@/modules/audit/store/auditLogsSlice'
-import { authReducer } from '@/modules/auth/store/AuthSlice'
-import { privilegesReducer } from '@/modules/privileges/store/PrivilegesSlice'
-import { userReducer } from '@/modules/auth/store/UserSlice'
+import { authReducer } from '@/modules/auth/store/authSlice'
+import { privilegesReducer } from '@/modules/privileges/store/privilegesSlice'
+import { userReducer } from '@/modules/auth/store/userSlice'
 import { loadAuthStateFromStorage } from '@/modules/auth/utils/authStorage'
 import { apiClient } from '@/services/api'
 

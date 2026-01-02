@@ -5,7 +5,7 @@ import { Footer, Header, NavigationDrawer } from '@/components'
 import { Button, useDialog } from '@/components/ui'
 import { useAppDispatch } from '@/app/hooks'
 import { useAuthState, useUserProfile } from '@/hooks'
-import { logoutUser } from '@/modules/auth/store/AuthSlice'
+import { logoutUser } from '@/modules/auth/store/authSlice'
 import { getUserFullName } from '@/types/user'
 
 interface AppLayoutProps {

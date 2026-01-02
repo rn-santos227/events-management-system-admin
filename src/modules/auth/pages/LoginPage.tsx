@@ -5,7 +5,7 @@ import { useAppDispatch } from '@/app/hooks'
 import { ROUTES } from '@/constants/routes'
 import {
   loginUser,
-} from '@/modules/auth/store/AuthSlice'
+} from '@/modules/auth/store/authSlice'
 import { useAuthState, useUserState } from '@/hooks'
 import {
   Button,

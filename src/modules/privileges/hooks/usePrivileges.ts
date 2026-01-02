@@ -23,4 +23,13 @@ export const usePrivileges = () => {
     [dispatch],
   )
 
+  return {
+    items,
+    status,
+    error,
+    updatingIds,
+    updateError,
+    loadPrivileges,
+    setPrivilegeStatus,
+  }
 }

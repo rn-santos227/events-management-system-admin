@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 import type { UserState } from '../types/user'
-import { loginUser, logoutUser } from './AuthSlice'
+import { loginUser, logoutUser } from './authSlice'
 
 const initialState: UserState = {
   profile: null,
