@@ -11,3 +11,12 @@ interface UpdatePrivilegeStatusArgs {
   privilege: Privilege
   active: boolean
 }
+
+interface PrivilegesState {
+  items: Privilege[]
+  status: 'idle' | 'loading' | 'succeeded' | 'failed'
+  error: string | null
+  updatingIds: string[]
+  updateError: string | null
+}
+
