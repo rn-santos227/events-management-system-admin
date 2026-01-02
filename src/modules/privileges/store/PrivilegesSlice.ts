@@ -72,8 +72,11 @@ const privilegesSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-
-
+    builder
+      .addCase(fetchPrivileges.pending, (state) => {
+        state.status = 'loading'
+        state.error = null
+      })
   },
 })
 
