@@ -17,4 +17,10 @@ export const usePrivileges = () => {
     [dispatch],
   )
 
+  const setPrivilegeStatus = useCallback(
+    (privilege: Privilege, active: boolean) =>
+      dispatch(updatePrivilegeStatus({ privilege, active })),
+    [dispatch],
+  )
+
 }
