@@ -27,3 +27,17 @@ const initialState: PrivilegesState = {
   updatingIds: [],
   updateError: null,
 }
+
+export const fetchPrivileges = createAsyncThunk<
+  Privilege[],
+  FetchPrivilegesArgs | undefined,
+  { rejectValue: string }
+>('privileges/fetch', async (args, { rejectWithValue }) => {
+  try {
+    const params = args?.limit ? { limit: args.limit } : undefined
+    return await apiClient.request<'PRIVILEGES', 'LIST', Privilege[]>('PRIVILEGES', 'LIST', { params })
+  } catch (error) {
+    const apiError = error as ApiErrorPayload
+    return rejectWithValue(apiError.message ?? 'Unable to load privileges right now.')
+  }
+})
