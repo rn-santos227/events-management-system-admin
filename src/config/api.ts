@@ -54,6 +54,13 @@ export const API = defineApiConfig({
       path: BASE_API_PREFIX + API_ENDPOINTS.PRIVILEGES.ROOT,
       description: 'Privileges list',
     }),
+
+    UPDATE: defineEndpoint({
+      method: 'PUT',
+      module: 'privileges',
+      path: BASE_API_PREFIX + API_ENDPOINTS.PRIVILEGES.BY_ID,
+      description: 'Update privilege',
+    }),
   },
 })
 
