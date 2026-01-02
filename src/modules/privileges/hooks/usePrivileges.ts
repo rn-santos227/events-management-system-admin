@@ -12,4 +12,9 @@ export const usePrivileges = () => {
   const updatingIds = useAppSelector((state) => state.privileges.updatingIds)
   const updateError = useAppSelector((state) => state.privileges.updateError)
 
+  const loadPrivileges = useCallback(
+    (limit?: number) => dispatch(fetchPrivileges(limit ? { limit } : undefined)),
+    [dispatch],
+  )
+
 }
