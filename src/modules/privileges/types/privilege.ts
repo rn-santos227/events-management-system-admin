@@ -8,3 +8,15 @@ export interface Privilege {
   updatedAt?: string | null
   deletedAt?: string | null
 }
+
+export const isPrivilegeActive = (privilege: Privilege): boolean => {
+  if (typeof privilege.active === 'boolean') {
+    return privilege.active
+  }
+
+  if (privilege.deletedAt) {
+    return false
+  }
+
+  return true
+}
