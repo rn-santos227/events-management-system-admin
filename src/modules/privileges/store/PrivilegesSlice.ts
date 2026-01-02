@@ -68,7 +68,13 @@ export const updatePrivilegeStatus = createAsyncThunk<
 })
 
 const privilegesSlice = createSlice({
+  name: 'privileges',
+  initialState,
+  reducers: {},
+  extraReducers: (builder) => {
 
+
+  },
 })
 
 export const privilegesReducer = privilegesSlice.reducer
