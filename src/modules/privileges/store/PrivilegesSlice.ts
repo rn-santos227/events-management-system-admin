@@ -20,3 +20,10 @@ interface PrivilegesState {
   updateError: string | null
 }
 
+const initialState: PrivilegesState = {
+  items: [],
+  status: 'idle',
+  error: null,
+  updatingIds: [],
+  updateError: null,
+}
