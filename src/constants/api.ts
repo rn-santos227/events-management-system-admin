@@ -11,4 +11,9 @@ export const API_ENDPOINTS = {
     LOGIN: 'auth/login',
     LOGOUT: 'auth/logout',
   },
+
+  PRIVILEGES: {
+    ROOT: 'privileges',
+    BY_ID: 'privileges/:id',
+  },
 } as const
