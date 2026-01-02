@@ -82,6 +82,10 @@ const privilegesSlice = createSlice({
         state.items = action.payload ?? []
         state.error = null
       })
+      .addCase(fetchPrivileges.rejected, (state, action) => {
+        state.status = 'failed'
+        state.error = action.payload ?? action.error.message ?? 'Unable to load privileges.'
+      })
 
   },
 })
