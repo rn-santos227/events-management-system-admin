@@ -41,3 +41,28 @@ export const fetchPrivileges = createAsyncThunk<
     return rejectWithValue(apiError.message ?? 'Unable to load privileges right now.')
   }
 })
+
+export const updatePrivilegeStatus = createAsyncThunk<
+  Privilege,
+  UpdatePrivilegeStatusArgs,
+  { rejectValue: string }
+>('privileges/updateStatus', async ({ privilege, active }, { rejectWithValue }) => {
+  try {
+    const payload = {
+      name: privilege.name,
+      action: privilege.action,
+      resource: privilege.resource,
+      active,
+    }
+
+    const updated = await apiClient.request<'PRIVILEGES', 'UPDATE', Privilege>('PRIVILEGES', 'UPDATE', {
+      pathParams: { id: privilege.id },
+      data: payload,
+    })
+
+    return updated ?? { ...privilege, active }
+  } catch (error) {
+    const apiError = error as ApiErrorPayload
+    return rejectWithValue(apiError.message ?? 'Unable to update the privilege status.')
+  }
+})
