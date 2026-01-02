@@ -66,3 +66,9 @@ export const updatePrivilegeStatus = createAsyncThunk<
     return rejectWithValue(apiError.message ?? 'Unable to update the privilege status.')
   }
 })
+
+const privilegesSlice = createSlice({
+
+})
+
+export const privilegesReducer = privilegesSlice.reducer
