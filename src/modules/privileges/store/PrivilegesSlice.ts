@@ -77,6 +77,12 @@ const privilegesSlice = createSlice({
         state.status = 'loading'
         state.error = null
       })
+      .addCase(fetchPrivileges.fulfilled, (state, action) => {
+        state.status = 'succeeded'
+        state.items = action.payload ?? []
+        state.error = null
+      })
+
   },
 })
 
