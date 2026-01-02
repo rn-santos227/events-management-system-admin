@@ -86,7 +86,13 @@ const privilegesSlice = createSlice({
         state.status = 'failed'
         state.error = action.payload ?? action.error.message ?? 'Unable to load privileges.'
       })
-
+      .addCase(updatePrivilegeStatus.pending, (state, action) => {
+        const id = action.meta.arg.privilege.id
+        if (!state.updatingIds.includes(id)) {
+          state.updatingIds.push(id)
+        }
+        state.updateError = null
+      })
   },
 })
 
