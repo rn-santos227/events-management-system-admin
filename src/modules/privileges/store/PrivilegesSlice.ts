@@ -93,6 +93,17 @@ const privilegesSlice = createSlice({
         }
         state.updateError = null
       })
+      .addCase(updatePrivilegeStatus.fulfilled, (state, action) => {
+        const updated = action.payload
+        state.updatingIds = state.updatingIds.filter((id) => id !== updated.id)
+        const index = state.items.findIndex((item) => item.id === updated.id)
+        if (index >= 0) {
+          state.items[index] = updated
+        } else {
+          state.items.unshift(updated)
+        }
+        state.updateError = null
+      })
   },
 })
 
