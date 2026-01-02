@@ -46,6 +46,10 @@ export const API = defineApiConfig({
       description: 'User logout',
     }),
   },
+
+  PRIVILEGES: {
+
+  },
 })
 
 export type ApiGroup = typeof API
