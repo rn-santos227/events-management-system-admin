@@ -48,7 +48,12 @@ export const API = defineApiConfig({
   },
 
   PRIVILEGES: {
-
+    LIST: defineEndpoint({
+      method: 'GET',
+      module: 'privileges',
+      path: BASE_API_PREFIX + API_ENDPOINTS.PRIVILEGES.ROOT,
+      description: 'Privileges list',
+    }),
   },
 })
 
