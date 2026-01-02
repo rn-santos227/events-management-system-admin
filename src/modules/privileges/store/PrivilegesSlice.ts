@@ -104,6 +104,11 @@ const privilegesSlice = createSlice({
         }
         state.updateError = null
       })
+      .addCase(updatePrivilegeStatus.rejected, (state, action) => {
+        const id = action.meta.arg.privilege.id
+        state.updatingIds = state.updatingIds.filter((entry) => entry !== id)
+        state.updateError = action.payload ?? action.error.message ?? 'Unable to update privileges.'
+      })
   },
 })
 
