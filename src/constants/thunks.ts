@@ -4,4 +4,8 @@ export const THUNKS = {
     LOGOUT: 'auth/logout',
   },
 
+  AUDIT_LOGS: {
+    FETCH: 'auditLogs/fetch',
+  },
+
 } as const
