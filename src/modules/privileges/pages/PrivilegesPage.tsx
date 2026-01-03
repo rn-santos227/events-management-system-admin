@@ -19,5 +19,8 @@ import { isPrivilegeActive } from '../types/privilege'
 
 
 export default function PrivilegesPage() {
-
+  const { hasPrivilege } = useAuthorization()
+  const canUpdate = hasPrivilege(PRIVILEGE_ACTIONS.PRIVILEGES.UPDATE)
+  const { items, status, error, updatingIds, updateError, loadPrivileges, setPrivilegeStatus } = usePrivileges()
+  const isLoading = status === 'loading'
 }
