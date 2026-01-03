@@ -32,13 +32,6 @@ const DEFAULT_FILTERS: AuditLogFilterFormState = {
   limit: '50',
 }
 
-const getStatusTone = (status?: number | null) => {
-  if (status == null) return { tone: 'text-slate-500 bg-slate-100', label: 'N/A' }
-  if (status >= 500) return { tone: 'text-red-700 bg-red-100', label: `${status} Error` }
-  if (status >= 400) return { tone: 'text-amber-700 bg-amber-100', label: `${status} Warning` }
-  return { tone: 'text-emerald-700 bg-emerald-100', label: `${status} OK` }
-}
-
 export default function AuditLogsPage() {
   const profile = useUserProfile()
   const { hasPrivilege } = useAuthorization()
