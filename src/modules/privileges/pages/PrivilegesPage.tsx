@@ -54,6 +54,15 @@ export default function PrivilegesPage() {
           </Button>
         </header>
 
+        <Card className="page-card">
+          <CardHeader className="flex flex-col gap-2 border-b border-slate-100">
+            <CardTitle>Privilege directory</CardTitle>
+            <CardDescription>Activate or deactivate existing privileges as needed for role assignments.</CardDescription>
+            <div className="flex flex-wrap gap-3 text-xs text-slate-500">
+              <span className="page-chip">Loaded: {items.length} privilege{items.length === 1 ? '' : 's'}</span>
+            </div>
+          </CardHeader>
+        </Card>
       </div>
     </section>
   )
