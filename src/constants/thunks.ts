@@ -8,4 +8,8 @@ export const THUNKS = {
     FETCH: 'auditLogs/fetch',
   },
 
+  PRIVILEGES: {
+    FETCH: 'privileges/fetch',
+    UPDATE_STATUS: 'privileges/updateStatus',
+  },
 } as const
