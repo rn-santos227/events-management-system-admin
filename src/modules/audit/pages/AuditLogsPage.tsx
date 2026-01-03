@@ -11,15 +11,12 @@ import {
   CardHeader,
   CardTitle,
   DataTable,
-  type DataTableColumn,
 } from '@/components/ui'
 import { PRIVILEGE_ACTIONS } from '@/constants/privileges'
 import { useAuthorization } from '@/modules/auth/hooks/useAuthorization'
-import type { AuditLogEntry } from '../types/audit'
-import { getAuditUserLabel } from '../types/audit'
-import { formatDateTime } from '@/utils/time'
 import { AuditLogFilters, type AuditLogFilterFormState } from '../components/AuditLogFilters'
 import { useAuditLogs } from '../hooks/useAuditLogs'
+import { useAuditLogColumns } from '../hooks/useAuditLogColumns'
 import { filterAuditLogs, normalizeAuditLogFilters } from '../utils/filters'
 
 const DEFAULT_FILTERS: AuditLogFilterFormState = {
