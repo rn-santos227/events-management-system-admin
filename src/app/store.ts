@@ -1,6 +1,6 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 
-import { auditLogsReducer } from '@/modules/audit/store/auditLogsSlice'
+import { auditLogsReducer } from '@/modules/audit/store/AuditLogsSlice'
 import { authReducer } from '@/modules/auth/store/authSlice'
 import { privilegesReducer } from '@/modules/privileges/store/privilegesSlice'
 import { userReducer } from '@/modules/auth/store/userSlice'

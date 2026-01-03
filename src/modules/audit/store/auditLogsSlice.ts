@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
 import { apiClient, type ApiErrorPayload } from '@/services/api'
+import { THUNKS } from '@/constants/thunks'
 import type { AuditLogEntry } from '../types/audit'
 import type { AuditLogFilters } from '../types/filters'
 
@@ -58,7 +59,7 @@ export const fetchAuditLogs = createAsyncThunk<
   AuditLogEntry[],
   FetchAuditLogsArgs,
   { rejectValue: string }
->('auditLogs/fetch', async ({ scope, filters, userId }, { rejectWithValue }) => {
+>(THUNKS.AUDIT_LOGS.FETCH, async ({ scope, filters, userId }, { rejectWithValue }) => {
   try {
     if (scope === 'own') {
       if (!userId) {
