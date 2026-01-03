@@ -23,4 +23,17 @@ export default function PrivilegesPage() {
   const canUpdate = hasPrivilege(PRIVILEGE_ACTIONS.PRIVILEGES.UPDATE)
   const { items, status, error, updatingIds, updateError, loadPrivileges, setPrivilegeStatus } = usePrivileges()
   const isLoading = status === 'loading'
+
+  useEffect(() => {
+    void loadPrivileges()
+  }, [loadPrivileges])
+
+  const handleToggle = useCallback(
+    (privilege: Privilege) => {
+      const nextState = !isPrivilegeActive(privilege)
+      void setPrivilegeStatus(privilege, nextState)
+    },
+    [setPrivilegeStatus],
+  )
+
 }
