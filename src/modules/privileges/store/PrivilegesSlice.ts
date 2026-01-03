@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
 import { apiClient, type ApiErrorPayload } from '@/services/api'
+import { THUNKS } from '@/constants/thunks'
 import type { Privilege } from '../types/privilege'
 
 interface FetchPrivilegesArgs {
@@ -32,7 +33,7 @@ export const fetchPrivileges = createAsyncThunk<
   Privilege[],
   FetchPrivilegesArgs | undefined,
   { rejectValue: string }
->('privileges/fetch', async (args, { rejectWithValue }) => {
+>(THUNKS.PRIVILEGES.FETCH, async (args, { rejectWithValue }) => {
   try {
     const params = args?.limit ? { limit: args.limit } : undefined
     return await apiClient.request<'PRIVILEGES', 'LIST', Privilege[]>('PRIVILEGES', 'LIST', { params })
@@ -46,7 +47,7 @@ export const updatePrivilegeStatus = createAsyncThunk<
   Privilege,
   UpdatePrivilegeStatusArgs,
   { rejectValue: string }
->('privileges/updateStatus', async ({ privilege, active }, { rejectWithValue }) => {
+>(THUNKS.PRIVILEGES.UPDATE_STATUS, async ({ privilege, active }, { rejectWithValue }) => {
   try {
     const payload = {
       name: privilege.name,
