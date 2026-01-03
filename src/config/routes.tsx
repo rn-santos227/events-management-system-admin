@@ -1,8 +1,9 @@
 
-import AuditLogsPage from '@/modules/audit/pages/AuditLogsPage'
-import DashboardHomePage from '@/modules/dashboard/pages/DashboardHomePage'
 import LoginPage from '@/modules/auth/pages/LoginPage'
+import AuditLogsPage from '@/modules/audit/pages/AuditLogsPage'
 import NotFoundPage from '@/modules/common/pages/NotFoundPage'
+import DashboardHomePage from '@/modules/dashboard/pages/DashboardHomePage'
+import PrivilegesPage from '@/modules/privileges/pages/PrivilegesPage'
 
 import { ROUTES } from '@/constants/routes'
 import { PRIVILEGE_ACTIONS } from '@/constants/privileges'
@@ -35,6 +36,15 @@ export const routes: Route[] = [
     protected: true,
     meta: { title: 'Dashboard' },
   },
+  {
+    name: 'privileges-page',
+    path: ROUTES.PRIVILEGES,
+    element: <PrivilegesPage />,
+    protected: true,
+    requiredPrivileges: [PRIVILEGE_ACTIONS.PRIVILEGES.READ],
+    meta: { title: 'Privileges' },
+  },
+
   {
     name: 'not-found-page',
     path: ROUTES.NOT_FOUND,
