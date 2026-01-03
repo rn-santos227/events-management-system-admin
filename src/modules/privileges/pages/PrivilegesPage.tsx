@@ -17,3 +17,7 @@ import { usePrivilegeColumns } from '../hooks/usePrivilegeColumns'
 import type { Privilege } from '../types/privilege'
 import { isPrivilegeActive } from '../types/privilege'
 
+
+export default function PrivilegesPage() {
+
+}
