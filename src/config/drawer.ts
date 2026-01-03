@@ -3,6 +3,7 @@ import { DrawerSection } from '@/types/drawer'
 import {
   HiOutlineCalendarDays,
   HiOutlineClipboardDocumentList,
+  HiOutlineKey,
   HiOutlineRectangleStack,
   HiOutlineShieldCheck,
   HiOutlineSquares2X2,
@@ -62,6 +63,17 @@ export const navigationSections: DrawerSection[] = [
         status: 'soon',
         disabled: true,
         icon: HiOutlineShieldCheck,
+      },
+    ],
+  },
+  {
+    title: 'Access Control',
+    links: [
+      {
+        label: 'Privileges',
+        description: 'Review and activate system privileges',
+        to: ROUTES.PRIVILEGES,
+        icon: HiOutlineKey,
       },
     ],
   },
