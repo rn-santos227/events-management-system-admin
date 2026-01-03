@@ -3,7 +3,7 @@ import { createAsyncThunk, createSlice, type PayloadAction } from '@reduxjs/tool
 import { LoginCredentials, LoginResponse, LogoutResponse, AuthState } from '../types/auth'
 import { clearPersistedAuthState, persistAuthSession } from '../utils/authStorage'
 import { apiClient, type ApiErrorPayload } from '@/services/api'
-import { API_ENDPOINTS } from '@/constants/api'
+import { THUNKS } from '@/constants/thunks'
 
 const initialState: AuthState = {
   token: null,
@@ -19,7 +19,7 @@ export const loginUser = createAsyncThunk<
   LoginResponse,
   LoginCredentials,
   { rejectValue: string }
->(API_ENDPOINTS.AUTH.LOGIN, async (credentials, { rejectWithValue }) => {
+>(THUNKS.AUTH.LOGIN, async (credentials, { rejectWithValue }) => {
   try {
     const response = await apiClient.request<'AUTH', 'LOGIN', LoginResponse, LoginCredentials>(
       'AUTH',
@@ -51,7 +51,7 @@ export const logoutUser = createAsyncThunk<
   LogoutResponse,
   void,
   { rejectValue: string }
->(API_ENDPOINTS.AUTH.LOGOUT, async (_, { rejectWithValue }) => {
+>(THUNKS.AUTH.LOGOUT, async (_, { rejectWithValue }) => {
   try {
     const response = await apiClient.request<'AUTH', 'LOGOUT', LogoutResponse>('AUTH', 'LOGOUT')
     return response
