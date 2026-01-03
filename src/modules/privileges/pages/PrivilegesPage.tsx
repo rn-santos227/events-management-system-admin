@@ -40,7 +40,21 @@ export default function PrivilegesPage() {
 
   return (
     <section className="page-section">
+      <div className="page-container page-container-wide">
+        <header className="flex flex-wrap items-center justify-between gap-4">
+          <div>
+            <p className="page-kicker">Access control</p>
+            <h1 className="page-title">Privileges</h1>
+            <p className="page-subtitle">
+              Manage privilege availability for administrative roles without creating new records.
+            </p>
+          </div>
+          <Button type="button" variant="primary" onClick={() => void loadPrivileges()} isLoading={isLoading}>
+            Refresh
+          </Button>
+        </header>
 
+      </div>
     </section>
   )
 }
