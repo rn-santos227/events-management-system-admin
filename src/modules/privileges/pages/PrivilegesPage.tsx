@@ -36,4 +36,11 @@ export default function PrivilegesPage() {
     [setPrivilegeStatus],
   )
 
+  const columns = usePrivilegeColumns({ canUpdate, onToggle: handleToggle, updatingIds })
+
+  return (
+    <section className="page-section">
+
+    </section>
+  )
 }
