@@ -62,6 +62,30 @@ export default function PrivilegesPage() {
               <span className="page-chip">Loaded: {items.length} privilege{items.length === 1 ? '' : 's'}</span>
             </div>
           </CardHeader>
+          <CardContent className="space-y-4">
+            {error ? (
+              <AlertBanner
+                variant="error"
+                title="Unable to load privileges"
+                description={error}
+              />
+            ) : null}
+            {updateError ? (
+              <AlertBanner
+                variant="warning"
+                title="Privilege update failed"
+                description={updateError}
+              />
+            ) : null}
+            <DataTable
+              data={items}
+              columns={columns}
+              caption="Available privileges"
+              emptyMessage={isLoading ? 'Loading privileges...' : 'No privileges found'}
+              isLoading={isLoading}
+              initialSort={{ key: 'name', direction: 'asc' }}
+            />
+          </CardContent>
         </Card>
       </div>
     </section>
