@@ -98,3 +98,10 @@ export const loadUserSettings = (): UserSetting | null => {
   }
 }
 
+export const applyUserSettings = (settings: UserSetting): void => {
+  if (typeof document === 'undefined') {
+    return
+  }
+
+
+}
