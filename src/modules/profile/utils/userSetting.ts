@@ -65,3 +65,18 @@ export const normalizeUserSettings = (
   }
 }
 
+export const persistUserSettings = (settings: UserSetting): void => {
+  if (typeof window === 'undefined') {
+    return
+  }
+
+  try {
+    window.localStorage.setItem(
+      USER_SETTINGS_STORAGE_KEY,
+      JSON.stringify(settings),
+    )
+  } catch {
+    // Ignore storage errors
+  }
+}
+
