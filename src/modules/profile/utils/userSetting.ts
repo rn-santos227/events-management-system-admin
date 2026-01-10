@@ -43,3 +43,16 @@ const resolveFontSize = (fontSize?: FontSizeOption | null): string => {
       return '16px'
   }
 }
+
+const resolveLineHeight = (density?: DensityOption | null): string => {
+  switch (density) {
+    case 'COMPACT':
+      return '1.2'
+    case 'COMFORTABLE':
+      return '1.7'
+    case 'STANDARD':
+    default:
+      return '1.45'
+  }
+}
+
