@@ -3,16 +3,36 @@
 @tailwind utilities;
 
 :root {
---sidebar-width: 260px;
+  --sidebar-width: 260px;
+  --app-font-size: 16px;
+  --app-line-height: 1.45;
+  --app-density-scale: 1;
 }
+
 html, body, #root { 
   height: 100%;
   margin: 0;
   display: flex;
   flex-direction: column;
 }
-body { @apply bg-slate-50 text-slate-900; }
 
+html {
+  font-size: var(--app-font-size);
+}
+body {
+  line-height: var(--app-line-height);
+  @apply bg-slate-50 text-slate-900;
+}
+
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+}
+
+:root[data-theme='dark'] body {
+  background-color: #0f172a;
+  color: #f8fafc;
+}
 
 @layer components {
   .page-section {
