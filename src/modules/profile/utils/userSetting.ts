@@ -122,4 +122,14 @@ export const subscribeToSystemTheme = (handler: () => void): (() => void) | unde
     return undefined
   }
 
+  const media = window.matchMedia('(prefers-color-scheme: dark)')
+  const listener = () => handler()
+
+  if (media.addEventListener) {
+    media.addEventListener('change', listener)
+    return () => media.removeEventListener('change', listener)
+  }
+
+  media.addListener(listener)
+  return () => media.removeListener(listener)
 }
