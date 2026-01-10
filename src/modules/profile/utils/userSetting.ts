@@ -56,3 +56,12 @@ const resolveLineHeight = (density?: DensityOption | null): string => {
   }
 }
 
+export const normalizeUserSettings = (
+  settings?: UserSetting | UserSettingUpdateInput | null,
+): UserSetting => {
+  return {
+    ...DEFAULT_USER_SETTINGS,
+    ...(settings ?? {}),
+  }
+}
+
