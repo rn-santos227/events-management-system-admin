@@ -108,4 +108,11 @@ export const applyUserSettings = (settings: UserSetting): void => {
   const fontSize = resolveFontSize(settings.fontSize)
   const lineHeight = resolveLineHeight(settings.density)
 
+  root.setAttribute('data-theme', theme)
+  root.setAttribute('data-density', (settings.density ?? 'STANDARD').toLowerCase())
+  root.setAttribute('data-font-size', (settings.fontSize ?? 'MEDIUM').toLowerCase())
+
+  root.style.setProperty('--app-font-size', fontSize)
+  root.style.setProperty('--app-line-height', lineHeight)
+  root.style.setProperty('--app-density-scale', settings.density === 'COMPACT' ? '0.9' : '1')
 }
