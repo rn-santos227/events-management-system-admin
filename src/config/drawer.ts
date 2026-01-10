@@ -1,5 +1,5 @@
 import { ROUTES } from '@/constants/routes'
-import { DrawerSection } from '@/types/drawer'
+import { DrawerSection } from '@/@types/drawer'
 import {
   HiOutlineCalendarDays,
   HiOutlineClipboardDocumentList,

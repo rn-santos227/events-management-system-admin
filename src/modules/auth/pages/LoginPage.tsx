@@ -19,7 +19,7 @@ import {
   TextField,
   useToast,
 } from '@/components/ui'
-import { getUserFullName } from '@/types/user'
+import { getUserFullName } from '@/@types/user'
 import { type LoginCredentials } from '../types/auth'
 
 const initialCredentials: LoginCredentials = {

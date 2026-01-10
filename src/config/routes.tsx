@@ -7,7 +7,7 @@ import PrivilegesPage from '@/modules/privileges/pages/PrivilegesPage'
 
 import { ROUTES } from '@/constants/routes'
 import { PRIVILEGE_ACTIONS } from '@/constants/privileges'
-import type { Route } from '@/types/route'
+import type { Route } from '@/@types/route'
 
 export const routes: Route[] = [
   {

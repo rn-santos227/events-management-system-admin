@@ -1,4 +1,4 @@
-import type { UserProfile } from '@/types/user'
+import type { UserProfile } from '@/@types/user'
 
 export interface UserState {
   profile: UserProfile | null

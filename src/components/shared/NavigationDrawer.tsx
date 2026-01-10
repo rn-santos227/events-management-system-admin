@@ -2,10 +2,10 @@ import { useMemo, useState } from 'react'
 import { Badge } from 'flowbite-react'
 import { NavLink } from 'react-router-dom'
 
-import { DrawerLink } from '@/types/drawer'
+import { DrawerLink } from '@/@types/drawer'
 import { navigationSections } from '@/config/drawer'
-import type { UserProfile } from '@/types/user'
-import { getUserFullName } from '@/types/user'
+import type { UserProfile } from '@/@types/user'
+import { getUserFullName } from '@/@types/user'
 import { useAuthorization } from '@/modules/auth/hooks/useAuthorization'
 import {
   HiOutlineArrowsRightLeft,

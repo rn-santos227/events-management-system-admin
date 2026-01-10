@@ -1,4 +1,4 @@
-import type { Endpoint } from '../types/endpoints'
+import type { Endpoint } from '../@types/endpoints'
 import { API_ENDPOINTS, BASE_API_PREFIX } from '@/constants/api'
 
 export type ApiConfig = Record<string, Record<string, Endpoint>>

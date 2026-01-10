@@ -1,7 +1,7 @@
 import { useCallback, useMemo } from 'react'
 
 import { useUserProfile } from '@/hooks'
-import type { RolePrivilege } from '@/types/user'
+import type { RolePrivilege } from '@/@types/user'
 
 const normalizeRequired = (required?: string | string[]): string[] => {
   if (!required) return []

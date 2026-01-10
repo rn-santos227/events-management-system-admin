@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 
 import { useUserProfile } from '@/hooks'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui'
-import { getUserFullName } from '@/types/user'
+import { getUserFullName } from '@/@types/user'
 
 const sampleHighlights = [
   {

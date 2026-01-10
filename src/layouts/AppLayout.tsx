@@ -6,7 +6,7 @@ import { Button, useDialog } from '@/components/ui'
 import { useAppDispatch } from '@/app/hooks'
 import { useAuthState, useUserProfile } from '@/hooks'
 import { logoutUser } from '@/modules/auth/store/authSlice'
-import { getUserFullName } from '@/types/user'
+import { getUserFullName } from '@/@types/user'
 
 interface AppLayoutProps {
   children?: ReactNode
