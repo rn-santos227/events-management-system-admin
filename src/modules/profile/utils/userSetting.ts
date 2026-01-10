@@ -116,3 +116,10 @@ export const applyUserSettings = (settings: UserSetting): void => {
   root.style.setProperty('--app-line-height', lineHeight)
   root.style.setProperty('--app-density-scale', settings.density === 'COMPACT' ? '0.9' : '1')
 }
+
+export const subscribeToSystemTheme = (handler: () => void): (() => void) | undefined => {
+  if (typeof window === 'undefined' || !window.matchMedia) {
+    return undefined
+  }
+
+}
