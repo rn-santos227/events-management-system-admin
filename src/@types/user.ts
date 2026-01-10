@@ -1,5 +1,5 @@
 export interface RolePrivilege {
-  id: number
+  id: string
   name?: string
   action: string
   resource?: string
@@ -7,19 +7,32 @@ export interface RolePrivilege {
 }
 
 export interface RoleSummary {
-  id: number
+  id: string
   name: string
-  privileges: RolePrivilege[]
+  privileges?: RolePrivilege[]
 }
 
 export interface UserProfile {
-  id: number
+  id: string
   email: string
-  firstName: string
-  lastName: string
-  contactNumber: string
+  firstName: string | null
+  lastName: string | null
+  contactNumber: string | null
   active: boolean
   role: RoleSummary
+  createdAt?: string | null
+  updatedAt?: string | null
+  deletedAt?: string | null
+}
+
+export interface UserUpdateInput {
+  email?: string
+  password?: string
+  firstName?: string | null
+  lastName?: string | null
+  contactNumber?: string | null
+  roleId?: string | null
+  active?: boolean | null
 }
 
 export const getUserFullName = (
