@@ -16,4 +16,19 @@ const DEFAULT_USER_SETTINGS: UserSetting = {
   rememberState: true,
 }
 
+const resolveTheme = (theme?: ThemeOption | null): 'light' | 'dark' => {
+  if (theme === 'DARK') {
+    return 'dark'
+  }
+
+  if (theme === 'LIGHT') {
+    return 'light'
+  }
+
+  if (typeof window !== 'undefined' && window.matchMedia) {
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+  }
+
+  return 'light'
+}
 
