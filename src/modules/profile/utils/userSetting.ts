@@ -80,3 +80,21 @@ export const persistUserSettings = (settings: UserSetting): void => {
   }
 }
 
+export const loadUserSettings = (): UserSetting | null => {
+  if (typeof window === 'undefined') {
+    return null
+  }
+
+  try {
+    const stored = window.localStorage.getItem(USER_SETTINGS_STORAGE_KEY)
+    if (!stored) {
+      return null
+    }
+
+    const parsed = JSON.parse(stored) as UserSetting
+    return normalizeUserSettings(parsed)
+  } catch {
+    return null
+  }
+}
+
