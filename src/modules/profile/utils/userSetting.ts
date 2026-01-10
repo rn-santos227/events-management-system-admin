@@ -103,5 +103,9 @@ export const applyUserSettings = (settings: UserSetting): void => {
     return
   }
 
+  const root = document.documentElement
+  const theme = resolveTheme(settings.theme)
+  const fontSize = resolveFontSize(settings.fontSize)
+  const lineHeight = resolveLineHeight(settings.density)
 
 }
