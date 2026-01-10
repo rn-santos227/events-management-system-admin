@@ -32,3 +32,14 @@ const resolveTheme = (theme?: ThemeOption | null): 'light' | 'dark' => {
   return 'light'
 }
 
+const resolveFontSize = (fontSize?: FontSizeOption | null): string => {
+  switch (fontSize) {
+    case 'SMALL':
+      return '14px'
+    case 'LARGE':
+      return '18px'
+    case 'MEDIUM':
+    default:
+      return '16px'
+  }
+}
