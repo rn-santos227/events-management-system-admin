@@ -1,0 +1,16 @@
+import { useMutation } from '@apollo/client'
+import { useCallback, useMemo } from 'react'
+
+import { useAppDispatch, useAppSelector } from '@/app/hooks'
+import { setUserProfile } from '@/modules/auth/store/userSlice'
+import { persistUserProfile } from '@/modules/auth/utils/authStorage'
+import type { RoleSummary, UserProfile, UserUpdateInput } from '@/types/user'
+import type { UserSetting, UserSettingUpdateInput } from '@/types/userSettings'
+import {
+  UPDATE_USER_MUTATION,
+  UPDATE_USER_SETTING_MUTATION,
+} from '../queries'
+import { applyUserSettings, normalizeUserSettings, persistUserSettings } from '../utils/userSettings'
+
+
+
