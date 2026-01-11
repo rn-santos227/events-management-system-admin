@@ -67,3 +67,6 @@ const mergeUserProfile = (
   }
 }
 
+export function useUserProfileMutations() {
+
+}
