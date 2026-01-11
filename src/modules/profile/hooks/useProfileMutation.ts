@@ -12,5 +12,21 @@ import {
 } from '../queries'
 import { applyUserSettings, normalizeUserSettings, persistUserSettings } from '../utils/userSettings'
 
+interface UpdateUserResponse {
+  updateUser: UserProfile
+}
 
+interface UpdateUserVariables {
+  id: string
+  input: UserUpdateInput
+}
+
+interface UpdateUserSettingResponse {
+  updateUserSetting: UserSetting
+}
+
+interface UpdateUserSettingVariables {
+  userId: string
+  input: UserSettingUpdateInput
+}
 
