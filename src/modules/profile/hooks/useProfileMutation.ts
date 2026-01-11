@@ -30,3 +30,10 @@ interface UpdateUserSettingVariables {
   input: UserSettingUpdateInput
 }
 
+const mergeRole = (
+  currentRole: RoleSummary | null | undefined,
+  updatedRole: RoleSummary | null | undefined,
+): RoleSummary | null => {
+
+
+}
