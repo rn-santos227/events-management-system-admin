@@ -8,4 +8,11 @@ import {
   subscribeToSystemTheme,
 } from '@/modules/profile/utils/userSettings'
 
+interface UserSettingsProviderProps {
+  children: ReactNode
+}
 
+export function UserSettingsProvider({ children }: UserSettingsProviderProps) {
+
+
+}
