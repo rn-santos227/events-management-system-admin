@@ -101,6 +101,19 @@ export function persistUserProfile(user: UserProfile | null): void {
     return
   }
 
+  const timestamp = new Date().toISOString()
+  const stateToPersist: PersistedAuthState = {
+    ...DEFAULT_PERSISTED_STATE,
+    ...existingState,
+    userProfile: user,
+    lastSyncedAt: user ? timestamp : existingState.lastSyncedAt ?? null,
+  }
+
+  try {
+    storage.setItem(AUTH_STORAGE_KEY, JSON.stringify(stateToPersist))
+  } catch {
+    // Ignore storage errors
+  }
 }
 
 export function clearPersistedAuthState(): void {
