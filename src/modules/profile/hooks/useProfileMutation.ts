@@ -48,7 +48,6 @@ const mergeRole = (
   }
 }
 
-
 const mergeUserProfile = (
   current: UserProfile | null,
   updated: UserProfile | null,
@@ -61,6 +60,10 @@ const mergeUserProfile = (
     return updated
   }
 
-
+  return {
+    ...current,
+    ...updated,
+    role: mergeRole(current.role, updated.role),
+  }
 }
 
