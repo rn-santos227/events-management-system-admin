@@ -98,4 +98,20 @@ export function useUserProfileMutations() {
     },
     [dispatch, profile, updateUserMutation],
   )
+
+  const updateUserSetting = useCallback(
+    async (userId: string, input: UserSettingUpdateInput) => {
+      const result = await updateUserSettingMutation({
+        variables: { userId, input },
+      })
+      const updated = result.data?.updateUserSetting ?? null
+      if (updated) {
+        const normalized = normalizeUserSettings(updated)
+        persistUserSettings(normalized)
+        applyUserSettings(normalized)
+      }
+      return updated
+    },
+    [updateUserSettingMutation],
+  )
 }
