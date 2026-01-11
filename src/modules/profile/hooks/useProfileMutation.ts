@@ -34,6 +34,12 @@ const mergeRole = (
   currentRole: RoleSummary | null | undefined,
   updatedRole: RoleSummary | null | undefined,
 ): RoleSummary | null => {
+  if (!updatedRole) {
+    return currentRole ?? null
+  }
+
+  const sameRole = Boolean(currentRole && updatedRole.id === currentRole.id)
 
 
 }
+
