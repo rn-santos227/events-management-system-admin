@@ -91,6 +91,15 @@ export function persistAuthSession(payload: AuthSessionPayload): void {
 }
 
 export function persistUserProfile(user: UserProfile | null): void {
+  const storage = getStorage()
+  if (!storage) {
+    return
+  }
+
+  const existingState = readPersistedState()
+  if (!existingState) {
+    return
+  }
 
 }
 
