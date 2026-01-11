@@ -4,8 +4,8 @@ import { useCallback, useMemo } from 'react'
 import { useAppDispatch, useAppSelector } from '@/app/hooks'
 import { setUserProfile } from '@/modules/auth/store/userSlice'
 import { persistUserProfile } from '@/modules/auth/utils/authStorage'
-import type { RoleSummary, UserProfile, UserUpdateInput } from '@/types/user'
-import type { UserSetting, UserSettingUpdateInput } from '@/types/userSettings'
+import type { RoleSummary, UserProfile, UserUpdateInput } from '@/@types/user'
+import type { UserSetting, UserSettingUpdateInput } from '@/@types/setting'
 import {
   UPDATE_USER_MUTATION,
   UPDATE_USER_SETTING_MUTATION,
@@ -131,4 +131,10 @@ export function useUserProfileMutations() {
     [updateUserSettingState.error, updateUserSettingState.loading],
   )
 
+  return {
+    updateUser,
+    updateUserSetting,
+    updateUserStatus,
+    updateUserSettingStatus,
+  }
 }
