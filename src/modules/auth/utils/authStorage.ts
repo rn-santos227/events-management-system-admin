@@ -90,6 +90,10 @@ export function persistAuthSession(payload: AuthSessionPayload): void {
   }
 }
 
+export function persistUserProfile(user: UserProfile | null): void {
+
+}
+
 export function clearPersistedAuthState(): void {
   const storage = getStorage()
   if (!storage) {
