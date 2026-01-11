@@ -33,9 +33,9 @@ interface UpdateUserSettingVariables {
 const mergeRole = (
   currentRole: RoleSummary | null | undefined,
   updatedRole: RoleSummary | null | undefined,
-): RoleSummary | null => {
+): RoleSummary => {
   if (!updatedRole) {
-    return currentRole ?? null
+    return currentRole ?? ({} as RoleSummary)
   }
 
   const sameRole = Boolean(currentRole && updatedRole.id === currentRole.id)
@@ -45,7 +45,7 @@ const mergeRole = (
     privileges:
       updatedRole.privileges ??
       (sameRole ? currentRole?.privileges ?? [] : []),
-  }
+  } as RoleSummary
 }
 
 const mergeUserProfile = (

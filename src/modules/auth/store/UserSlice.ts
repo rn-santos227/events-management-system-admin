@@ -1,7 +1,8 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
 
 import type { UserState } from '../types/user'
 import { loginUser, logoutUser } from './authSlice'
+import type { UserProfile } from '@/@types/user'
 
 const initialState: UserState = {
   profile: null,
@@ -15,6 +16,12 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     clearUserState: () => ({ ...initialState }),
+    setUserProfile: (state, action: PayloadAction<UserProfile | null>) => {
+      state.profile = action.payload
+      state.status = action.payload ? 'succeeded' : 'idle'
+      state.error = null
+      state.lastSyncedAt = action.payload ? new Date().toISOString() : null
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -40,5 +47,5 @@ const userSlice = createSlice({
   },
 })
 
-export const { clearUserState } = userSlice.actions
+export const { clearUserState, setUserProfile } = userSlice.actions
 export const userReducer = userSlice.reducer
