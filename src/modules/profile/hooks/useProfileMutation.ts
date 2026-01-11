@@ -53,6 +53,13 @@ const mergeUserProfile = (
   current: UserProfile | null,
   updated: UserProfile | null,
 ): UserProfile | null => {
+  if (!updated) {
+    return current
+  }
+
+  if (!current) {
+    return updated
+  }
 
 
 }
