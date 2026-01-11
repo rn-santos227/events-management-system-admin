@@ -48,3 +48,12 @@ const mergeRole = (
   }
 }
 
+
+const mergeUserProfile = (
+  current: UserProfile | null,
+  updated: UserProfile | null,
+): UserProfile | null => {
+
+
+}
+
