@@ -71,4 +71,13 @@ export function useUserProfileMutations() {
   const dispatch = useAppDispatch()
   const profile = useAppSelector((state) => state.user.profile)
 
+  const [updateUserMutation, updateUserState] = useMutation<
+    UpdateUserResponse,
+    UpdateUserVariables
+  >(UPDATE_USER_MUTATION)
+
+  const [updateUserSettingMutation, updateUserSettingState] = useMutation<
+    UpdateUserSettingResponse,
+    UpdateUserSettingVariables
+  >(UPDATE_USER_SETTING_MUTATION)
 }
