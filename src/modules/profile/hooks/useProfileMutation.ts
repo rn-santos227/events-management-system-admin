@@ -39,7 +39,12 @@ const mergeRole = (
   }
 
   const sameRole = Boolean(currentRole && updatedRole.id === currentRole.id)
-
-
+  return {
+    ...(currentRole ?? {}),
+    ...updatedRole,
+    privileges:
+      updatedRole.privileges ??
+      (sameRole ? currentRole?.privileges ?? [] : []),
+  }
 }
 
