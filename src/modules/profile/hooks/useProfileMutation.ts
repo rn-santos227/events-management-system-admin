@@ -68,5 +68,7 @@ const mergeUserProfile = (
 }
 
 export function useUserProfileMutations() {
+  const dispatch = useAppDispatch()
+  const profile = useAppSelector((state) => state.user.profile)
 
 }
