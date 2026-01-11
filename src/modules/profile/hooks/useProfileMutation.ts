@@ -80,4 +80,22 @@ export function useUserProfileMutations() {
     UpdateUserSettingResponse,
     UpdateUserSettingVariables
   >(UPDATE_USER_SETTING_MUTATION)
+
+  const updateUser = useCallback(
+    async (id: string, input: UserUpdateInput) => {
+      const result = await updateUserMutation({ variables: { id, input } })
+      const updated = result.data?.updateUser ?? null
+
+      if (updated && profile?.id === updated.id) {
+        const mergedProfile = mergeUserProfile(profile, updated)
+        if (mergedProfile) {
+          dispatch(setUserProfile(mergedProfile))
+          persistUserProfile(mergedProfile)
+        }
+      }
+
+      return updated
+    },
+    [dispatch, profile, updateUserMutation],
+  )
 }
