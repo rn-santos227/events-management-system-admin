@@ -114,4 +114,13 @@ export function useUserProfileMutations() {
     },
     [updateUserSettingMutation],
   )
+
+  const updateUserStatus = useMemo(
+    () => ({
+      loading: updateUserState.loading,
+      error: updateUserState.error,
+    }),
+    [updateUserState.error, updateUserState.loading],
+  )
+
 }
